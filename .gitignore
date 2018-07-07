@@ -1,0 +1,9 @@
+# User-specific stuff:
+.idea
+jobhunter.iml
+/src/main/resources/rebel.xml
+/classes/
+# IntelliJ out
+/out/
+/target/
+

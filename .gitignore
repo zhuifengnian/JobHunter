@@ -1,5 +1,6 @@
 # User-specific stuff:
 jobhunter.iml
+.idea
 /src/main/resources/rebel.xml
 /classes/
 # IntelliJ out

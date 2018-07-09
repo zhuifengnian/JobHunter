@@ -1,7 +1,8 @@
-package com.stone.jobhunter.service;
+package com.stone.jobhunter.service.weixin;
 
 
 import com.stone.jobhunter.pojo.User;
+import com.stone.jobhunter.service.BaseService;
 
 /**
  * <br/>

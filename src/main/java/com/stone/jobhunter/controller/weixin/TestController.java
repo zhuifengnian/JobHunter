@@ -1,7 +1,7 @@
 package com.stone.jobhunter.controller.weixin;
 
 import com.stone.jobhunter.pojo.User;
-import com.stone.jobhunter.service.UserService;
+import com.stone.jobhunter.service.weixin.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

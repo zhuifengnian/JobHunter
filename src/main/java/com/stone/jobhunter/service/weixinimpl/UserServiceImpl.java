@@ -1,9 +1,10 @@
-package com.stone.jobhunter.service.impl;
+package com.stone.jobhunter.service.weixinimpl;
 
 import com.stone.jobhunter.mapper.BaseMapper;
 import com.stone.jobhunter.mapper.UserMapper;
 import com.stone.jobhunter.pojo.User;
-import com.stone.jobhunter.service.UserService;
+import com.stone.jobhunter.service.AbstractBaseServiceImpl;
+import com.stone.jobhunter.service.weixin.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

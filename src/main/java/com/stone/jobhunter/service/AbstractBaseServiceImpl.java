@@ -1,4 +1,4 @@
-package com.stone.jobhunter.service.impl;
+package com.stone.jobhunter.service;
 
 import com.stone.jobhunter.basic.Page;
 import com.stone.jobhunter.mapper.BaseMapper;

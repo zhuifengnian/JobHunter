@@ -4,7 +4,7 @@ import com.stone.jobhunter.basic.ResponseCode;
 import com.stone.jobhunter.basic.ReturnMessage;
 import com.stone.jobhunter.exception.ApiException;
 import com.stone.jobhunter.pojo.User;
-import com.stone.jobhunter.service.UserService;
+import com.stone.jobhunter.service.weixin.UserService;
 import com.stone.jobhunter.utils.QiNiuUtil;
 import com.stone.jobhunter.wxpay.ConstantUtil;
 import com.stone.jobhunter.wxpay.TenpayHttpClient;

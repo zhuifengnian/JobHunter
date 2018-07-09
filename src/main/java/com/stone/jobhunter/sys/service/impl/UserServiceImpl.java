@@ -3,8 +3,8 @@ package com.stone.jobhunter.sys.service.impl;
 import com.stone.jobhunter.mapper.BaseMapper;
 import com.stone.jobhunter.mapper.UserMapper;
 import com.stone.jobhunter.pojo.User;
-import com.stone.jobhunter.service.UserService;
-import com.stone.jobhunter.service.impl.AbstractBaseServiceImpl;
+import com.stone.jobhunter.service.weixin.UserService;
+import com.stone.jobhunter.service.AbstractBaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

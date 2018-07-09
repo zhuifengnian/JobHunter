@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stone.jobhunter.mapper.EnterpriseMapper" >
+  <resultMap id="BaseResultMap" type="com.stone.jobhunter.pojo.Enterprise" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="enterprise_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="enterprise_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="avatarurl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="type" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, enterprise_name, enterprise_url, create_time, update_time, avatarurl, state, 
+    type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from enterprise
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from enterprise
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stone.jobhunter.pojo.Enterprise" useGeneratedKeys="true" keyProperty="id">
+    insert into enterprise (id, enterprise_name, enterprise_url, 
+      create_time, update_time, avatarurl, 
+      state, type)
+    values (#{id,jdbcType=INTEGER}, #{enterpriseName,jdbcType=VARCHAR}, #{enterpriseUrl,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{avatarurl,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.Enterprise" useGeneratedKeys="true" keyProperty="id" >
+    insert into enterprise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="enterpriseName != null" >
+        enterprise_name,
+      </if>
+      <if test="enterpriseUrl != null" >
+        enterprise_url,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="avatarurl != null" >
+        avatarurl,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="enterpriseName != null" >
+        #{enterpriseName,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseUrl != null" >
+        #{enterpriseUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="avatarurl != null" >
+        #{avatarurl,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stone.jobhunter.pojo.Enterprise" >
+    update enterprise
+    <set >
+      <if test="enterpriseName != null" >
+        enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseUrl != null" >
+        enterprise_url = #{enterpriseUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="avatarurl != null" >
+        avatarurl = #{avatarurl,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stone.jobhunter.pojo.Enterprise" >
+    update enterprise
+    set enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+      enterprise_url = #{enterpriseUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      avatarurl = #{avatarurl,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--微信sql语句-->
+  <!--获得大企业所有活动-->
+  <select id="getBigList" resultType="com.stone.jobhunter.vo.ListEnterpriseVo">
+    select  e.enterprise_name as enterpriseName,e.enterprise_url as enterpriseUrl,e.avatarurl
+    from enterprise e
+    where 1=1
+    and e.state=1
+    and e.type=#{name}
+    <if test="page != null and page.start != null and page.pageSize!=null">
+      limit #{page.start},#{page.pageSize}
+    </if>
+  </select>
+  <select id="getBigListCount" resultType="Integer">
+    select count(1)
+    from enterprise
+    where 1=1
+    and state=1
+     and type=#{name}
+  </select>
+  <!--获得中企业所有活动-->
+  <select id="getMediumList" resultType="com.stone.jobhunter.vo.ListEnterpriseVo">
+    select  e.enterprise_name as enterpriseName,e.enterprise_url as enterpriseUrl,e.avatarurl
+    from enterprise e
+    where 1=1
+    and e.state=1
+    and e.type=#{name}
+    <if test="page != null and page.start != null and page.pageSize!=null">
+      limit #{page.start},#{page.pageSize}
+    </if>
+  </select>
+  <select id="getMediumListCount" resultType="Integer">
+    select count(1)
+    from enterprise
+    where 1=1
+    and state=1
+     and type=#{name}
+  </select>
+  <!--获得小企业所有活动-->
+  <select id="getSmallList" resultType="com.stone.jobhunter.vo.ListEnterpriseVo">
+    select  e.enterprise_name as enterpriseName,e.enterprise_url as enterpriseUrl,e.avatarurl
+    from enterprise e
+    where 1=1
+    and e.state=1
+    and e.type=#{name}
+    <if test="page != null and page.start != null and page.pageSize!=null">
+      limit #{page.start},#{page.pageSize}
+    </if>
+  </select>
+  <select id="getSmallListCount" resultType="Integer">
+    select count(1)
+    from enterprise
+    where 1=1
+    and state=1
+     and type=#{name}
+  </select>
+</mapper>

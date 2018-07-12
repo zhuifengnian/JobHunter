@@ -2,38 +2,35 @@ package com.stone.jobhunter.pojo;
 
 import java.util.Date;
 
-public class ResumeActivity {
+public class ResumePurpose {
     private Integer id;
 
-    private Date startTime;
-
-    private Date finishTime;
+    private String company;
 
     private String position;
 
-    private String adress;
-
-    private String activityName;
+    private String department;
 
     private Date createTime;
 
     private Date updateTime;
 
+    private Integer state;
+
     private Integer userId;
 
-    public ResumeActivity(Integer id, Date startTime, Date finishTime, String position, String adress, String activityName, Date createTime, Date updateTime, Integer userId) {
+    public ResumePurpose(Integer id, String company, String position, String department, Date createTime, Date updateTime, Integer state, Integer userId) {
         this.id = id;
-        this.startTime = startTime;
-        this.finishTime = finishTime;
+        this.company = company;
         this.position = position;
-        this.adress = adress;
-        this.activityName = activityName;
+        this.department = department;
         this.createTime = createTime;
         this.updateTime = updateTime;
+        this.state = state;
         this.userId = userId;
     }
 
-    public ResumeActivity() {
+    public ResumePurpose() {
         super();
     }
 
@@ -45,20 +42,12 @@ public class ResumeActivity {
         this.id = id;
     }
 
-    public Date getStartTime() {
-        return startTime;
+    public String getCompany() {
+        return company;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getFinishTime() {
-        return finishTime;
-    }
-
-    public void setFinishTime(Date finishTime) {
-        this.finishTime = finishTime;
+    public void setCompany(String company) {
+        this.company = company == null ? null : company.trim();
     }
 
     public String getPosition() {
@@ -69,20 +58,12 @@ public class ResumeActivity {
         this.position = position == null ? null : position.trim();
     }
 
-    public String getAdress() {
-        return adress;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress == null ? null : adress.trim();
-    }
-
-    public String getActivityName() {
-        return activityName;
-    }
-
-    public void setActivityName(String activityName) {
-        this.activityName = activityName == null ? null : activityName.trim();
+    public void setDepartment(String department) {
+        this.department = department == null ? null : department.trim();
     }
 
     public Date getCreateTime() {
@@ -99,6 +80,14 @@ public class ResumeActivity {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
     }
 
     public Integer getUserId() {

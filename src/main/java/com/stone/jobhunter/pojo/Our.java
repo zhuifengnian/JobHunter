@@ -5,7 +5,7 @@ import java.util.Date;
 public class Our {
     private Integer id;
 
-    private String logo;
+    private String text;
 
     private Date createTime;
 
@@ -13,15 +13,12 @@ public class Our {
 
     private String picture;
 
-    private String text;
-
-    public Our(Integer id, String logo, Date createTime, Date updateTime, String picture, String text) {
+    public Our(Integer id, String text, Date createTime, Date updateTime, String picture) {
         this.id = id;
-        this.logo = logo;
+        this.text = text;
         this.createTime = createTime;
         this.updateTime = updateTime;
         this.picture = picture;
-        this.text = text;
     }
 
     public Our() {
@@ -36,12 +33,12 @@ public class Our {
         this.id = id;
     }
 
-    public String getLogo() {
-        return logo;
+    public String getText() {
+        return text;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo == null ? null : logo.trim();
+    public void setText(String text) {
+        this.text = text == null ? null : text.trim();
     }
 
     public Date getCreateTime() {
@@ -66,13 +63,5 @@ public class Our {
 
     public void setPicture(String picture) {
         this.picture = picture == null ? null : picture.trim();
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text == null ? null : text.trim();
     }
 }

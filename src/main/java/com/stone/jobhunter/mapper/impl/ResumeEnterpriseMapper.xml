@@ -11,14 +11,13 @@
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="position" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="finish_text" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="resume_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="context" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
     id, start_time, finish_time, enterprise_name, create_time, update_time, state, position, 
-    finish_text, resume_id, user_id
+    user_id, context
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -30,17 +29,17 @@
     delete from resume_enterprise
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.stone.jobhunter.pojo.ResumeEnterprise" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="com.stone.jobhunter.pojo.ResumeEnterprise" useGeneratedKeys="true" keyProperty="id" >
     insert into resume_enterprise (id, start_time, finish_time, 
       enterprise_name, create_time, update_time, 
-      state, position, finish_text, 
-      resume_id, user_id)
+      state, position, user_id, 
+      context)
     values (#{id,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, 
       #{enterpriseName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{state,jdbcType=INTEGER}, #{position,jdbcType=VARCHAR}, #{finishText,jdbcType=VARCHAR}, 
-      #{resumeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
+      #{state,jdbcType=INTEGER}, #{position,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{context,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.ResumeEnterprise" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.ResumeEnterprise" useGeneratedKeys="true" keyProperty="id" >
     insert into resume_enterprise
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -67,14 +66,11 @@
       <if test="position != null" >
         position,
       </if>
-      <if test="finishText != null" >
-        finish_text,
-      </if>
-      <if test="resumeId != null" >
-        resume_id,
-      </if>
       <if test="userId != null" >
         user_id,
+      </if>
+      <if test="context != null" >
+        context,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -102,14 +98,11 @@
       <if test="position != null" >
         #{position,jdbcType=VARCHAR},
       </if>
-      <if test="finishText != null" >
-        #{finishText,jdbcType=VARCHAR},
-      </if>
-      <if test="resumeId != null" >
-        #{resumeId,jdbcType=INTEGER},
-      </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="context != null" >
+        #{context,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -137,14 +130,11 @@
       <if test="position != null" >
         position = #{position,jdbcType=VARCHAR},
       </if>
-      <if test="finishText != null" >
-        finish_text = #{finishText,jdbcType=VARCHAR},
-      </if>
-      <if test="resumeId != null" >
-        resume_id = #{resumeId,jdbcType=INTEGER},
-      </if>
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="context != null" >
+        context = #{context,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -158,9 +148,8 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       state = #{state,jdbcType=INTEGER},
       position = #{position,jdbcType=VARCHAR},
-      finish_text = #{finishText,jdbcType=VARCHAR},
-      resume_id = #{resumeId,jdbcType=INTEGER},
-      user_id = #{userId,jdbcType=INTEGER}
+      user_id = #{userId,jdbcType=INTEGER},
+      context = #{context,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

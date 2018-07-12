@@ -19,13 +19,11 @@ public class ResumeEnterprise {
 
     private String position;
 
-    private String finishText;
-
-    private Integer resumeId;
-
     private Integer userId;
 
-    public ResumeEnterprise(Integer id, Date startTime, Date finishTime, String enterpriseName, Date createTime, Date updateTime, Integer state, String position, String finishText, Integer resumeId, Integer userId) {
+    private String context;
+
+    public ResumeEnterprise(Integer id, Date startTime, Date finishTime, String enterpriseName, Date createTime, Date updateTime, Integer state, String position, Integer userId, String context) {
         this.id = id;
         this.startTime = startTime;
         this.finishTime = finishTime;
@@ -34,9 +32,8 @@ public class ResumeEnterprise {
         this.updateTime = updateTime;
         this.state = state;
         this.position = position;
-        this.finishText = finishText;
-        this.resumeId = resumeId;
         this.userId = userId;
+        this.context = context;
     }
 
     public ResumeEnterprise() {
@@ -107,27 +104,19 @@ public class ResumeEnterprise {
         this.position = position == null ? null : position.trim();
     }
 
-    public String getFinishText() {
-        return finishText;
-    }
-
-    public void setFinishText(String finishText) {
-        this.finishText = finishText == null ? null : finishText.trim();
-    }
-
-    public Integer getResumeId() {
-        return resumeId;
-    }
-
-    public void setResumeId(Integer resumeId) {
-        this.resumeId = resumeId;
-    }
-
     public Integer getUserId() {
         return userId;
     }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getContext() {
+        return context;
+    }
+
+    public void setContext(String context) {
+        this.context = context == null ? null : context.trim();
     }
 }

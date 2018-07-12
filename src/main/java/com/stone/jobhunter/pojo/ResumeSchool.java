@@ -5,8 +5,6 @@ import java.util.Date;
 public class ResumeSchool {
     private Integer id;
 
-    private Integer resumeId;
-
     private Date startTime;
 
     private Date finishTime;
@@ -21,13 +19,14 @@ public class ResumeSchool {
 
     private Integer state;
 
-    private String finishText;
-
     private Integer userId;
 
-    public ResumeSchool(Integer id, Integer resumeId, Date startTime, Date finishTime, String school, String major, Date createTime, Date updateTime, Integer state, String finishText, Integer userId) {
+    private String degree;
+
+    private String experience;
+
+    public ResumeSchool(Integer id, Date startTime, Date finishTime, String school, String major, Date createTime, Date updateTime, Integer state, Integer userId, String degree, String experience) {
         this.id = id;
-        this.resumeId = resumeId;
         this.startTime = startTime;
         this.finishTime = finishTime;
         this.school = school;
@@ -35,8 +34,9 @@ public class ResumeSchool {
         this.createTime = createTime;
         this.updateTime = updateTime;
         this.state = state;
-        this.finishText = finishText;
         this.userId = userId;
+        this.degree = degree;
+        this.experience = experience;
     }
 
     public ResumeSchool() {
@@ -49,14 +49,6 @@ public class ResumeSchool {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getResumeId() {
-        return resumeId;
-    }
-
-    public void setResumeId(Integer resumeId) {
-        this.resumeId = resumeId;
     }
 
     public Date getStartTime() {
@@ -115,19 +107,27 @@ public class ResumeSchool {
         this.state = state;
     }
 
-    public String getFinishText() {
-        return finishText;
-    }
-
-    public void setFinishText(String finishText) {
-        this.finishText = finishText == null ? null : finishText.trim();
-    }
-
     public Integer getUserId() {
         return userId;
     }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getDegree() {
+        return degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree == null ? null : degree.trim();
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience == null ? null : experience.trim();
     }
 }

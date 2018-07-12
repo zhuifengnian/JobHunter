@@ -183,4 +183,5 @@
     and state=1
      and type=#{name}
   </select>
+
 </mapper>

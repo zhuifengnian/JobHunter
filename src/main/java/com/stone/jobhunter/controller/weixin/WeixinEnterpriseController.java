@@ -1,8 +1,6 @@
 package com.stone.jobhunter.controller.weixin;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+
 import com.stone.jobhunter.basic.PageInfo;
 import com.stone.jobhunter.basic.ResponseCode;
 import com.stone.jobhunter.basic.ReturnMessage;

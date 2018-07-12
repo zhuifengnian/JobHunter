@@ -4,23 +4,21 @@
   <resultMap id="BaseResultMap" type="com.stone.jobhunter.pojo.ResumeScience" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="resume_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="start_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="finish_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="science_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="science_text" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="my_task" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="context" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="finish_text" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, resume_id, start_time, finish_time, science_name, science_text, my_task, address, 
-    create_time, update_time, state, finish_text, user_id
+    id, start_time, finish_time, science_name, science_text, context, address, create_time, 
+    update_time, state, user_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -33,25 +31,20 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.stone.jobhunter.pojo.ResumeScience" useGeneratedKeys="true" keyProperty="id">
-    insert into resume_science (id, resume_id, start_time, 
-      finish_time, science_name, science_text, 
-      my_task, address, create_time, 
-      update_time, state, finish_text, 
-      user_id)
-    values (#{id,jdbcType=INTEGER}, #{resumeId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{finishTime,jdbcType=TIMESTAMP}, #{scienceName,jdbcType=VARCHAR}, #{scienceText,jdbcType=VARCHAR}, 
-      #{myTask,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, #{finishText,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=INTEGER})
+    insert into resume_science (id, start_time, finish_time, 
+      science_name, science_text, context, 
+      address, create_time, update_time, 
+      state, user_id)
+    values (#{id,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, 
+      #{scienceName,jdbcType=VARCHAR}, #{scienceText,jdbcType=VARCHAR}, #{context,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.ResumeScience" useGeneratedKeys="true" keyProperty="id">
     insert into resume_science
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
-      </if>
-      <if test="resumeId != null" >
-        resume_id,
       </if>
       <if test="startTime != null" >
         start_time,
@@ -65,8 +58,8 @@
       <if test="scienceText != null" >
         science_text,
       </if>
-      <if test="myTask != null" >
-        my_task,
+      <if test="context != null" >
+        context,
       </if>
       <if test="address != null" >
         address,
@@ -80,9 +73,6 @@
       <if test="state != null" >
         state,
       </if>
-      <if test="finishText != null" >
-        finish_text,
-      </if>
       <if test="userId != null" >
         user_id,
       </if>
@@ -90,9 +80,6 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
-      </if>
-      <if test="resumeId != null" >
-        #{resumeId,jdbcType=INTEGER},
       </if>
       <if test="startTime != null" >
         #{startTime,jdbcType=TIMESTAMP},
@@ -106,8 +93,8 @@
       <if test="scienceText != null" >
         #{scienceText,jdbcType=VARCHAR},
       </if>
-      <if test="myTask != null" >
-        #{myTask,jdbcType=VARCHAR},
+      <if test="context != null" >
+        #{context,jdbcType=VARCHAR},
       </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
@@ -121,9 +108,6 @@
       <if test="state != null" >
         #{state,jdbcType=INTEGER},
       </if>
-      <if test="finishText != null" >
-        #{finishText,jdbcType=VARCHAR},
-      </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
       </if>
@@ -132,9 +116,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.stone.jobhunter.pojo.ResumeScience" >
     update resume_science
     <set >
-      <if test="resumeId != null" >
-        resume_id = #{resumeId,jdbcType=INTEGER},
-      </if>
       <if test="startTime != null" >
         start_time = #{startTime,jdbcType=TIMESTAMP},
       </if>
@@ -147,8 +128,8 @@
       <if test="scienceText != null" >
         science_text = #{scienceText,jdbcType=VARCHAR},
       </if>
-      <if test="myTask != null" >
-        my_task = #{myTask,jdbcType=VARCHAR},
+      <if test="context != null" >
+        context = #{context,jdbcType=VARCHAR},
       </if>
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
@@ -162,9 +143,6 @@
       <if test="state != null" >
         state = #{state,jdbcType=INTEGER},
       </if>
-      <if test="finishText != null" >
-        finish_text = #{finishText,jdbcType=VARCHAR},
-      </if>
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
       </if>
@@ -173,17 +151,15 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.stone.jobhunter.pojo.ResumeScience" >
     update resume_science
-    set resume_id = #{resumeId,jdbcType=INTEGER},
-      start_time = #{startTime,jdbcType=TIMESTAMP},
+    set start_time = #{startTime,jdbcType=TIMESTAMP},
       finish_time = #{finishTime,jdbcType=TIMESTAMP},
       science_name = #{scienceName,jdbcType=VARCHAR},
       science_text = #{scienceText,jdbcType=VARCHAR},
-      my_task = #{myTask,jdbcType=VARCHAR},
+      context = #{context,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       state = #{state,jdbcType=INTEGER},
-      finish_text = #{finishText,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -17,6 +17,8 @@ public class Resume {
 
     private Integer state;
 
+    private String selfAssessment;
+
     private String userName;
 
     private String userPhone;
@@ -35,9 +37,9 @@ public class Resume {
 
     private String highEducation;
 
-    private String hobby;
+    private Date userBirth;
 
-    public Resume(Integer id, Integer userId, String resumeName, String evaluationId, Date createTime, Date updateTime, Integer state, String userName, String userPhone, String userCard, String userPhoto, String userGender, Integer userAge, String userEmail, String adress, String highEducation, String hobby) {
+    public Resume(Integer id, Integer userId, String resumeName, String evaluationId, Date createTime, Date updateTime, Integer state, String selfAssessment, String userName, String userPhone, String userCard, String userPhoto, String userGender, Integer userAge, String userEmail, String adress, String highEducation, Date userBirth) {
         this.id = id;
         this.userId = userId;
         this.resumeName = resumeName;
@@ -45,6 +47,7 @@ public class Resume {
         this.createTime = createTime;
         this.updateTime = updateTime;
         this.state = state;
+        this.selfAssessment = selfAssessment;
         this.userName = userName;
         this.userPhone = userPhone;
         this.userCard = userCard;
@@ -54,7 +57,7 @@ public class Resume {
         this.userEmail = userEmail;
         this.adress = adress;
         this.highEducation = highEducation;
-        this.hobby = hobby;
+        this.userBirth = userBirth;
     }
 
     public Resume() {
@@ -115,6 +118,14 @@ public class Resume {
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    public String getSelfAssessment() {
+        return selfAssessment;
+    }
+
+    public void setSelfAssessment(String selfAssessment) {
+        this.selfAssessment = selfAssessment == null ? null : selfAssessment.trim();
     }
 
     public String getUserName() {
@@ -189,11 +200,11 @@ public class Resume {
         this.highEducation = highEducation == null ? null : highEducation.trim();
     }
 
-    public String getHobby() {
-        return hobby;
+    public Date getUserBirth() {
+        return userBirth;
     }
 
-    public void setHobby(String hobby) {
-        this.hobby = hobby == null ? null : hobby.trim();
+    public void setUserBirth(Date userBirth) {
+        this.userBirth = userBirth;
     }
 }

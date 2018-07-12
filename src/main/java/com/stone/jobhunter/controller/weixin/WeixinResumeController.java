@@ -1,21 +1,24 @@
 package com.stone.jobhunter.controller.weixin;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+
+import com.stone.jobhunter.pojo.*;
+import com.stone.jobhunter.service.weixin.*;
+import com.stone.jobhunter.service.weixinimpl.ReusmeEnterpriseServiceImpl;
+import com.stone.jobhunter.utils.JsonUtil;
+import net.sf.json.JSONArray;
 import com.stone.jobhunter.basic.PageInfo;
 import com.stone.jobhunter.basic.ResponseCode;
 import com.stone.jobhunter.basic.ReturnMessage;
-import com.stone.jobhunter.pojo.DeliverJob;
-import com.stone.jobhunter.service.weixin.DeliverJobService;
-import com.stone.jobhunter.service.weixin.ResumeService;
 import com.stone.jobhunter.utils.PageUtil;
 import com.stone.jobhunter.vo.ListResumeVo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.json.JsonObject;
+import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.util.List;
+
 
 /**
  * liyue 2018/7/8
@@ -28,19 +31,38 @@ public class WeixinResumeController {
 private ResumeService resumeService;
 @Autowired
 private DeliverJobService deliverJobService;
+@Autowired
+private ResumePurposeService resumePurposeService;
+@Autowired
+private ResumeScienceService resumeScienceService;
+@Autowired
+private ResumeSchoolService resumeSchoolService;
+@Autowired
+private ResumeEnterpriseService resumeEnterpriseService;
+
     @ApiOperation(value = "添加简历", notes = "添加简历")
     @RequestMapping(value = "/insertResume", method = RequestMethod.POST)
-    public ReturnMessage insertResume(@RequestBody JSONObject obj) {
-        String data = obj.toJSONString();
-        //解析json数据
-        JSONObject json = JSON.parseObject(data);
-        String createArr = json.getString("createArr");
-        String modifyArr = json.getString("modifyArr");
+    public ReturnMessage insertResume(@RequestBody  String obj) throws ParseException, UnsupportedEncodingException {
+        int insert[]=new int[5];
+        obj = new String(obj.getBytes("ISO-8859-1"), "UTF-8");
+        Resume resume=JsonUtil.checkJson(obj);
+        insert[0]=resumeService.insert(resume);
+        List<ResumePurpose> resumePurposeList =JsonUtil.checkJson1(obj);
+        for(ResumePurpose resumePurpose : resumePurposeList)
+        insert[1]=resumePurposeService.insert(resumePurpose);
 
-        JSONArray createArray=JSONArray.parseArray(createArr);
-        JSONObject.parseObject(JSONObject.toJSONString(createArray.get(0))).getLong("tempId");
+        List<ResumeSchool>resumeSchoolList =JsonUtil.checkJson2(obj);
+        for(ResumeSchool resumeSchool: resumeSchoolList)
+        insert[2]=resumeSchoolService.insert(resumeSchool);
 
-        return new ReturnMessage(ResponseCode.OK, 0);
+        List<ResumeScience> resumeScienceList=JsonUtil.checkJson3(obj);
+        for(ResumeScience resumeScience : resumeScienceList)
+            insert[3]=resumeScienceService.insert(resumeScience);
+
+       List<ResumeEnterprise> resumeEnterpriseList=JsonUtil.checkJson4(obj);
+        for(ResumeEnterprise resumeEnterprise : resumeEnterpriseList)
+            insert[3]=resumeEnterpriseService.insert(resumeEnterprise);
+        return new ReturnMessage(ResponseCode.OK,insert);
     }
     @ApiOperation(value = "简历列表", notes = "简历列表")
     @RequestMapping(value = "/ListResume", method = RequestMethod.POST)

@@ -4,33 +4,18 @@
   <resultMap id="BaseResultMap" type="com.stone.jobhunter.pojo.Our" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="logo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="text" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="picture" jdbcType="VARCHAR" javaType="java.lang.String" />
-    </constructor>
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.stone.jobhunter.pojo.Our" >
-    <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="logo" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="picture" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="text" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, logo, create_time, update_time, picture
+    id, text, create_time, update_time, picture
   </sql>
-  <sql id="Blob_Column_List" >
-    text
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from our
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -39,12 +24,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.stone.jobhunter.pojo.Our" useGeneratedKeys="true" keyProperty="id">
-    insert into our (id, logo, create_time, 
-      update_time, picture, text
-      )
-    values (#{id,jdbcType=INTEGER}, #{logo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{picture,jdbcType=VARCHAR}, #{text,jdbcType=LONGVARCHAR}
-      )
+    insert into our (id, text, create_time, 
+      update_time, picture)
+    values (#{id,jdbcType=INTEGER}, #{text,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{picture,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.Our" useGeneratedKeys="true" keyProperty="id">
     insert into our
@@ -52,8 +35,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="logo != null" >
-        logo,
+      <if test="text != null" >
+        text,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -64,16 +47,13 @@
       <if test="picture != null" >
         picture,
       </if>
-      <if test="text != null" >
-        text,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="logo != null" >
-        #{logo,jdbcType=VARCHAR},
+      <if test="text != null" >
+        #{text,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -84,16 +64,13 @@
       <if test="picture != null" >
         #{picture,jdbcType=VARCHAR},
       </if>
-      <if test="text != null" >
-        #{text,jdbcType=LONGVARCHAR},
-      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.stone.jobhunter.pojo.Our" >
     update our
     <set >
-      <if test="logo != null" >
-        logo = #{logo,jdbcType=VARCHAR},
+      <if test="text != null" >
+        text = #{text,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -104,27 +81,30 @@
       <if test="picture != null" >
         picture = #{picture,jdbcType=VARCHAR},
       </if>
-      <if test="text != null" >
-        text = #{text,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.stone.jobhunter.pojo.Our" >
-    update our
-    set logo = #{logo,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      picture = #{picture,jdbcType=VARCHAR},
-      text = #{text,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.stone.jobhunter.pojo.Our" >
     update our
-    set logo = #{logo,jdbcType=VARCHAR},
+    set text = #{text,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       picture = #{picture,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!--管理系统sql语句-->
+  <!--获得所有我们-->
+  <select id="getListOur" resultType="com.stone.jobhunter.vo.ListOurVo">
+    select    logo,text,picture
+    from our
+    <if test="start != null and pageSize!=null">
+      limit #{start},#{pageSize}
+    </if>
+  </select>
+  <select id="getListOurCount" resultType="Integer">
+    select count(1)
+    from our
+
+  </select>
+
 </mapper>

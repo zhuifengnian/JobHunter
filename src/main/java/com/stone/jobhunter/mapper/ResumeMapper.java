@@ -12,7 +12,6 @@ import java.util.List;
 public interface ResumeMapper extends BaseMapper<Resume>{
 
 
-    int updateByPrimaryKeyWithBLOBs(Resume record);
     /**
      * 获取简历列表
      * @param page

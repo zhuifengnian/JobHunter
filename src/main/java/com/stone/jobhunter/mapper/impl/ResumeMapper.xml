@@ -10,6 +10,7 @@
       <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="self_assessment" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="user_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="user_card" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -19,41 +20,17 @@
       <arg column="user_email" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="adress" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="high_education" jdbcType="VARCHAR" javaType="java.lang.String" />
-    </constructor>
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.stone.jobhunter.pojo.Resume" >
-    <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="resume_name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="evaluation_id" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="user_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="user_card" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="user_photo" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="user_gender" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="user_age" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="user_email" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="adress" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="high_education" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="hobby" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+      <arg column="user_birth" jdbcType="TIMESTAMP" javaType="java.util.Date" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_id, resume_name, evaluation_id, create_time, update_time, state, user_name, 
-    user_phone, user_card, user_photo, user_gender, user_age, user_email, adress, high_education
+    id, user_id, resume_name, evaluation_id, create_time, update_time, state, self_assessment, 
+    user_name, user_phone, user_card, user_photo, user_gender, user_age, user_email, 
+    adress, high_education, user_birth
   </sql>
-  <sql id="Blob_Column_List" >
-    hobby
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from resume
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -64,16 +41,18 @@
   <insert id="insert" parameterType="com.stone.jobhunter.pojo.Resume" useGeneratedKeys="true" keyProperty="id">
     insert into resume (id, user_id, resume_name, 
       evaluation_id, create_time, update_time, 
-      state, user_name, user_phone, 
-      user_card, user_photo, user_gender, 
-      user_age, user_email, adress, 
-      high_education, hobby)
+      state, self_assessment, user_name, 
+      user_phone, user_card, user_photo, 
+      user_gender, user_age, user_email, 
+      adress, high_education, user_birth
+      )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{resumeName,jdbcType=VARCHAR}, 
       #{evaluationId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{state,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
-      #{userCard,jdbcType=VARCHAR}, #{userPhoto,jdbcType=VARCHAR}, #{userGender,jdbcType=VARCHAR}, 
-      #{userAge,jdbcType=INTEGER}, #{userEmail,jdbcType=VARCHAR}, #{adress,jdbcType=VARCHAR}, 
-      #{highEducation,jdbcType=VARCHAR}, #{hobby,jdbcType=LONGVARCHAR})
+      #{state,jdbcType=INTEGER}, #{selfAssessment,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userPhone,jdbcType=VARCHAR}, #{userCard,jdbcType=VARCHAR}, #{userPhoto,jdbcType=VARCHAR}, 
+      #{userGender,jdbcType=VARCHAR}, #{userAge,jdbcType=INTEGER}, #{userEmail,jdbcType=VARCHAR}, 
+      #{adress,jdbcType=VARCHAR}, #{highEducation,jdbcType=VARCHAR}, #{userBirth,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.Resume" useGeneratedKeys="true" keyProperty="id">
     insert into resume
@@ -98,6 +77,9 @@
       </if>
       <if test="state != null" >
         state,
+      </if>
+      <if test="selfAssessment != null" >
+        self_assessment,
       </if>
       <if test="userName != null" >
         user_name,
@@ -126,8 +108,8 @@
       <if test="highEducation != null" >
         high_education,
       </if>
-      <if test="hobby != null" >
-        hobby,
+      <if test="userBirth != null" >
+        user_birth,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -151,6 +133,9 @@
       </if>
       <if test="state != null" >
         #{state,jdbcType=INTEGER},
+      </if>
+      <if test="selfAssessment != null" >
+        #{selfAssessment,jdbcType=VARCHAR},
       </if>
       <if test="userName != null" >
         #{userName,jdbcType=VARCHAR},
@@ -179,8 +164,8 @@
       <if test="highEducation != null" >
         #{highEducation,jdbcType=VARCHAR},
       </if>
-      <if test="hobby != null" >
-        #{hobby,jdbcType=LONGVARCHAR},
+      <if test="userBirth != null" >
+        #{userBirth,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -204,6 +189,9 @@
       </if>
       <if test="state != null" >
         state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="selfAssessment != null" >
+        self_assessment = #{selfAssessment,jdbcType=VARCHAR},
       </if>
       <if test="userName != null" >
         user_name = #{userName,jdbcType=VARCHAR},
@@ -232,30 +220,10 @@
       <if test="highEducation != null" >
         high_education = #{highEducation,jdbcType=VARCHAR},
       </if>
-      <if test="hobby != null" >
-        hobby = #{hobby,jdbcType=LONGVARCHAR},
+      <if test="userBirth != null" >
+        user_birth = #{userBirth,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.stone.jobhunter.pojo.Resume" >
-    update resume
-    set user_id = #{userId,jdbcType=INTEGER},
-      resume_name = #{resumeName,jdbcType=VARCHAR},
-      evaluation_id = #{evaluationId,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      state = #{state,jdbcType=INTEGER},
-      user_name = #{userName,jdbcType=VARCHAR},
-      user_phone = #{userPhone,jdbcType=VARCHAR},
-      user_card = #{userCard,jdbcType=VARCHAR},
-      user_photo = #{userPhoto,jdbcType=VARCHAR},
-      user_gender = #{userGender,jdbcType=VARCHAR},
-      user_age = #{userAge,jdbcType=INTEGER},
-      user_email = #{userEmail,jdbcType=VARCHAR},
-      adress = #{adress,jdbcType=VARCHAR},
-      high_education = #{highEducation,jdbcType=VARCHAR},
-      hobby = #{hobby,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.stone.jobhunter.pojo.Resume" >
@@ -266,6 +234,7 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       state = #{state,jdbcType=INTEGER},
+      self_assessment = #{selfAssessment,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
       user_phone = #{userPhone,jdbcType=VARCHAR},
       user_card = #{userCard,jdbcType=VARCHAR},
@@ -274,26 +243,28 @@
       user_age = #{userAge,jdbcType=INTEGER},
       user_email = #{userEmail,jdbcType=VARCHAR},
       adress = #{adress,jdbcType=VARCHAR},
-      high_education = #{highEducation,jdbcType=VARCHAR}
+      high_education = #{highEducation,jdbcType=VARCHAR},
+      user_birth = #{userBirth,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <!--微信sql语句-->
-  <!--获得所有简历-->
-  <select id="getListResume" resultType="com.stone.jobhunter.vo.ListResumeVo">
-    select  r.id as id,r.resume_name as resumeName,r.user_id as userId
-    from resume r
-    where 1=1
-    and r.state=1
-    and r.user_id=#{userId}
-    <if test="page != null and page.start != null and page.pageSize!=null">
-      limit #{page.start},#{page.pageSize}
-    </if>
-  </select>
-  <select id="getListResumeCount" resultType="Integer">
+    <!--微信sql语句-->
+    <!--获得所有简历-->
+    <select id="getListResume" resultType="com.stone.jobhunter.vo.ListResumeVo">
+        select  r.id as id,r.resume_name as resumeName,r.user_id as userId
+        from resume r
+        where 1=1
+        and r.state=1
+        and r.user_id=#{userId}
+        <if test="page != null and page.start != null and page.pageSize!=null">
+            limit #{page.start},#{page.pageSize}
+        </if>
+    </select>
+    <select id="getListResumeCount" resultType="Integer">
     select count(1)
     from resume
     where 1=1
     and state=1
     and user_id=#{userId}
   </select>
+
 </mapper>

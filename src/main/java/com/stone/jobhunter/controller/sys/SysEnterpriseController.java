@@ -6,10 +6,12 @@ import com.stone.jobhunter.basic.ReturnMessage;
 import com.stone.jobhunter.pojo.Enterprise;
 import com.stone.jobhunter.service.weixin.EnterpriseService;
 import com.stone.jobhunter.utils.PageUtil;
+import com.stone.jobhunter.utils.QiNiuUtil;
 import com.stone.jobhunter.vo.ListEnterpriseVo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Calendar;
 
@@ -26,7 +28,11 @@ public class SysEnterpriseController {
     @ApiOperation(value = "插入企业", notes = "插入企业")
     @ResponseBody
     @RequestMapping(value = "/insertEnterprise", method = RequestMethod.POST)
-    public ReturnMessage insertEnterprise(Enterprise enterprise) {
+    public ReturnMessage insertEnterprise(Enterprise enterprise, @RequestParam(value = "flyfile", required = false) MultipartFile flfile) {
+        String picture=null;
+        if(flfile!=null)
+            picture=QiNiuUtil.manageFile(flfile);
+        enterprise.setAvatarurl(picture);
         int insert=enterpriseService.insert(enterprise);
 
         return new ReturnMessage(ResponseCode.OK, insert);

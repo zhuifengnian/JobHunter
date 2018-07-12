@@ -92,22 +92,23 @@
       state = #{state,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <!--管理系统sql语句-->
-  <!--获得所有标签-->
-  <select id="getListEvaluate" resultType="com.stone.jobhunter.vo.ListEvaluateVo">
-    select  re.id  as id,re.label as label
-    from resume_evaluate re
-    where 1=1
-    and re.state=1
-    <if test="start != null and pageSize!=null">
-      limit #{start},#{pageSize}
-    </if>
-  </select>
-  <select id="getListEvaluateCount" resultType="Integer">
+    <!--管理系统sql语句-->
+    <!--获得所有标签-->
+    <select id="getListEvaluate" resultType="com.stone.jobhunter.vo.ListEvaluateVo">
+        select  re.id  as id,re.label as label
+        from resume_evaluate re
+        where 1=1
+        and re.state=1
+        <if test="start != null and pageSize!=null">
+            limit #{start},#{pageSize}
+        </if>
+    </select>
+    <select id="getListEvaluateCount" resultType="Integer">
     select count(1)
     from resume_evaluate
     where 1=1
     and state=1
 
   </select>
+
 </mapper>

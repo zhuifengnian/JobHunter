@@ -5,8 +5,6 @@ import java.util.Date;
 public class ResumeScience {
     private Integer id;
 
-    private Integer resumeId;
-
     private Date startTime;
 
     private Date finishTime;
@@ -15,7 +13,7 @@ public class ResumeScience {
 
     private String scienceText;
 
-    private String myTask;
+    private String context;
 
     private String address;
 
@@ -25,23 +23,19 @@ public class ResumeScience {
 
     private Integer state;
 
-    private String finishText;
-
     private Integer userId;
 
-    public ResumeScience(Integer id, Integer resumeId, Date startTime, Date finishTime, String scienceName, String scienceText, String myTask, String address, Date createTime, Date updateTime, Integer state, String finishText, Integer userId) {
+    public ResumeScience(Integer id, Date startTime, Date finishTime, String scienceName, String scienceText, String context, String address, Date createTime, Date updateTime, Integer state, Integer userId) {
         this.id = id;
-        this.resumeId = resumeId;
         this.startTime = startTime;
         this.finishTime = finishTime;
         this.scienceName = scienceName;
         this.scienceText = scienceText;
-        this.myTask = myTask;
+        this.context = context;
         this.address = address;
         this.createTime = createTime;
         this.updateTime = updateTime;
         this.state = state;
-        this.finishText = finishText;
         this.userId = userId;
     }
 
@@ -55,14 +49,6 @@ public class ResumeScience {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getResumeId() {
-        return resumeId;
-    }
-
-    public void setResumeId(Integer resumeId) {
-        this.resumeId = resumeId;
     }
 
     public Date getStartTime() {
@@ -97,12 +83,12 @@ public class ResumeScience {
         this.scienceText = scienceText == null ? null : scienceText.trim();
     }
 
-    public String getMyTask() {
-        return myTask;
+    public String getContext() {
+        return context;
     }
 
-    public void setMyTask(String myTask) {
-        this.myTask = myTask == null ? null : myTask.trim();
+    public void setContext(String context) {
+        this.context = context == null ? null : context.trim();
     }
 
     public String getAddress() {
@@ -135,14 +121,6 @@ public class ResumeScience {
 
     public void setState(Integer state) {
         this.state = state;
-    }
-
-    public String getFinishText() {
-        return finishText;
-    }
-
-    public void setFinishText(String finishText) {
-        this.finishText = finishText == null ? null : finishText.trim();
     }
 
     public Integer getUserId() {

@@ -2,6 +2,7 @@ package com.stone.jobhunter.utils;
 
 import com.stone.jobhunter.pojo.*;
 import com.stone.jobhunter.vo.ListOurVo;
+import io.swagger.models.auth.In;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 
@@ -54,6 +55,7 @@ public class JsonUtil {
         Object person="["+result+"]";
         JSONArray jsonArrays=JSONArray.fromObject(person);
         Object per=jsonArrays.getJSONObject(0).get("purpose");
+        Object userId=jsonArrays.getJSONObject(0).get("userId");
         JSONArray jsonArrayss=JSONArray.fromObject(per);
         for(int i=0;i<jsonArrayss.size();++i) {
             ResumePurpose resumePurpose=new ResumePurpose();
@@ -62,6 +64,7 @@ public class JsonUtil {
             resumePurpose.setPosition(String.valueOf(jsonArrayss.getJSONObject(i).get("job")));
             resumePurpose.setUpdateTime(Calendar.getInstance().getTime());
             resumePurpose.setState(1);
+            resumePurpose.setUserId(Integer.valueOf(String.valueOf(userId)));
             resumePurposeList.add(resumePurpose);
         }
 
@@ -78,6 +81,7 @@ public class JsonUtil {
         Object school="["+result+"]";
         JSONArray jsonArrays=JSONArray.fromObject(school);
         Object per=jsonArrays.getJSONObject(0).get("education");
+        Object userId=jsonArrays.getJSONObject(0).get("userId");
         JSONArray jsonArrayss=JSONArray.fromObject(per);
         for(int i=0;i<jsonArrayss.size();++i) {
             ResumeSchool resumeSchool=new ResumeSchool();
@@ -90,6 +94,7 @@ public class JsonUtil {
            resumeSchool.setUpdateTime(Calendar.getInstance().getTime());
            resumeSchool.setExperience(String.valueOf(jsonArrayss.getJSONObject(i).get("enterprise")));
            resumeSchool.setState(1);
+           resumeSchool.setUserId(Integer.valueOf(String.valueOf(userId)));
            resumeSchoolArrayList.add(resumeSchool);
         }
 
@@ -106,6 +111,7 @@ public class JsonUtil {
         Object school="["+result+"]";
         JSONArray jsonArrays=JSONArray.fromObject(school);
         Object per=jsonArrays.getJSONObject(0).get("project");
+        Object userId=jsonArrays.getJSONObject(0).get("userId");
         JSONArray jsonArrayss=JSONArray.fromObject(per);
         for(int i=0;i<jsonArrayss.size();++i) {
           ResumeScience resumeScience=new ResumeScience();
@@ -116,6 +122,7 @@ public class JsonUtil {
             resumeScience.setScienceText(String.valueOf(jsonArrayss.getJSONObject(i).get("detail")));
             resumeScience.setContext(String.valueOf(jsonArrayss.getJSONObject(i).get("role")));
             resumeScience.setState(1);
+            resumeScience.setUserId(Integer.valueOf(String.valueOf(userId)));
             resumeScienceArrayList.add(resumeScience);
         }
 
@@ -132,6 +139,7 @@ public class JsonUtil {
         Object school="["+result+"]";
         JSONArray jsonArrays=JSONArray.fromObject(school);
         Object per=jsonArrays.getJSONObject(0).get("work");
+        Object userId=jsonArrays.getJSONObject(0).get("userId");
         JSONArray jsonArrayss=JSONArray.fromObject(per);
         for(int i=0;i<jsonArrayss.size();++i) {
            ResumeEnterprise resumeEnterprise =new ResumeEnterprise();
@@ -142,6 +150,7 @@ public class JsonUtil {
             resumeEnterprise.setPosition(String.valueOf(jsonArrayss.getJSONObject(i).get("job")));
             resumeEnterprise.setContext(String.valueOf(jsonArrayss.getJSONObject(i).get("content")));
             resumeEnterprise.setState(1);
+            resumeEnterprise.setUserId(Integer.valueOf(String.valueOf(userId)));
            resumeEnterpriseArrayList.add(resumeEnterprise);
         }
 

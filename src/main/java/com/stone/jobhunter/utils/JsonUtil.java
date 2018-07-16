@@ -22,6 +22,8 @@ public class JsonUtil {
         Object result=jsonArray.getJSONObject(0).get("result");
         Object person="["+result+"]";
         JSONArray jsonArrays=JSONArray.fromObject(person);
+        Object userId=jsonArrays.getJSONObject(0).get("userId");
+        Object resumeName=jsonArrays.getJSONObject(0).get("resumeName");
         Object per=jsonArrays.getJSONObject(0).get("personInfo");
         Object personInfoMessage="["+per+"]";
         JSONArray jsonArrayss=JSONArray.fromObject(personInfoMessage);
@@ -39,6 +41,8 @@ public class JsonUtil {
         resume.setSelfAssessment(String.valueOf(jsonArrayss.getJSONObject(0).get("self_assessment")));
         resume.setUpdateTime(Calendar.getInstance().getTime());
         resume.setState(1);
+        resume.setResumeName(String.valueOf(resumeName));
+        resume.setUserId(Integer.valueOf(String.valueOf(userId)));
         return resume;
     }
     public static List<ResumePurpose> checkJson1(String json) throws ParseException {

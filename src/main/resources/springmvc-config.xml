@@ -56,4 +56,7 @@
     <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 
+    <!--静态资源的位置-->
+    <mvc:resources location="/resources/" mapping="/resources/**"/>
+
 </beans>

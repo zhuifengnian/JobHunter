@@ -17,4 +17,9 @@ public class ResumePurposeServiceImpl  extends AbstractBaseServiceImpl<ResumePur
     public BaseMapper<ResumePurpose> getDao() {
         return resumePurposeMapper;
     }
+
+    @Override
+    public ResumePurpose getUserIdResumePurpose(Integer userId) {
+        return resumePurposeMapper.getUserIdResumePurpose(userId);
+    }
 }

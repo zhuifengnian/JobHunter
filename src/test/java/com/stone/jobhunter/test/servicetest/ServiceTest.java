@@ -3,8 +3,10 @@ package com.stone.jobhunter.test.servicetest;
 import com.stone.jobhunter.mapper.ResumeEvaluateMapper;
 import com.stone.jobhunter.pojo.Resume;
 import com.stone.jobhunter.pojo.ResumePurpose;
+import com.stone.jobhunter.pojo.ResumeScience;
 import com.stone.jobhunter.pojo.User;
 import com.stone.jobhunter.service.sys.ResumeEvaluateService;
+import com.stone.jobhunter.service.weixin.ResumeService;
 import com.stone.jobhunter.service.weixin.UserService;
 import com.stone.jobhunter.utils.JsonUtil;
 import net.sf.json.JSONArray;
@@ -36,7 +38,8 @@ public class ServiceTest {
     private ResumeEvaluateService resumeEvaluateService;
     @Autowired
     private ResumeEvaluateMapper resumeEvaluateMapper;
-
+   @Autowired
+   private ResumeService resumeService;
     @Test
     public void testUserService() throws ParseException, UnsupportedEncodingException {
 //        User user = new User();
@@ -119,8 +122,8 @@ public class ServiceTest {
                 "}";
 
       //  System.out.println(obj);
-      Resume resume=  JsonUtil.checkJson(obj);
-       System.out.println(resume.getAdress());
+   //   Resume resume= resumeService.getUserIdResume(1);
+    //   System.out.println(resume.getAdress());
    //   System.out.println(JsonUtil.checkJson4(obj).get(1).getContext());
     }
 }

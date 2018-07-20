@@ -163,4 +163,10 @@
       user_id = #{userId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getUserIdResumeScience" resultType="com.stone.jobhunter.pojo.ResumeScience">
+    select *
+    from resume_science
+    where 1=1
+    and user_id=#{userId}
+  </select>
 </mapper>

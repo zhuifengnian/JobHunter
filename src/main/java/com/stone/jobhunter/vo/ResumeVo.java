@@ -19,6 +19,8 @@ public class ResumeVo {
 
     private  List<UserEvaluateVo> userEvaluateVos;
 
+    private  List<UserPurposeVo> userPurposeVos;
+
 
     public List<UserInformationVo> getInformationVos() {
         return informationVos;
@@ -58,5 +60,13 @@ public class ResumeVo {
 
     public void setUserEvaluateVos(List<UserEvaluateVo> userEvaluateVos) {
         this.userEvaluateVos = userEvaluateVos;
+    }
+
+    public List<UserPurposeVo> getUserPurposeVos() {
+        return userPurposeVos;
+    }
+
+    public void setUserPurposeVos(List<UserPurposeVo> userPurposeVos) {
+        this.userPurposeVos = userPurposeVos;
     }
 }

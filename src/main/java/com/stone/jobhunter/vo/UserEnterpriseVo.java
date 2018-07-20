@@ -17,7 +17,9 @@ public class UserEnterpriseVo {
 
     private String position;
 
-    private String finishText;
+    private Integer userId;
+
+    private String context;
 
     public Date getStartTime() {
         return startTime;
@@ -51,11 +53,19 @@ public class UserEnterpriseVo {
         this.position = position;
     }
 
-    public String getFinishText() {
-        return finishText;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setFinishText(String finishText) {
-        this.finishText = finishText;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getContext() {
+        return context;
+    }
+
+    public void setContext(String context) {
+        this.context = context;
     }
 }

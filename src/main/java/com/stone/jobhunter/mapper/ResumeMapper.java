@@ -20,4 +20,10 @@ public interface ResumeMapper extends BaseMapper<Resume>{
     List<ListResumeVo> getListResume(@Param("userId") Integer userId, @Param("page")Page page);
     Integer getListResumeCount(Integer userId);
 
+    /**
+     * 根据userId取数据库
+     * @param userId
+     * @return
+     */
+   List<Resume>getUserIdResume(Integer userId);
 }

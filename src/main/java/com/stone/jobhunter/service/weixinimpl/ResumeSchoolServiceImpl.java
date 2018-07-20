@@ -8,6 +8,8 @@ import com.stone.jobhunter.service.weixin.ResumeSchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResumeSchoolServiceImpl  extends AbstractBaseServiceImpl<ResumeSchool> implements ResumeSchoolService {
 
@@ -16,5 +18,10 @@ public class ResumeSchoolServiceImpl  extends AbstractBaseServiceImpl<ResumeScho
     @Override
     public BaseMapper<ResumeSchool> getDao() {
         return resumeSchoolMapper;
+    }
+
+    @Override
+    public List<ResumeSchool> getUserIdResumeSchool(Integer userId) {
+        return resumeSchoolMapper.getUserIdResumeSchool(userId);
     }
 }

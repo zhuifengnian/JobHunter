@@ -11,6 +11,8 @@ import com.stone.jobhunter.vo.ListResumeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implements ResumeService {
 
@@ -30,5 +32,10 @@ public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implemen
         pageInfo.setRows(resumeMapper.getListResume(userId,page));
         pageInfo.setTotal(resumeMapper.getListResumeCount(userId));
         return pageInfo;
+    }
+
+    @Override
+    public List<Resume> getUserIdResume(Integer userId) {
+        return resumeMapper.getUserIdResume(userId);
     }
 }

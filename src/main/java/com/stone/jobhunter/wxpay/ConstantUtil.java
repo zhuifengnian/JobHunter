@@ -5,11 +5,11 @@ public class ConstantUtil {
     /**
      * 微信开发平台应用ID
      */
-    public static final String APP_ID = "wx9ccf4cb41902b28c";
+    public static final String APP_ID = "wx97745cca7cfe02f4";
     /**
      * 应用对应的凭证
      */
-    public static final String APP_SECRET = "9a4f1bc28ffffc42837a5ba3ce6b9f2b";
+    public static final String APP_SECRET = "a089bd899d65a6ce362d2fed06492eb0";
     /**
      * 快递小程序appid
      */

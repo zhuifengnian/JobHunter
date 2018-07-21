@@ -17,7 +17,9 @@ public class DeliverJob {
 
     private Integer resumeId;
 
-    public DeliverJob(Integer id, Integer enterpriseId, Integer state, Date createTime, Date updateTime, Integer userId, Integer resumeId) {
+    private String sequence;
+
+    public DeliverJob(Integer id, Integer enterpriseId, Integer state, Date createTime, Date updateTime, Integer userId, Integer resumeId, String sequence) {
         this.id = id;
         this.enterpriseId = enterpriseId;
         this.state = state;
@@ -25,6 +27,7 @@ public class DeliverJob {
         this.updateTime = updateTime;
         this.userId = userId;
         this.resumeId = resumeId;
+        this.sequence = sequence;
     }
 
     public DeliverJob() {
@@ -85,5 +88,13 @@ public class DeliverJob {
 
     public void setResumeId(Integer resumeId) {
         this.resumeId = resumeId;
+    }
+
+    public String getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(String sequence) {
+        this.sequence = sequence == null ? null : sequence.trim();
     }
 }

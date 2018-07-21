@@ -10,10 +10,11 @@
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="resume_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sequence" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, enterprise_id, state, create_time, update_time, user_id, resume_id
+    id, enterprise_id, state, create_time, update_time, user_id, resume_id, sequence
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -28,10 +29,10 @@
   <insert id="insert" parameterType="com.stone.jobhunter.pojo.DeliverJob" useGeneratedKeys="true" keyProperty="id">
     insert into deliver_job (id, enterprise_id, state, 
       create_time, update_time, user_id, 
-      resume_id)
+      resume_id, sequence)
     values (#{id,jdbcType=INTEGER}, #{enterpriseId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, 
-      #{resumeId,jdbcType=INTEGER})
+      #{resumeId,jdbcType=INTEGER}, #{sequence,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.DeliverJob" useGeneratedKeys="true" keyProperty="id">
     insert into deliver_job
@@ -57,6 +58,9 @@
       <if test="resumeId != null" >
         resume_id,
       </if>
+      <if test="sequence != null" >
+        sequence,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -79,6 +83,9 @@
       </if>
       <if test="resumeId != null" >
         #{resumeId,jdbcType=INTEGER},
+      </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -103,6 +110,9 @@
       <if test="resumeId != null" >
         resume_id = #{resumeId,jdbcType=INTEGER},
       </if>
+      <if test="sequence != null" >
+        sequence = #{sequence,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -113,7 +123,8 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       user_id = #{userId,jdbcType=INTEGER},
-      resume_id = #{resumeId,jdbcType=INTEGER}
+      resume_id = #{resumeId,jdbcType=INTEGER},
+      sequence = #{sequence,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

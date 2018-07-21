@@ -16,19 +16,8 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 public class pdfUtil {
-    @Autowired
-    private static ResumeService resumeService;
-    @Autowired
-    private static ResumeEnterpriseService resumeEnterpriseService;
-    @Autowired
-    private static ResumeSchoolService resumeSchoolService;
-    @Autowired
-    private static ResumeScienceService resumeScienceService;
-    @Autowired
-    private static ResumePurposeService resumePurposeService;
-//	public static void main(String[] args) {
-//		new pdfUtil().createPdf(1);
-//	}
+
+
 
     public static void createPdf(String url, List<Resume> resumeList,
                                  List<ResumeScience> resumeScienceList,

@@ -1,6 +1,7 @@
 package com.stone.jobhunter.vo;
 
 
+import java.util.Date;
 
 /**
  * Created by luyue on 2018/7/8
@@ -8,28 +9,40 @@ package com.stone.jobhunter.vo;
 
 public class UserInformationVo {
 
+    private Integer userId;
+
     private String resumeName;
 
-    private String Name;
+    private String selfAssessment;
 
-    private String Phone;
+    private String userName;
 
-    private String Card;
+    private String userPhone;
 
-    private String Photo;
+    private String userCard;
+
+    private String userPhoto;
 
     private String userGender;
 
-    private Integer Age;
+    private Integer userAge;
 
-    private String Email;
+    private String userEmail;
 
-    private String Adress;
+    private String adress;
 
     private String highEducation;
 
-    private String hobby;
+    private Date userBirth;
 
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public String getResumeName() {
         return resumeName;
@@ -39,62 +52,76 @@ public class UserInformationVo {
         this.resumeName = resumeName;
     }
 
-    public String getName() {
-        return Name;
+    public String getSelfAssessment() {
+        return selfAssessment;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setSelfAssessment(String selfAssessment) {
+        this.selfAssessment = selfAssessment;
     }
 
-    public String getPhone() {
-        return Phone;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setPhone(String phone) {
-        Phone = phone;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getCard() {
-        return Card;
+    public String getUserPhone() {
+        return userPhone;
     }
 
-    public void setCard(String card) {
-        Card = card;
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
     }
 
-    public String getPhoto() {
-        return Photo;
+    public String getUserCard() {
+        return userCard;
     }
 
-    public void setPhoto(String photo) {
-        Photo = photo;
+    public void setUserCard(String userCard) {
+        this.userCard = userCard;
     }
 
-
-
-    public Integer getAge() {
-        return Age;
+    public String getUserPhoto() {
+        return userPhoto;
     }
 
-    public void setAge(Integer age) {
-        Age = age;
+    public void setUserPhoto(String userPhoto) {
+        this.userPhoto = userPhoto;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getUserGender() {
+        return userGender;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setUserGender(String userGender) {
+        this.userGender = userGender;
+    }
+
+    public Integer getUserAge() {
+        return userAge;
+    }
+
+    public void setUserAge(Integer userAge) {
+        this.userAge = userAge;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getAdress() {
-        return Adress;
+        return adress;
     }
 
     public void setAdress(String adress) {
-        Adress = adress;
+        this.adress = adress;
     }
 
     public String getHighEducation() {
@@ -105,19 +132,11 @@ public class UserInformationVo {
         this.highEducation = highEducation;
     }
 
-    public String getHobby() {
-        return hobby;
+    public Date getUserBirth() {
+        return userBirth;
     }
 
-    public void setHobby(String hobby) {
-        this.hobby = hobby;
-    }
-
-    public String getUserGender() {
-        return userGender;
-    }
-
-    public void setUserGender(String userGender) {
-        this.userGender = userGender;
+    public void setUserBirth(Date userBirth) {
+        this.userBirth = userBirth;
     }
 }

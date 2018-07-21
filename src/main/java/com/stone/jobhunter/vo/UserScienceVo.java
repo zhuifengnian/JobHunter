@@ -1,6 +1,7 @@
 package com.stone.jobhunter.vo;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -8,8 +9,6 @@ import java.util.Date;
  */
 
 public class UserScienceVo {
-
-
 
     private Date startTime;
 
@@ -19,11 +18,9 @@ public class UserScienceVo {
 
     private String scienceText;
 
-    private String myTask;
+    private String context;
 
-    private String address;
-
-    private String finishText;
+    private Integer userId;
 
 
     public Date getStartTime() {
@@ -58,27 +55,19 @@ public class UserScienceVo {
         this.scienceText = scienceText;
     }
 
-    public String getMyTask() {
-        return myTask;
+    public String getContext() {
+        return context;
     }
 
-    public void setMyTask(String myTask) {
-        this.myTask = myTask;
+    public void setContext(String context) {
+        this.context = context;
     }
 
-    public String getAddress() {
-        return address;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getFinishText() {
-        return finishText;
-    }
-
-    public void setFinishText(String finishText) {
-        this.finishText = finishText;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

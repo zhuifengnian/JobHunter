@@ -1,6 +1,7 @@
 package com.stone.jobhunter.vo;
 
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -8,7 +9,6 @@ import java.util.Date;
  */
 
 public class UserSchoolVo {
-
 
 
     private Date startTime;
@@ -19,8 +19,9 @@ public class UserSchoolVo {
 
     private String major;
 
-    private String finishText;
+    private Integer userId;
 
+    private String experience;
 
     public Date getStartTime() {
         return startTime;
@@ -54,11 +55,19 @@ public class UserSchoolVo {
         this.major = major;
     }
 
-    public String getFinishText() {
-        return finishText;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setFinishText(String finishText) {
-        this.finishText = finishText;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
     }
 }

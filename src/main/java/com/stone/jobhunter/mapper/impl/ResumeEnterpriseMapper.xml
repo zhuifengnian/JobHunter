@@ -152,4 +152,16 @@
       context = #{context,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getUserIdResumeEnterprise" resultType="com.stone.jobhunter.pojo.ResumeEnterprise">
+    select *
+    from resume_enterprise
+    where 1=1
+    and user_id=#{userId}
+  </select>
+  <select id="getUserId" resultType="Integer">
+    select  id
+    from resume_enterprise
+    where 1=1
+    and enterprise_name =like '%'+obj+'%'
+  </select>
 </mapper>

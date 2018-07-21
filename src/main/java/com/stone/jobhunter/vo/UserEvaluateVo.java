@@ -10,7 +10,6 @@ import java.util.Date;
 public class UserEvaluateVo {
     private String evaluate;
 
-
     public String getEvaluate() {
         return evaluate;
     }

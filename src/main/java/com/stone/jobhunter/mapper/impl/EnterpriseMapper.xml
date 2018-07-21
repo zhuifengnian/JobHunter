@@ -11,11 +11,12 @@
       <arg column="avatarurl" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="industry" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
     id, enterprise_name, enterprise_url, create_time, update_time, avatarurl, state, 
-    type
+    type, industry
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -30,12 +31,14 @@
   <insert id="insert" parameterType="com.stone.jobhunter.pojo.Enterprise" useGeneratedKeys="true" keyProperty="id">
     insert into enterprise (id, enterprise_name, enterprise_url, 
       create_time, update_time, avatarurl, 
-      state, type)
+      state, type, industry
+      )
     values (#{id,jdbcType=INTEGER}, #{enterpriseName,jdbcType=VARCHAR}, #{enterpriseUrl,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{avatarurl,jdbcType=VARCHAR}, 
-      #{state,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR})
+      #{state,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{industry,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.Enterprise" useGeneratedKeys="true" keyProperty="id" >
+  <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.Enterprise" useGeneratedKeys="true" keyProperty="id">
     insert into enterprise
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -61,6 +64,9 @@
       </if>
       <if test="type != null" >
         type,
+      </if>
+      <if test="industry != null" >
+        industry,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -88,6 +94,9 @@
       <if test="type != null" >
         #{type,jdbcType=VARCHAR},
       </if>
+      <if test="industry != null" >
+        #{industry,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.stone.jobhunter.pojo.Enterprise" >
@@ -114,6 +123,9 @@
       <if test="type != null" >
         type = #{type,jdbcType=VARCHAR},
       </if>
+      <if test="industry != null" >
+        industry = #{industry,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -125,7 +137,8 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       avatarurl = #{avatarurl,jdbcType=VARCHAR},
       state = #{state,jdbcType=INTEGER},
-      type = #{type,jdbcType=VARCHAR}
+      type = #{type,jdbcType=VARCHAR},
+      industry = #{industry,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <!--微信sql语句-->
@@ -184,4 +197,15 @@
      and type=#{name}
   </select>
 
+  <!--获得企业-->
+  <select id="getList" resultType="com.stone.jobhunter.vo.ListEnterpriseVo">
+    select  e.enterprise_name as enterpriseName,e.enterprise_url as enterpriseUrl,e.avatarurl
+    from enterprise e
+    where 1=1
+    and e.state=1
+    and e.industry=#{IndustryId}
+    <if test="page != null and page.start != null and page.pageSize!=null">
+      limit #{page.start},#{page.pageSize}
+    </if>
+  </select>
 </mapper>

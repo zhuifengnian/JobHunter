@@ -8,6 +8,9 @@ import java.util.List;
  */
 
 public class ListEnterpriseVo {
+
+    private String industry;
+
     private String enterpriseName;
 
     private String enterpriseUrl;
@@ -36,5 +39,13 @@ public class ListEnterpriseVo {
 
     public void setAvatarurl(String avatarurl) {
         this.avatarurl = avatarurl;
+    }
+
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
     }
 }

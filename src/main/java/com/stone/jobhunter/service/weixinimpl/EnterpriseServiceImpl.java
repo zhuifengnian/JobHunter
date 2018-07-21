@@ -11,6 +11,8 @@ import com.stone.jobhunter.vo.ListEnterpriseVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EnterpriseServiceImpl  extends AbstractBaseServiceImpl<Enterprise> implements EnterpriseService {
    @Autowired
@@ -41,5 +43,15 @@ public class EnterpriseServiceImpl  extends AbstractBaseServiceImpl<Enterprise> 
             pageInfo.setTotal(enterpriseMapper.getSmallListCount(name));
         }
         return pageInfo;
+    }
+
+    @Override
+    public PageInfo<ListEnterpriseVo> getListEnterprise(Integer industryId, Page page) {
+        PageInfo<ListEnterpriseVo> pageInfo =new PageInfo<>();
+        pageInfo.setPageNum(page.getPageNumber());
+        pageInfo.setPageSize(page.getPageSize());
+       List<ListEnterpriseVo> listEnterpriseVoList= enterpriseMapper.getList(industryId,page);
+       pageInfo.setRows(listEnterpriseVoList);
+       return pageInfo;
     }
 }

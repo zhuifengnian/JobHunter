@@ -19,7 +19,9 @@ public class Enterprise {
 
     private String type;
 
-    public Enterprise(Integer id, String enterpriseName, String enterpriseUrl, Date createTime, Date updateTime, String avatarurl, Integer state, String type) {
+    private Integer industry;
+
+    public Enterprise(Integer id, String enterpriseName, String enterpriseUrl, Date createTime, Date updateTime, String avatarurl, Integer state, String type, Integer industry) {
         this.id = id;
         this.enterpriseName = enterpriseName;
         this.enterpriseUrl = enterpriseUrl;
@@ -28,6 +30,7 @@ public class Enterprise {
         this.avatarurl = avatarurl;
         this.state = state;
         this.type = type;
+        this.industry = industry;
     }
 
     public Enterprise() {
@@ -96,5 +99,13 @@ public class Enterprise {
 
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
+    }
+
+    public Integer getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(Integer industry) {
+        this.industry = industry;
     }
 }

@@ -29,7 +29,7 @@
     delete from resume_enterprise
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.stone.jobhunter.pojo.ResumeEnterprise" useGeneratedKeys="true" keyProperty="id" >
+  <insert id="insert" parameterType="com.stone.jobhunter.pojo.ResumeEnterprise" useGeneratedKeys="true" keyProperty="id">
     insert into resume_enterprise (id, start_time, finish_time, 
       enterprise_name, create_time, update_time, 
       state, position, user_id, 
@@ -39,7 +39,7 @@
       #{state,jdbcType=INTEGER}, #{position,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
       #{context,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.ResumeEnterprise" useGeneratedKeys="true" keyProperty="id" >
+  <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.ResumeEnterprise" useGeneratedKeys="true" keyProperty="id">
     insert into resume_enterprise
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -152,13 +152,13 @@
       context = #{context,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="getUserIdResumeEnterprise" resultType="com.stone.jobhunter.pojo.ResumeEnterprise">
+    <select id="getUserIdResumeEnterprise" resultType="com.stone.jobhunter.pojo.ResumeEnterprise">
     select *
     from resume_enterprise
     where 1=1
     and user_id=#{userId}
   </select>
-  <select id="getUserId" resultType="Integer">
+    <select id="getUserId" resultType="Integer">
     select  id
     from resume_enterprise
     where 1=1

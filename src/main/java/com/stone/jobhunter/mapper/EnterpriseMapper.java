@@ -1,6 +1,7 @@
 package com.stone.jobhunter.mapper;
 
 import com.stone.jobhunter.basic.Page;
+import com.stone.jobhunter.basic.PageInfo;
 import com.stone.jobhunter.pojo.Enterprise;
 import com.stone.jobhunter.vo.ListEnterpriseVo;
 import org.apache.ibatis.annotations.Param;
@@ -31,4 +32,11 @@ public interface EnterpriseMapper extends BaseMapper<Enterprise>{
      */
     List<ListEnterpriseVo> getSmallList(@Param("name") String name, @Param("page")Page page);
     Integer getSmallListCount(String name);
+
+    /**
+     * 获取企业列表
+     * @param page
+     * @return
+     */
+    List<ListEnterpriseVo> getList(@Param("IndustryId")  Integer IndustryId, @Param("page") Page page);
 }

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,6 +49,7 @@ private ResumeEnterpriseService resumeEnterpriseService;
     public ReturnMessage insertResume(@RequestBody  String obj) throws ParseException, UnsupportedEncodingException {
         int insert[]=new int[5];
         obj = new String(obj.getBytes("ISO-8859-1"), "UTF-8");
+        obj=URLDecoder.decode(obj,"utf-8");
         Resume resume=JsonUtil.checkJson(obj);
         insert[0]=resumeService.insert(resume);
         List<ResumePurpose> resumePurposeList =JsonUtil.checkJson1(obj);

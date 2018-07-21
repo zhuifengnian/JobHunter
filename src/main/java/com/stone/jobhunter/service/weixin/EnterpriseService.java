@@ -18,4 +18,12 @@ public interface EnterpriseService extends BaseService<Enterprise> {
      * @return
      */
    PageInfo<ListEnterpriseVo> getList(String name,Page page);
+
+    /**
+     * 获取企业列表
+     * @param industryId
+     * @param page
+     * @return
+     */
+   PageInfo<ListEnterpriseVo> getListEnterprise(Integer industryId,Page page);
 }

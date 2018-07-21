@@ -64,7 +64,7 @@ private ResumeEnterpriseService resumeEnterpriseService;
 
        List<ResumeEnterprise> resumeEnterpriseList=JsonUtil.checkJson4(obj);
         for(ResumeEnterprise resumeEnterprise : resumeEnterpriseList)
-            insert[3]=resumeEnterpriseService.insert(resumeEnterprise);
+            insert[4]=resumeEnterpriseService.insert(resumeEnterprise);
         return new ReturnMessage(ResponseCode.OK,insert);
     }
     @RequestMapping(value = "/insertResumePicture", method = RequestMethod.POST)

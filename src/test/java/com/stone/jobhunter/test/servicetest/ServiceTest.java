@@ -124,6 +124,6 @@ public class ServiceTest {
       //  System.out.println(obj);
    //   Resume resume= resumeService.getUserIdResume(1);
     //   System.out.println(resume.getAdress());
-     System.out.println(JsonUtil.checkJson(obj).getAdress());
+     System.out.println(JsonUtil.checkJson(obj).getUserId());
     }
 }

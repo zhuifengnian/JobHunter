@@ -17,7 +17,7 @@ import java.util.List;
 public class JsonUtil {
 
     public static Resume checkJson(String json) throws ParseException, UnsupportedEncodingException {
-        json="["+"{"+json+"}"+"]";
+        json="["+json+"]";
 
         JSONArray jsonArray=JSONArray.fromObject(json);
         Object result=jsonArray.getJSONObject(0).get("resume");
@@ -47,8 +47,7 @@ public class JsonUtil {
         return resume;
     }
     public static List<ResumePurpose> checkJson1(String json) throws ParseException {
-        json="["+"{"+json+"}"+"]";
-
+        json="["+json+"]";
         List<ResumePurpose> resumePurposeList=new ArrayList<>();
         JSONArray jsonArray=JSONArray.fromObject(json);
         Object result=jsonArray.getJSONObject(0).get("resume");
@@ -73,7 +72,7 @@ public class JsonUtil {
         return resumePurposeList;
     }
     public static List<ResumeSchool> checkJson2(String json) throws ParseException {
-        json="["+"{"+json+"}"+"]";
+        json="["+json+"]";
 
         List<ResumeSchool> resumeSchoolArrayList=new ArrayList<>();
         JSONArray jsonArray=JSONArray.fromObject(json);
@@ -103,7 +102,7 @@ public class JsonUtil {
         return resumeSchoolArrayList;
     }
     public static List<ResumeScience> checkJson3(String json) throws ParseException {
-        json="["+"{"+json+"}"+"]";
+        json="["+json+"]";
 
         List<ResumeScience> resumeScienceArrayList=new ArrayList<>();
         JSONArray jsonArray=JSONArray.fromObject(json);
@@ -131,7 +130,7 @@ public class JsonUtil {
         return resumeScienceArrayList;
     }
     public static List<ResumeEnterprise> checkJson4(String json) throws ParseException {
-        json="["+"{"+json+"}"+"]";
+        json="["+json+"]";
 
         List<ResumeEnterprise> resumeEnterpriseArrayList=new ArrayList<>();
         JSONArray jsonArray=JSONArray.fromObject(json);

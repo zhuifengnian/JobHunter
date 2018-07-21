@@ -40,6 +40,7 @@ public class JsonUtil {
         resume.setUserEmail(String.valueOf(jsonArrayss.getJSONObject(0).get("email")));
         resume.setUserCard(String.valueOf(jsonArrayss.getJSONObject(0).get("IDcard")));
         resume.setSelfAssessment(String.valueOf(jsonArrayss.getJSONObject(0).get("self_assessment")));
+        resume.setSelfPosition(String.valueOf(jsonArrayss.getJSONObject(0).get("self_position")));
         resume.setUpdateTime(Calendar.getInstance().getTime());
         resume.setState(1);
         resume.setResumeName(String.valueOf(resumeName));
@@ -94,6 +95,7 @@ public class JsonUtil {
            resumeSchool.setUpdateTime(Calendar.getInstance().getTime());
            resumeSchool.setExperience(String.valueOf(jsonArrayss.getJSONObject(i).get("enterprise")));
            resumeSchool.setState(1);
+           resumeSchool.setSequence(i);
            resumeSchool.setUserId(Integer.valueOf(String.valueOf(userId)));
            resumeSchoolArrayList.add(resumeSchool);
         }

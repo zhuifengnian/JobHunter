@@ -39,7 +39,9 @@ public class Resume {
 
     private Date userBirth;
 
-    public Resume(Integer id, Integer userId, String resumeName, String evaluationId, Date createTime, Date updateTime, Integer state, String selfAssessment, String userName, String userPhone, String userCard, String userPhoto, String userGender, Integer userAge, String userEmail, String adress, String highEducation, Date userBirth) {
+    private String selfPosition;
+
+    public Resume(Integer id, Integer userId, String resumeName, String evaluationId, Date createTime, Date updateTime, Integer state, String selfAssessment, String userName, String userPhone, String userCard, String userPhoto, String userGender, Integer userAge, String userEmail, String adress, String highEducation, Date userBirth, String selfPosition) {
         this.id = id;
         this.userId = userId;
         this.resumeName = resumeName;
@@ -58,6 +60,7 @@ public class Resume {
         this.adress = adress;
         this.highEducation = highEducation;
         this.userBirth = userBirth;
+        this.selfPosition = selfPosition;
     }
 
     public Resume() {
@@ -206,5 +209,13 @@ public class Resume {
 
     public void setUserBirth(Date userBirth) {
         this.userBirth = userBirth;
+    }
+
+    public String getSelfPosition() {
+        return selfPosition;
+    }
+
+    public void setSelfPosition(String selfPosition) {
+        this.selfPosition = selfPosition == null ? null : selfPosition.trim();
     }
 }

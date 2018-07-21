@@ -51,7 +51,7 @@ public class ServiceTest {
 //        user.setOpenId("fweit2356284tweo");
 //        int insert = userService.insert(user);
 //        System.out.println(insert);
-        String obj="{ resume= {\n" +
+        String obj="resume= {\n" +
                 "\t\tuserId: 1,\n" +
                 "\t\tresumeName: '林俊旭的简历1号',\n" +
                 "\t\tpersonInfo: {\n" +
@@ -119,8 +119,7 @@ public class ServiceTest {
                 "\t\t\tduration_start: '2017-5',\n" +
                 "\t\t\tduration_end: '2017-7'\n" +
                 "\t\t}]\n" +
-                "\t}\n"+
-        "\t}";
+                "\t}";
 
       //  System.out.println(obj);
    //   Resume resume= resumeService.getUserIdResume(1);

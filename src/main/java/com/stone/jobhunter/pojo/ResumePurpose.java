@@ -19,7 +19,9 @@ public class ResumePurpose {
 
     private Integer userId;
 
-    public ResumePurpose(Integer id, String company, String position, String department, Date createTime, Date updateTime, Integer state, Integer userId) {
+    private Integer sequence;
+
+    public ResumePurpose(Integer id, String company, String position, String department, Date createTime, Date updateTime, Integer state, Integer userId, Integer sequence) {
         this.id = id;
         this.company = company;
         this.position = position;
@@ -28,6 +30,7 @@ public class ResumePurpose {
         this.updateTime = updateTime;
         this.state = state;
         this.userId = userId;
+        this.sequence = sequence;
     }
 
     public ResumePurpose() {
@@ -96,5 +99,13 @@ public class ResumePurpose {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(Integer sequence) {
+        this.sequence = sequence;
     }
 }

@@ -20,7 +20,7 @@ public class JsonUtil {
         json="["+json+"]";
 
         JSONArray jsonArray=JSONArray.fromObject(json);
-        Object result=jsonArray.getJSONObject(0).get("result");
+        Object result=jsonArray.getJSONObject(0).get("resume");
         Object person="["+result+"]";
         JSONArray jsonArrays=JSONArray.fromObject(person);
         Object userId=jsonArrays.getJSONObject(0).get("userId");
@@ -51,7 +51,7 @@ public class JsonUtil {
 
         List<ResumePurpose> resumePurposeList=new ArrayList<>();
         JSONArray jsonArray=JSONArray.fromObject(json);
-        Object result=jsonArray.getJSONObject(0).get("result");
+        Object result=jsonArray.getJSONObject(0).get("resume");
         Object person="["+result+"]";
         JSONArray jsonArrays=JSONArray.fromObject(person);
         Object per=jsonArrays.getJSONObject(0).get("purpose");
@@ -77,7 +77,7 @@ public class JsonUtil {
 
         List<ResumeSchool> resumeSchoolArrayList=new ArrayList<>();
         JSONArray jsonArray=JSONArray.fromObject(json);
-        Object result=jsonArray.getJSONObject(0).get("result");
+        Object result=jsonArray.getJSONObject(0).get("resume");
         Object school="["+result+"]";
         JSONArray jsonArrays=JSONArray.fromObject(school);
         Object per=jsonArrays.getJSONObject(0).get("education");
@@ -107,7 +107,7 @@ public class JsonUtil {
 
         List<ResumeScience> resumeScienceArrayList=new ArrayList<>();
         JSONArray jsonArray=JSONArray.fromObject(json);
-        Object result=jsonArray.getJSONObject(0).get("result");
+        Object result=jsonArray.getJSONObject(0).get("resume");
         Object school="["+result+"]";
         JSONArray jsonArrays=JSONArray.fromObject(school);
         Object per=jsonArrays.getJSONObject(0).get("project");
@@ -135,7 +135,7 @@ public class JsonUtil {
 
         List<ResumeEnterprise> resumeEnterpriseArrayList=new ArrayList<>();
         JSONArray jsonArray=JSONArray.fromObject(json);
-        Object result=jsonArray.getJSONObject(0).get("result");
+        Object result=jsonArray.getJSONObject(0).get("resume");
         Object school="["+result+"]";
         JSONArray jsonArrays=JSONArray.fromObject(school);
         Object per=jsonArrays.getJSONObject(0).get("work");

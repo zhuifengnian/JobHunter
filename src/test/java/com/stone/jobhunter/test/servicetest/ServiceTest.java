@@ -51,79 +51,80 @@ public class ServiceTest {
 //        user.setOpenId("fweit2356284tweo");
 //        int insert = userService.insert(user);
 //        System.out.println(insert);
-        String obj="{\n" +
-                "\t\"result\": {\n" +
-                "\t\t\"personInfo\": {\n" +
-                "\t\t\t\"name\": \"林俊旭\",\n" +
-                "\t\t\t\"birth\": \"1994-06-06\",\n" +
-                "\t\t\t\"age\": 24,\n" +
-                "\t\t\t\"gender\": \"0\",\n" +
-                "\t\t\t\"city\": \"武汉\",\n" +
-                "\t\t\t\"phone\": \"13282636372\",\n" +
-                "\t\t\t\"email\": \"769338334@qq.com\",\n" +
-                "\t\t\t\"IDcard\": \"3310xxxxxxxxx\",\n" +
-                "\t\t\t\"self_assessment\": \"我乐于助人，喜欢健身\"\n" +
+        String obj="{ resume= {\n" +
+                "\t\tuserId: 1,\n" +
+                "\t\tresumeName: '林俊旭的简历1号',\n" +
+                "\t\tpersonInfo: {\n" +
+                "\t\t\tname: '林俊旭',\n" +
+                "\t\t\tbirth: '1994-06-06',\n" +
+                "\t\t\tage: 24,\n" +
+                "\t\t\tgender: 0,\n" +
+                "\t\t\tcity: '武汉',\n" +
+                "\t\t\tphone: '13282636372',\n" +
+                "\t\t\temail: '769338334@qq.com',\n" +
+                "\t\t\tIDcard: '3310xxxxxxxxx',\n" +
+                "\t\t\tself_assessment: '我乐于助人，喜欢健身'\n" +
                 "\t\t},\n" +
-                "\t\t\"purpose\": [{\n" +
-                "\t\t\t\"company\": \"阿里巴巴\",\n" +
-                "\t\t\t\"department\": \"阿里金服\",\n" +
-                "\t\t\t\"job\": \"前端\"\n" +
+                "\t\tpurpose: [{\n" +
+                "\t\t\tcompany: '阿里巴巴',\n" +
+                "\t\t\tdepartment: '阿里金服',\n" +
+                "\t\t\tjob: '前端'\n" +
                 "\t\t}, {\n" +
-                "\t\t\t\"company\": \"阿里\",\n" +
-                "\t\t\t\"department\": \"阿里金服\",\n" +
-                "\t\t\t\"job\": \"前端\"\n" +
+                "\t\t\tcompany: '阿里巴巴',\n" +
+                "\t\t\tdepartment: '阿里金服',\n" +
+                "\t\t\tjob: '前端'\n" +
                 "\t\t}, {\n" +
-                "\t\t\t\"company\": \"阿里巴巴\",\n" +
-                "\t\t\t\"department\": \"阿里金服\",\n" +
-                "\t\t\t\"job\": \"前端\"\n" +
+                "\t\t\tcompany: '阿里巴巴',\n" +
+                "\t\t\tdepartment: '阿里金服',\n" +
+                "\t\t\tjob: '前端'\n" +
                 "\t\t}],\n" +
-                "\t\t\"education\": [{\n" +
-                "\t\t\t\"school\": \"HUST\",\n" +
-                "\t\t\t\"major\": \"软件工程\",\n" +
-                "\t\t\t\"degree\": \"硕士\",\n" +
-                "\t\t\t\"duration_start\": \"2017\",\n" +
-                "\t\t\t\"duration_end\": \"2020\",\n" +
-                "\t\t\t\"experience\": \"乐于助人，获奖xxxx\"\n" +
+                "\t\teducation: [{\n" +
+                "\t\t\tschool: 'HUST',\n" +
+                "\t\t\tmajor: '软件工程',\n" +
+                "\t\t\tdegree: '硕士',\n" +
+                "\t\t\tduration_start: '2017',\n" +
+                "\t\t\tduration_end: '2020',\n" +
+                "\t\t\texperience: '乐于助人，获奖xxxx'\n" +
                 "\t\t}, {\n" +
-                "\t\t\t\"school\": \"台州学院\",\n" +
-                "\t\t\t\"major\": \"物理师范\",\n" +
-                "\t\t\t\"degree\": \"本科\",\n" +
-                "\t\t\t\"duration_start\": \"2017\",\n" +
-                "\t\t\t\"duration_end\": \"2020\",\n" +
-                "\t\t\t\"experience\": \"见义勇为\"\n" +
+                "\t\t\tschool: '台州学院',\n" +
+                "\t\t\tmajor: '物理师范',\n" +
+                "\t\t\tdegree: '本科',\n" +
+                "\t\t\tduration_start: '2017',\n" +
+                "\t\t\tduration_end: '2020',\n" +
+                "\t\t\texperience: '见义勇为'\n" +
                 "\t\t}],\n" +
-                "\t\t\"project\": [{\n" +
-                "\t\t\t\"name\": \"easykuaidi\",\n" +
-                "\t\t\t\"role\": \"前端\",\n" +
-                "\t\t\t\"detail\": \"我负责前端开发\",\n" +
-                "\t\t\t\"duration_start\": \"2017-5\",\n" +
-                "\t\t\t\"duration_end\": \"2017-7\"\n" +
+                "\t\tproject: [{\n" +
+                "\t\t\tname: 'easykuaidi',\n" +
+                "\t\t\trole: '前端',\n" +
+                "\t\t\tdetail: '我负责前端开发',\n" +
+                "\t\t\tduration_start: '2017-5',\n" +
+                "\t\t\tduration_end: '2017-7'\n" +
                 "\t\t}, {\n" +
-                "\t\t\t\"name\": \"easykuaidi\",\n" +
-                "\t\t\t\"role\": \"前端\",\n" +
-                "\t\t\t\"detail\": \"我负责前端开发\",\n" +
-                "\t\t\t\"duration_start\": \"2017-5\",\n" +
-                "\t\t\t\"duration_end\": \"2017-7\"\n" +
+                "\t\t\tname: 'easykuaidi',\n" +
+                "\t\t\trole: '前端',\n" +
+                "\t\t\tdetail: '我负责前端开发',\n" +
+                "\t\t\tduration_start: '2017-5',\n" +
+                "\t\t\tduration_end: '2017-7'\n" +
                 "\t\t}],\n" +
-                "\t\t\"work\": [{\n" +
-                "\t\t\t\"job\": \"技术主管\",\n" +
-                "\t\t\t\"company\": \"台州鸵鸵网络科技有限公司\",\n" +
-                "\t\t\t\"content\": \"协调公司项目开发，把控开发进度\",\n" +
-                "\t\t\t\"duration_start\": \"2017-5\",\n" +
-                "\t\t\t\"duration_end\": \"2017-7\"\n" +
+                "\t\twork: [{\n" +
+                "\t\t\tjob: '技术主管',\n" +
+                "\t\t\tcompany: '台州鸵鸵网络科技有限公司',\n" +
+                "\t\t\tcontent: '协调公司项目开发，把控开发进度',\n" +
+                "\t\t\tduration_start: '2017-5',\n" +
+                "\t\t\tduration_end: '2017-7'\n" +
                 "\t\t}, {\n" +
-                "\t\t\t\"job\": \"技术主管\",\n" +
-                "\t\t\t\"company\": \"台州鸵鸵网络科技有限公司\",\n" +
-                "\t\t\t\"content\": \"协调公司项目开发，把控开发进度\",\n" +
-                "\t\t\t\"duration_start\": \"2017-5\",\n" +
-                "\t\t\t\"duration_end\": \"2017-7\"\n" +
+                "\t\t\tjob: '技术主管',\n" +
+                "\t\t\tcompany: '台州鸵鸵网络科技有限公司',\n" +
+                "\t\t\tcontent: '协调公司项目开发，把控开发进度',\n" +
+                "\t\t\tduration_start: '2017-5',\n" +
+                "\t\t\tduration_end: '2017-7'\n" +
                 "\t\t}]\n" +
-                "\t}\n" +
-                "}";
+                "\t}\n"+
+        "\t}";
 
       //  System.out.println(obj);
    //   Resume resume= resumeService.getUserIdResume(1);
     //   System.out.println(resume.getAdress());
-   //   System.out.println(JsonUtil.checkJson4(obj).get(1).getContext());
+     System.out.println(JsonUtil.checkJson(obj).getAdress());
     }
 }

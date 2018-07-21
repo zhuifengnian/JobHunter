@@ -8,6 +8,8 @@ import com.stone.jobhunter.pojo.ResumeEvaluate;
 import com.stone.jobhunter.service.BaseService;
 import com.stone.jobhunter.vo.ListEvaluateVo;
 
+import java.util.List;
+
 
 /**
  * liyue 2018/7/8
@@ -19,4 +21,10 @@ public interface ResumeEnterpriseService extends BaseService<ResumeEnterprise> {
      * @return
      */
     Integer getUserId(String obj);
+    /**
+     * 根据userId取数据库
+     * @param userId
+     * @return
+     */
+    List<ResumeEnterprise> getUserIdResumeEnterprise(Integer userId);
 }

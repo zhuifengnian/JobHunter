@@ -8,6 +8,8 @@ import com.stone.jobhunter.service.sys.ResumeEnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResumeEnterpriseServiceImpl extends AbstractBaseServiceImpl<ResumeEnterprise> implements ResumeEnterpriseService {
   @Autowired
@@ -21,5 +23,10 @@ public class ResumeEnterpriseServiceImpl extends AbstractBaseServiceImpl<ResumeE
     @Override
     public Integer getUserId(String obj) {
         return resumeEnterpriseMapper.getUserId(obj);
+    }
+
+    @Override
+    public List<ResumeEnterprise> getUserIdResumeEnterprise(Integer userId) {
+        return resumeEnterpriseMapper.getUserIdResumeEnterprise(userId);
     }
 }

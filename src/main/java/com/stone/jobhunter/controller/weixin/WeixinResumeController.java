@@ -1,30 +1,21 @@
 package com.stone.jobhunter.controller.weixin;
 
 
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+
 import com.stone.jobhunter.pojo.*;
 import com.stone.jobhunter.service.weixin.*;
-import com.stone.jobhunter.service.weixinimpl.ReusmeEnterpriseServiceImpl;
 import com.stone.jobhunter.utils.JsonUtil;
 import com.stone.jobhunter.utils.QiNiuUtil;
 import com.stone.jobhunter.utils.pdfUtil;
 import com.stone.jobhunter.vo.*;
-import net.sf.json.JSONArray;
 import com.stone.jobhunter.basic.PageInfo;
 import com.stone.jobhunter.basic.ResponseCode;
 import com.stone.jobhunter.basic.ReturnMessage;
 import com.stone.jobhunter.utils.PageUtil;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.collections.list.AbstractLinkedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -107,17 +98,7 @@ private ResumeEnterpriseService resumeEnterpriseService;
         int insert=deliverJobService.insert(deliverJob);
         return new ReturnMessage(ResponseCode.OK, insert);
     }
-    @ApiOperation(value = "导出pdf", notes = "导出pdf")
-    @RequestMapping(value = "/getResumePDF", method = RequestMethod.POST)
-    public ReturnMessage getResumePDf(@RequestParam("url") String url,@RequestParam("userId") Integer userId)  {
-        List<Resume> resumeList=	resumeService.getUserIdResume(userId);
-        List<ResumeScience> resumeScienceList=resumeScienceService.getUserIdResumeScience(userId);
-        List<ResumeSchool> resumeSchoolList=resumeSchoolService.getUserIdResumeSchool(userId);
-        List<ResumeEnterprise> resumeEnterpriseList=resumeEnterpriseService.getUserIdResumeEnterprise(userId);
-        pdfUtil.createPdf(url,resumeList,resumeScienceList,resumeSchoolList,resumeEnterpriseList);
 
-        return new ReturnMessage(ResponseCode.OK, 1);
-    }
     @ApiOperation(value = "简历详情", notes = "简历详情")
     @RequestMapping(value = "/getResumeInfo", method = RequestMethod.POST)
     public ReturnMessage getResumeInfo(@RequestParam("userId") Integer userId)  {
@@ -135,4 +116,5 @@ private ResumeEnterpriseService resumeEnterpriseService;
 
         return new ReturnMessage(ResponseCode.OK, 1);
     }
+
 }

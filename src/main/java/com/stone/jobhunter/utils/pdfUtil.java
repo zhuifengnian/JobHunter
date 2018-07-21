@@ -28,7 +28,7 @@ public class pdfUtil {
             Font font = new Font(bfChinese, 12, Font.NORMAL);
 
             Document document = new Document(PageSize.A4, 10, 10, 10, 10);
-            PdfWriter mPdfWriter = PdfWriter.getInstance(document, new FileOutputStream(url));
+            PdfWriter mPdfWriter = PdfWriter.getInstance(document, new FileOutputStream(url+"/"+resumeList.get(0).getResumeName()+".pdf"));
             document.open();
             String s = getHtml(resumeList, resumeScienceList, resumeSchoolList, resumeEnterpriseList);
             ByteArrayInputStream bin = new ByteArrayInputStream(s.getBytes());

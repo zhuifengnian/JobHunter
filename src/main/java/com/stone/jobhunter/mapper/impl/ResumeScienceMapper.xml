@@ -14,11 +14,12 @@
       <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="resume_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
     id, start_time, finish_time, science_name, science_text, context, address, create_time, 
-    update_time, state, user_id
+    update_time, state, user_id, resume_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -34,11 +35,13 @@
     insert into resume_science (id, start_time, finish_time, 
       science_name, science_text, context, 
       address, create_time, update_time, 
-      state, user_id)
+      state, user_id, resume_id
+      )
     values (#{id,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, 
       #{scienceName,jdbcType=VARCHAR}, #{scienceText,jdbcType=VARCHAR}, #{context,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{state,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
+      #{state,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{resumeId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.ResumeScience" useGeneratedKeys="true" keyProperty="id">
     insert into resume_science
@@ -76,6 +79,9 @@
       <if test="userId != null" >
         user_id,
       </if>
+      <if test="resumeId != null" >
+        resume_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -110,6 +116,9 @@
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="resumeId != null" >
+        #{resumeId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -146,6 +155,9 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="resumeId != null" >
+        resume_id = #{resumeId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -160,10 +172,11 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       state = #{state,jdbcType=INTEGER},
-      user_id = #{userId,jdbcType=INTEGER}
+      user_id = #{userId,jdbcType=INTEGER},
+      resume_id = #{resumeId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="getUserIdResumeScience" resultType="com.stone.jobhunter.pojo.ResumeScience">
+    <select id="getUserIdResumeScience" resultType="com.stone.jobhunter.pojo.ResumeScience">
     select *
     from resume_science
     where 1=1

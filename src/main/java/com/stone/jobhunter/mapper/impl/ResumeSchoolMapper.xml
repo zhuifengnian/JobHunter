@@ -15,11 +15,12 @@
       <arg column="degree" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="experience" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="sequence" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="resume_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
     id, start_time, finish_time, school, major, create_time, update_time, state, user_id, 
-    degree, experience, sequence
+    degree, experience, sequence, resume_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -35,15 +36,15 @@
     insert into resume_school (id, start_time, finish_time, 
       school, major, create_time, 
       update_time, state, user_id, 
-      degree, experience, sequence
-      )
+      degree, experience, sequence, 
+      resume_id)
     values (#{id,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, 
       #{school,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
-      #{degree,jdbcType=VARCHAR}, #{experience,jdbcType=VARCHAR}, #{sequence,jdbcType=INTEGER}
-      )
+      #{degree,jdbcType=VARCHAR}, #{experience,jdbcType=VARCHAR}, #{sequence,jdbcType=INTEGER}, 
+      #{resumeId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.ResumeSchool" useGeneratedKeys="true" keyProperty="id" >
+  <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.ResumeSchool" useGeneratedKeys="true" keyProperty="id">
     insert into resume_school
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -81,6 +82,9 @@
       </if>
       <if test="sequence != null" >
         sequence,
+      </if>
+      <if test="resumeId != null" >
+        resume_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -120,6 +124,9 @@
       <if test="sequence != null" >
         #{sequence,jdbcType=INTEGER},
       </if>
+      <if test="resumeId != null" >
+        #{resumeId,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.stone.jobhunter.pojo.ResumeSchool" >
@@ -158,6 +165,9 @@
       <if test="sequence != null" >
         sequence = #{sequence,jdbcType=INTEGER},
       </if>
+      <if test="resumeId != null" >
+        resume_id = #{resumeId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -173,7 +183,8 @@
       user_id = #{userId,jdbcType=INTEGER},
       degree = #{degree,jdbcType=VARCHAR},
       experience = #{experience,jdbcType=VARCHAR},
-      sequence = #{sequence,jdbcType=INTEGER}
+      sequence = #{sequence,jdbcType=INTEGER},
+      resume_id = #{resumeId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
     <select id="getUserIdResumeSchool" resultType="com.stone.jobhunter.pojo.ResumeSchool">

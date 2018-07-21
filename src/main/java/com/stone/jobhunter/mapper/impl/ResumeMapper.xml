@@ -19,7 +19,6 @@
       <arg column="user_age" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="user_email" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="adress" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="high_education" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="user_birth" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="self_position" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
@@ -27,7 +26,7 @@
   <sql id="Base_Column_List" >
     id, user_id, resume_name, evaluation_id, create_time, update_time, state, self_assessment, 
     user_name, user_phone, user_card, user_photo, user_gender, user_age, user_email, 
-    adress, high_education, user_birth, self_position
+    adress, user_birth, self_position
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -39,21 +38,21 @@
     delete from resume
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.stone.jobhunter.pojo.Resume" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="com.stone.jobhunter.pojo.Resume" useGeneratedKeys="true" keyProperty="id" >
     insert into resume (id, user_id, resume_name, 
       evaluation_id, create_time, update_time, 
       state, self_assessment, user_name, 
       user_phone, user_card, user_photo, 
       user_gender, user_age, user_email, 
-      adress, high_education, user_birth, 
-      self_position)
+      adress, user_birth, self_position
+      )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{resumeName,jdbcType=VARCHAR}, 
       #{evaluationId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{state,jdbcType=INTEGER}, #{selfAssessment,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
       #{userPhone,jdbcType=VARCHAR}, #{userCard,jdbcType=VARCHAR}, #{userPhoto,jdbcType=VARCHAR}, 
       #{userGender,jdbcType=VARCHAR}, #{userAge,jdbcType=INTEGER}, #{userEmail,jdbcType=VARCHAR}, 
-      #{adress,jdbcType=VARCHAR}, #{highEducation,jdbcType=VARCHAR}, #{userBirth,jdbcType=TIMESTAMP}, 
-      #{selfPosition,jdbcType=VARCHAR})
+      #{adress,jdbcType=VARCHAR}, #{userBirth,jdbcType=TIMESTAMP}, #{selfPosition,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.stone.jobhunter.pojo.Resume" useGeneratedKeys="true" keyProperty="id" >
     insert into resume
@@ -105,9 +104,6 @@
       </if>
       <if test="adress != null" >
         adress,
-      </if>
-      <if test="highEducation != null" >
-        high_education,
       </if>
       <if test="userBirth != null" >
         user_birth,
@@ -165,9 +161,6 @@
       <if test="adress != null" >
         #{adress,jdbcType=VARCHAR},
       </if>
-      <if test="highEducation != null" >
-        #{highEducation,jdbcType=VARCHAR},
-      </if>
       <if test="userBirth != null" >
         #{userBirth,jdbcType=TIMESTAMP},
       </if>
@@ -224,9 +217,6 @@
       <if test="adress != null" >
         adress = #{adress,jdbcType=VARCHAR},
       </if>
-      <if test="highEducation != null" >
-        high_education = #{highEducation,jdbcType=VARCHAR},
-      </if>
       <if test="userBirth != null" >
         user_birth = #{userBirth,jdbcType=TIMESTAMP},
       </if>
@@ -253,7 +243,6 @@
       user_age = #{userAge,jdbcType=INTEGER},
       user_email = #{userEmail,jdbcType=VARCHAR},
       adress = #{adress,jdbcType=VARCHAR},
-      high_education = #{highEducation,jdbcType=VARCHAR},
       user_birth = #{userBirth,jdbcType=TIMESTAMP},
       self_position = #{selfPosition,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

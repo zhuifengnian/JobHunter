@@ -40,13 +40,6 @@ public class SysResumeController {
     @Autowired
     private ResumeSchoolService resumeSchoolService;
 
-    @ApiOperation(value = "模糊查询", notes = "模糊查询")
-    @RequestMapping(value = "/insertResume", method = RequestMethod.POST)
-    public ReturnMessage getResume( @RequestParam("obj")  String obj)  {
-        int insert=resumeEnterpriseService.getUserId(obj);
-        List<Resume> resumeList=resumeService.getUserIdResume(insert);
-        return new ReturnMessage(ResponseCode.OK, resumeList);
-    }
     @ApiOperation(value = "导出pdf", notes = "导出pdf")
     @RequestMapping(value = "/getResumePDF", method = RequestMethod.POST)
     public ReturnMessage getResumePDf(@RequestParam("url") String url,@RequestParam("userId") Integer userId)  {

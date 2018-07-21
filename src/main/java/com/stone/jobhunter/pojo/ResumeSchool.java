@@ -27,7 +27,9 @@ public class ResumeSchool {
 
     private Integer sequence;
 
-    public ResumeSchool(Integer id, Date startTime, Date finishTime, String school, String major, Date createTime, Date updateTime, Integer state, Integer userId, String degree, String experience, Integer sequence) {
+    private Integer resumeId;
+
+    public ResumeSchool(Integer id, Date startTime, Date finishTime, String school, String major, Date createTime, Date updateTime, Integer state, Integer userId, String degree, String experience, Integer sequence, Integer resumeId) {
         this.id = id;
         this.startTime = startTime;
         this.finishTime = finishTime;
@@ -40,6 +42,7 @@ public class ResumeSchool {
         this.degree = degree;
         this.experience = experience;
         this.sequence = sequence;
+        this.resumeId = resumeId;
     }
 
     public ResumeSchool() {
@@ -140,5 +143,13 @@ public class ResumeSchool {
 
     public void setSequence(Integer sequence) {
         this.sequence = sequence;
+    }
+
+    public Integer getResumeId() {
+        return resumeId;
+    }
+
+    public void setResumeId(Integer resumeId) {
+        this.resumeId = resumeId;
     }
 }

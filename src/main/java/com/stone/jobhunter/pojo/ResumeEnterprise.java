@@ -23,7 +23,9 @@ public class ResumeEnterprise {
 
     private String context;
 
-    public ResumeEnterprise(Integer id, Date startTime, Date finishTime, String enterpriseName, Date createTime, Date updateTime, Integer state, String position, Integer userId, String context) {
+    private Integer resumeId;
+
+    public ResumeEnterprise(Integer id, Date startTime, Date finishTime, String enterpriseName, Date createTime, Date updateTime, Integer state, String position, Integer userId, String context, Integer resumeId) {
         this.id = id;
         this.startTime = startTime;
         this.finishTime = finishTime;
@@ -34,6 +36,7 @@ public class ResumeEnterprise {
         this.position = position;
         this.userId = userId;
         this.context = context;
+        this.resumeId = resumeId;
     }
 
     public ResumeEnterprise() {
@@ -118,5 +121,13 @@ public class ResumeEnterprise {
 
     public void setContext(String context) {
         this.context = context == null ? null : context.trim();
+    }
+
+    public Integer getResumeId() {
+        return resumeId;
+    }
+
+    public void setResumeId(Integer resumeId) {
+        this.resumeId = resumeId;
     }
 }

@@ -25,7 +25,9 @@ public class ResumeScience {
 
     private Integer userId;
 
-    public ResumeScience(Integer id, Date startTime, Date finishTime, String scienceName, String scienceText, String context, String address, Date createTime, Date updateTime, Integer state, Integer userId) {
+    private Integer resumeId;
+
+    public ResumeScience(Integer id, Date startTime, Date finishTime, String scienceName, String scienceText, String context, String address, Date createTime, Date updateTime, Integer state, Integer userId, Integer resumeId) {
         this.id = id;
         this.startTime = startTime;
         this.finishTime = finishTime;
@@ -37,6 +39,7 @@ public class ResumeScience {
         this.updateTime = updateTime;
         this.state = state;
         this.userId = userId;
+        this.resumeId = resumeId;
     }
 
     public ResumeScience() {
@@ -129,5 +132,13 @@ public class ResumeScience {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getResumeId() {
+        return resumeId;
+    }
+
+    public void setResumeId(Integer resumeId) {
+        this.resumeId = resumeId;
     }
 }

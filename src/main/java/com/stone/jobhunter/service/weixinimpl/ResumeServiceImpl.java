@@ -61,7 +61,7 @@ public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implemen
         insert[0]=resumeService.insert(resume);
         List<ResumePurpose> resumePurposeList =JsonUtil.checkJson1(obj);
         for(ResumePurpose resumePurpose : resumePurposeList) {
-            resumePurpose.setResumeId(insert[1]);
+            resumePurpose.setResumeId(insert[0]);
             insert[1] = resumePurposeService.insert(resumePurpose);
         }
         List<ResumeSchool>resumeSchoolList =JsonUtil.checkJson2(obj);

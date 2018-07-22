@@ -83,7 +83,7 @@
 <script src="${pageContext.request.contextPath}/resources/assets/js/app.js"></script>
 <script>
     function gotoIndex() {
-        location.href = "${pageContext.request.contextPath}/sys/admin/index";
+        location.href = "${pageContext.request.contextPath}/sys/index";
     }
 </script>
 

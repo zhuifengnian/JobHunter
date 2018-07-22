@@ -1,5 +1,6 @@
 package com.stone.jobhunter.test.servicetest;
 
+import com.stone.jobhunter.basic.PageInfo;
 import com.stone.jobhunter.mapper.ResumeEvaluateMapper;
 import com.stone.jobhunter.pojo.Resume;
 import com.stone.jobhunter.pojo.ResumePurpose;
@@ -9,6 +10,8 @@ import com.stone.jobhunter.service.sys.ResumeEvaluateService;
 import com.stone.jobhunter.service.weixin.ResumeService;
 import com.stone.jobhunter.service.weixin.UserService;
 import com.stone.jobhunter.utils.JsonUtil;
+import com.stone.jobhunter.utils.PageUtil;
+import com.stone.jobhunter.vo.SysResumeTableVO;
 import net.sf.json.JSONArray;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,5 +60,12 @@ public class ServiceTest {
    //   Resume resume= resumeService.getUserIdResume(1);
     //   System.out.println(resume.getAdress());
      System.out.println(JsonUtil.checkJson1(obj).get(0).getPosition());
+    }
+
+    @Test
+    public void testListResume(){
+        PageInfo<SysResumeTableVO> pageInfo = resumeService.listResumeTableVO(new SysResumeTableVO(), PageUtil.setPage(8,3));
+        System.out.println(pageInfo);
+
     }
 }

@@ -1,16 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: fan
-  Date: 2018/6/13
-  Time: 10:31
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<!--在这里编写你的代码-->
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,9 +22,10 @@
     <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.min.js"></script>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/stone_resume_admin.css"/>
+
 </head>
 
-<body data-type="index">
+<body data-type="widgets">
 <script src="${pageContext.request.contextPath}/resources/assets/js/theme.js"></script>
 <div class="am-g tpl-g">
     <!-- 头部 -->
@@ -195,6 +188,7 @@
         </div>
     </div>
     <!-- 侧边导航栏 -->
+    <!-- 侧边导航栏 -->
     <div class="left-sidebar">
         <!-- 用户信息 -->
         <div class="tpl-sidebar-user-panel">
@@ -214,12 +208,12 @@
         <ul class="sidebar-nav">
             <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 附加组件</span></li>
             <li class="sidebar-nav-link">
-                <a href="${pageContext.request.contextPath}/sys/index" class="active">
+                <a href="${pageContext.request.contextPath}/sys/index" >
                     <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="${pageContext.request.contextPath}/sys/resume">
+                <a href="${pageContext.request.contextPath}/sys/resume" class="active">
                     <i class="am-icon-table sidebar-nav-link-logo"></i> 简历管理
                 </a>
             </li>
@@ -245,93 +239,173 @@
 
     <!-- 内容区域 -->
     <div class="tpl-content-wrapper">
-        <header class="am-topbar am-topbar-inverse am-topbar-fixed-bottom">
-            <div class="am-container">
-                <h1 class="am-topbar-brand">
-                    <a href="#" class="am-text-ir">Amaze UI</a>
-                </h1>
-
-                <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
-                        data-am-collapse="{target: '#doc-topbar-collapse-5'}"><span class="am-sr-only">导航切换</span> <span
-                        class="am-icon-bars"></span></button>
-
-                <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse-5">
-                    <ul class="am-nav am-nav-pills am-topbar-nav">
-                        <li class="am-active"><a href="#">首页</a></li>
-                        <li><a href="#">项目</a></li>
-                        <li class="am-dropdown am-dropdown-up" data-am-dropdown>
-                            <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                                上拉 <span class="am-icon-caret-up"></span>
-                            </a>
-                            <ul class="am-dropdown-content">
-                                <li><a href="#">带我去月球</a></li>
-                                <li><a href="#">还是回地球</a></li>
-                                <li class="am-disabled"><a href="#">臣妾做不到</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </header>
         <div class="row-content am-cf">
-            <div class="row am-cf">
+            <div class="row">
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">简历</div>
-                            <div class="widget-function am-fr">
-                                <a href="javascript:;" class="am-icon-cog"></a>
-                            </div>
+                            <div class="widget-title  am-cf">简历列表</div>
                         </div>
-                        <div class="widget-body widget-body-lg am-fr tpl-amendment-echarts">
+                        <div class="widget-body  am-fr">
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
+                                <fieldset class="am-form-group">
 
-                            <table class="am-table am-table-compact am-table-striped tpl-table-black am-table-centered" width="100%">
-                                <thead>
-                                <tr>
-                                    <th>标题</th>
-                                    <th>作者</th>
-                                    <th>头像</th>
-                                    <th>性别</th>
-                                    <th>年龄</th>
-                                    <th>最高学历</th>
-                                    <th>所在城市</th>
-                                    <th>创建时间</th>
-                                    <th>修改时间</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="am-text-middle">法律专业</td>
-                                    <td class="am-text-middle">张鹏飞</td>
-                                    <td class="am-text-middle"><img class="resume-avatar" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3626217888,316039247&fm=27&gp=0.jpg"/></td>
-                                    <td class="am-text-middle">男</td>
-                                    <td class="am-text-middle">22</td>
-                                    <td class="am-text-middle">本科</td>
-                                    <td class="am-text-middle">湖北武汉</td>
-                                    <td class="am-text-middle">2018-2-12</td>
-                                    <td class="am-text-middle">2018-6-21</td>
-                                    <td class="am-text-middle">
-                                        <div class="tpl-table-black-operation">
-                                            <a href="${pageContext.request.contextPath}/sys/resumeEditor">
-                                                <i class="am-icon-pencil"></i> 编辑
-                                            </a>
-                                            <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                <i class="am-icon-trash"></i> 删除
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <div class="tpl-form-border-form cl-p">
+                                        <input type="text" class="am-form-field " placeholder="目标企业">
+                                    </div>
+                                    <div class="tpl-form-border-form cl-p">
+                                        <input type="text" class="am-form-field " placeholder="简历标题">
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-2">
+                                <fieldset class="am-form-set">
+                                    <div class="am-input-group am-datepicker-date" data-am-datepicker="{format: 'yyyy-mm', viewMode: 'years', minViewMode: 'months'}">
+                                        <input type="text" class="am-form-field" placeholder="毕业起始年月" readonly>
+                                        <span class="am-input-group-btn am-datepicker-add-on">
+                                        <button class="am-btn am-btn-primary am-btn-xs" type="button"><span class="am-icon-calendar"></span> </button>
+                                        </span>
+                                    </div>
+                                    <div class="am-input-group am-datepicker-date" data-am-datepicker="{format: 'yyyy-mm', viewMode: 'years', minViewMode: 'months'}">
+                                        <input type="text" class="am-form-field" placeholder="毕业结束年月" readonly>
+                                        <span class="am-input-group-btn am-datepicker-add-on">
+                                        <button class="am-btn am-btn-primary am-btn-xs" type="button"><span class="am-icon-calendar"></span> </button>
+                                        </span>
+                                    </div>
+                                </fieldset>
 
-                                </tbody>
-                            </table>
+                            </div>
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+                                <fieldset class="am-form-set">
+                                    <div class="am-form-group tpl-table-list-select">
+                                        <select data-am-selected="{btnSize: 'sm'}">
+                                            <option value='none' disabled>请选择志愿序列</option>
+                                            <option value="option1">不限志愿</option>
+                                            <option value="option1">第一志愿</option>
+                                            <option value="option2">第二志愿</option>
+                                            <option value="option3">第三志愿</option>
+                                        </select>
+                                    </div>
+                                    <div class="am-form-group tpl-table-list-select">
+                                        <select data-am-selected="{btnSize: 'sm'}">
+                                            <option value='none' disabled>请选择学校类型</option>
+                                            <option value="option1">不限学校</option>
+                                            <option value="option2">985/211</option>
+                                            <option value="option3">普通本科</option>
+                                            <option value="option4">其他</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
 
+                            </div>
+
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+                                <fieldset class="am-form-set">
+                                    <div class="am-form-group tpl-table-list-select">
+                                    <select data-am-selected="{btnSize: 'sm'}">
+                                    <option value='none' disabled>请选择自我定位</option>
+                                    <option value="option1">不限自我定位</option>
+                                    <option value="option1">活力型</option>
+                                    <option value="option2">冷静型</option>
+                                    <option value="option3">事业型</option>
+                                    </select>
+                                    </div>
+                                    <div class="am-input-group am-align-right">
+                                        <button class="am-btn am-btn-success am-btn-sm">
+                                            <i class="am-icon-search"></i>
+                                            搜索
+                                        </button>
+                                    </div>
+                                </fieldset>
+
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <table class="am-table am-table-compact am-table-striped tpl-table-black am-table-centered" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>标题</th>
+                                        <th>目标企业</th>
+                                        <th>作者</th>
+                                        <th>头像</th>
+                                        <th>性别</th>
+                                        <th>手机</th>
+                                        <th>志愿序列</th>
+                                        <th>学校类型</th>
+                                        <th>毕业时间</th>
+                                        <th>自我定位</th>
+                                        <th>创建时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${resumePageInfo.rows}" var="resume">
+                                        <tr>
+                                            <td class="am-text-middle">${resume.resumeName}</td>
+                                            <td class="am-text-middle">${resume.company}</td>
+                                            <td class="am-text-middle">${resume.userName}</td>
+                                            <td class="am-text-middle"><img class="resume-avatar" src="${resume.userPhoto}"/></td>
+                                            <td class="am-text-middle">${resume.userGenderStr}</td>
+                                            <td class="am-text-middle">${resume.userPhone}</td>
+                                            <td class="am-text-middle">${resume.sequence}</td>
+                                            <td class="am-text-middle">${resume.schoolType}</td>
+                                            <td class="am-text-middle">${resume.finishTime}</td>
+                                            <td class="am-text-middle">${resume.selfPosition}</td>
+                                            <td class="am-text-middle">${resume.createTime}</td>
+                                            <td class="am-text-middle">
+                                                <div class="tpl-table-black-operation">
+                                                    <a href="${pageContext.request.contextPath}/sys/resumeEditor">
+                                                        <i class="am-icon-pencil"></i> 编辑
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    <tr>
+                                        <td class="am-text-middle">法律专业投递</td>
+                                        <td class="am-text-middle">京东</td>
+                                        <td class="am-text-middle">张鹏飞</td>
+                                        <td class="am-text-middle"><img class="resume-avatar" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3626217888,316039247&fm=27&gp=0.jpg"/></td>
+                                        <td class="am-text-middle">男</td>
+                                        <td class="am-text-middle">18968271936</td>
+                                        <td class="am-text-middle">第一志愿</td>
+                                        <td class="am-text-middle">普通本科</td>
+                                        <td class="am-text-middle">2016年7月</td>
+                                        <td class="am-text-middle">运动型</td>
+                                        <td class="am-text-middle">2018-6-29</td>
+                                        <td class="am-text-middle">
+                                            <div class="tpl-table-black-operation">
+                                                <a href="${pageContext.request.contextPath}/sys/resumeEditor">
+                                                    <i class="am-icon-pencil"></i> 编辑
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="am-u-lg-12 am-cf">
+
+                                <div class="am-fr">
+                                    <ul class="am-pagination tpl-pagination">
+                                        <li class="am-disabled"><a href="#">«</a></li>
+                                        <li class="am-active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li><a href="#">»</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/assets/js/amazeui.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/assets/js/amazeui.datatables.min.js"></script>

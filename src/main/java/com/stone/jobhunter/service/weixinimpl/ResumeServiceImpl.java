@@ -7,7 +7,10 @@ import com.stone.jobhunter.pojo.*;
 import com.stone.jobhunter.service.AbstractBaseServiceImpl;
 import com.stone.jobhunter.service.weixin.*;
 import com.stone.jobhunter.utils.JsonUtil;
+import com.stone.jobhunter.service.weixin.ResumeService;
+import com.stone.jobhunter.utils.ReflectUtil;
 import com.stone.jobhunter.vo.ListResumeVo;
+import com.stone.jobhunter.vo.SysResumeTableVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implements ResumeService {
@@ -50,6 +54,17 @@ public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implemen
     @Override
     public List<Resume> getUserIdResume(Integer userId) {
         return resumeMapper.getUserIdResume(userId);
+    }
+
+    @Override
+    public PageInfo<SysResumeTableVO> listResumeTableVO(SysResumeTableVO resumeTableVO, Page page) {
+
+        PageInfo<SysResumeTableVO> pageInfo = new PageInfo<>();
+        pageInfo.setPageNum(page.getPageNumber());
+        pageInfo.setPageSize(page.getPageSize());
+        pageInfo.setRows(resumeMapper.listResumeTableVO(resumeTableVO, page));
+        pageInfo.setTotal(resumeMapper.listResumeTableVOCount(resumeTableVO));
+        return pageInfo;
     }
 
     @Override

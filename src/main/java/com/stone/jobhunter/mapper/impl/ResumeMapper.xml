@@ -272,4 +272,20 @@
     where 1=1
     and user_id=#{userId}
   </select>
+  <select id="listResumeTableVO" resultType="sysResumeTableVO">
+    select r.resume_name as resumeName, rp.company, r.user_name as userName, r.user_photo as userPhoto,
+        r.user_gender as userGender, r.user_phone as userPhone, rp.sequence, rs.finish_time as finishTime,
+        r.self_position as selfPosition, r.create_time as createTime
+    from resume r left join resume_purpose rp on r.id = rp.resume_id
+    left join resume_school rs on r.id = rs.resume_id
+    <if test="page != null and page.start != null and page.pageSize!=null">
+      limit #{page.start},#{page.pageSize}
+    </if>
+  </select>
+
+  <select id="listResumeTableVOCount" resultType="int">
+    select count(1)
+    from resume r left join resume_purpose rp on r.id = rp.resume_id
+    left join resume_school rs on r.id = rs.resume_id
+  </select>
 </mapper>

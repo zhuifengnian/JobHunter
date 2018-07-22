@@ -8,6 +8,7 @@ import com.stone.jobhunter.pojo.Resume;
 import com.stone.jobhunter.service.BaseService;
 import com.stone.jobhunter.vo.ListEnterpriseVo;
 import com.stone.jobhunter.vo.ListResumeVo;
+import com.stone.jobhunter.vo.SysResumeTableVO;
 
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
@@ -35,4 +36,13 @@ public interface ResumeService extends BaseService<Resume> {
      * @return
      */
    int [] putResume(String obj) throws ParseException, UnsupportedEncodingException;
+
+   /////////////////////////管理系统/////////////////////////////////
+
+    /**
+     * 根据各种查询条件列出符合要求的简历
+     * @param resumeTableVO
+     * @param page
+     */
+    PageInfo<SysResumeTableVO> listResumeTableVO(SysResumeTableVO resumeTableVO, Page page);
 }

@@ -9,6 +9,8 @@ import com.stone.jobhunter.service.BaseService;
 import com.stone.jobhunter.vo.ListEnterpriseVo;
 import com.stone.jobhunter.vo.ListResumeVo;
 
+import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -27,4 +29,10 @@ public interface ResumeService extends BaseService<Resume> {
      * @return
      */
    List<Resume> getUserIdResume(Integer userId);
+
+    /**
+     * 存储简历
+     * @return
+     */
+   int [] putResume(String obj) throws ParseException, UnsupportedEncodingException;
 }

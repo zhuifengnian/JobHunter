@@ -61,7 +61,7 @@ public class JsonUtil {
             ResumePurpose resumePurpose=new ResumePurpose();
             resumePurpose.setCompany(String.valueOf(jsonArrayss.getJSONObject(i).get("company")));
             resumePurpose.setDepartment(String.valueOf(jsonArrayss.getJSONObject(i).get("department")));
-            resumePurpose.setPosition(String.valueOf(jsonArrayss.getJSONObject(i).get("job")));
+            resumePurpose.setPosition(String.valueOf(jsonArrayss.getJSONObject(i).get("job")).substring(1,String.valueOf(jsonArrayss.getJSONObject(i).get("job")).length()-1));
             resumePurpose.setSequence(i+1);
             resumePurpose.setUpdateTime(Calendar.getInstance().getTime());
             resumePurpose.setState(1);

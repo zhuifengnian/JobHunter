@@ -30,6 +30,14 @@ public interface ResumeMapper extends BaseMapper<Resume>{
     List<Resume>getUserIdResume(Integer userId);
 
     /**
+     *
+     * @param userId
+     * @return
+     */
+
+    List<Resume> getUser(Integer userId);
+
+    /**
      * 管理系统中列出筛选后的简历列表
      * @param resumeTableFormVO 各种筛选条件
      */

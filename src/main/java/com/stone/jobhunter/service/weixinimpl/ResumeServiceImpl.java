@@ -60,6 +60,11 @@ public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implemen
     }
 
     @Override
+    public List<Resume> getUser(Integer userId) {
+        return resumeMapper.getUser(userId);
+    }
+
+    @Override
     public PageInfo<SysResumeTableVO> listResumeTableVO(SysResumeTableFormVO resumeTableFormVO, Page page) {
 
         PageInfo<SysResumeTableVO> pageInfo = new PageInfo<>();
@@ -71,7 +76,15 @@ public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implemen
     }
 
     @Override
-    public int[] putResume(String obj) throws ParseException, UnsupportedEncodingException  {
+    public int[] putResume(String obj,Integer userId) throws ParseException, UnsupportedEncodingException  {
+        List<Resume> resumeList=resumeMapper.getUser(userId);
+        if(resumeList.size()!=0){
+            for(Resume resume:resumeList){
+                resume.setUpdateTime(Calendar.getInstance().getTime());
+                resume.setState(0);
+                resumeMapper.updateByPrimaryKeySelective(resume);
+            }
+        }
         int insert[]=new int[5];
         Resume resume=JsonUtil.checkJson(obj);
         insert[0]=resumeService.insert(resume);

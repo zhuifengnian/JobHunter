@@ -305,4 +305,11 @@
     select count(1)
     from resume r left join resume_purpose rp on r.id = rp.resume_id
   </select>
+    <select id="getUser" resultType="com.stone.jobhunter.pojo.Resume">
+    select *
+    from resume
+    and 1=1
+    and state=1
+    and user_id=#{userId}
+  </select>
 </mapper>

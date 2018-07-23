@@ -32,12 +32,19 @@ public interface ResumeService extends BaseService<Resume> {
      * @return
      */
    List<Resume> getUserIdResume(Integer userId);
+    /**
+     *
+     * @param userId
+     * @return
+     */
+
+    List<Resume> getUser(Integer userId);
 
     /**
      * 存储简历
      * @return
      */
-   int [] putResume(String obj) throws ParseException, UnsupportedEncodingException;
+   int [] putResume(String obj,Integer userId) throws ParseException, UnsupportedEncodingException;
 
     /**
      * 存储图片
@@ -46,7 +53,7 @@ public interface ResumeService extends BaseService<Resume> {
      * @return
      */
    int putPicture(Integer resumeId,  MultipartFile flfile) ;
-        String picture = "";
+
 
    /////////////////////////管理系统/////////////////////////////////
 

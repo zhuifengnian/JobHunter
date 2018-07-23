@@ -58,7 +58,7 @@ private ResumeEnterpriseService resumeEnterpriseService;
         if (flfile != null)
             picture = QiNiuUtil.manageFile(flfile);
         resume.setUpdateTime(Calendar.getInstance().getTime());
-        resume.setUserPhone(picture);
+        resume.setUserPhoto(picture);
         int insert = resumeService.updateByPrimaryKeySelective(resume);
 
         return new ReturnMessage(ResponseCode.OK, insert);

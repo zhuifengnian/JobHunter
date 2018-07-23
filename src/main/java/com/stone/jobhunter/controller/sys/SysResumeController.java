@@ -17,8 +17,7 @@ import com.stone.jobhunter.service.weixin.ResumeScienceService;
 import com.stone.jobhunter.service.weixin.ResumeService;
 import com.stone.jobhunter.utils.PageUtil;
 import com.stone.jobhunter.utils.pdfUtil;
-import com.stone.jobhunter.vo.ListEnterpriseVo;
-import com.stone.jobhunter.vo.ResumeVo;
+import com.stone.jobhunter.vo.SysResumeTableFormVO;
 import com.stone.jobhunter.vo.SysResumeTableVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +45,9 @@ public class SysResumeController {
     @ApiOperation(value = "列出简历列表", notes = "根据各种条件，获得简历列表，比如企业名称，志愿序列，学校类型，" +
             "毕业时间，自我定位类型来检索")
     @RequestMapping(value = "/listResumeTableVO", method = RequestMethod.POST)
-    public ReturnMessage listResumeTableVO( @RequestBody SysResumeTableVO resumeTableVO, @RequestParam(required = false, defaultValue = "10") Integer pageSize,
-                                            @RequestParam Integer pageNumber)  {
-        PageInfo<SysResumeTableVO> pageInfo = resumeService.listResumeTableVO(resumeTableVO, PageUtil.setPage(10, pageNumber));
+    public ReturnMessage listResumeTableVO(@RequestBody SysResumeTableFormVO resumeTableFormVO, @RequestParam(required = false, defaultValue = "6") Integer pageSize,
+                                           @RequestParam Integer pageNumber)  {
+        PageInfo<SysResumeTableVO> pageInfo = resumeService.listResumeTableVO(resumeTableFormVO, PageUtil.setPage(pageSize, pageNumber));
         return new ReturnMessage(ResponseCode.OK, pageInfo);
     }
     @ApiOperation(value = "导出pdf", notes = "导出pdf")

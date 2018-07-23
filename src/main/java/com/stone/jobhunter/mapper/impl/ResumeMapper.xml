@@ -274,10 +274,28 @@
   </select>
   <select id="listResumeTableVO" resultType="sysResumeTableVO">
     select r.resume_name as resumeName, rp.company, r.user_name as userName, r.user_photo as userPhoto,
-        r.user_gender as userGender, r.user_phone as userPhone, rp.sequence, rs.finish_time as finishTime,
-        r.self_position as selfPosition, r.create_time as createTime
+        r.user_gender as userGender, r.user_phone as userPhone, rp.sequence, get_school_type(r.id) as schoolType,
+        get_school_finish_time(r.id) as finishTime, r.self_position as selfPosition, r.create_time as createTime
     from resume r left join resume_purpose rp on r.id = rp.resume_id
-    left join resume_school rs on r.id = rs.resume_id
+    WHERE 1=1
+    <if test="resumeTableFormVO != null and resumeTableFormVO.resumeName != null">
+      and r.resume_name = #{resumeTableFormVO.resumeName,jdbcType=VARCHAR}
+    </if>
+    <if test="resumeTableFormVO != null and resumeTableFormVO.company != null">
+      and rp.company = #{resumeTableFormVO.company,jdbcType=VARCHAR}
+    </if>
+    <if test="resumeTableFormVO != null and resumeTableFormVO.sequence != null and resumeTableFormVO.sequence != 0">
+      and rp.sequence = #{resumeTableFormVO.sequence,jdbcType=INTEGER}
+    </if>
+    <if test="resumeTableFormVO != null and resumeTableFormVO.schoolType != null and resumeTableFormVO.schoolType != 0">
+      and get_school_type(rs.resume_id) = #{resumeTableFormVO.schoolType,jdbcType=INTEGER}
+    </if>
+    <if test="resumeTableFormVO != null and resumeTableFormVO.finishStartTime != null and resumeTableFormVO.finishEndTime != null">
+      and rs.finish_time between #{resumeTableFormVO.finishStartTime,jdbcType=TIMESTAMP} and #{resumeTableFormVO.finishEndTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="resumeTableFormVO != null and resumeTableFormVO.selfPosition != null">
+      and r.self_position = #{resumeTableFormVO.selfPosition, jdbcType = VARCHAR}
+    </if>
     <if test="page != null and page.start != null and page.pageSize!=null">
       limit #{page.start},#{page.pageSize}
     </if>
@@ -286,6 +304,5 @@
   <select id="listResumeTableVOCount" resultType="int">
     select count(1)
     from resume r left join resume_purpose rp on r.id = rp.resume_id
-    left join resume_school rs on r.id = rs.resume_id
   </select>
 </mapper>

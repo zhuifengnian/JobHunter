@@ -10,6 +10,16 @@ public class PageInfo<T> implements Serializable {
     private Integer total;
     private List<T> rows;
 
+    /**
+     * 总页数，在得到total时获取。计算公式如下：
+     * if (totalNum % bean.getPageSize() == 0) {//记录当前页数
+     * bean.setTotalPage(totalNum / bean.getPageSize());
+     * } else {
+     * bean.setTotalPage(totalNum / bean.getPageSize() + 1);
+     * }
+     */
+    private Integer totalPage;  //总页数
+
     public PageInfo() {
     }
 
@@ -53,6 +63,15 @@ public class PageInfo<T> implements Serializable {
 
     public void setTotal(Integer total) {
         this.total = total;
+        totalPage = (total % pageSize == 0 ? total / pageSize : total / pageSize + 1);
+    }
+
+    /**
+     * 必须在setTotal之后，才能调用
+     * @return 总页数
+     */
+    public Integer getTotalPage() {
+        return totalPage;
     }
 
     public List<T> getRows() {

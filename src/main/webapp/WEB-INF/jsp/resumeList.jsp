@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sys" uri="/WEB-INF/tld/sys.tld"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -247,6 +248,7 @@
                             <div class="widget-title  am-cf">简历列表</div>
                         </div>
                         <div class="widget-body  am-fr">
+                            <form action="${pageContext.request.contextPath}/sys/order/list" method="post">
                             <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
                                 <fieldset class="am-form-group">
 
@@ -280,19 +282,20 @@
                                     <div class="am-form-group tpl-table-list-select">
                                         <select data-am-selected="{btnSize: 'sm'}">
                                             <option value='none' disabled>请选择志愿序列</option>
-                                            <option value="option1">不限志愿</option>
-                                            <option value="option1">第一志愿</option>
-                                            <option value="option2">第二志愿</option>
-                                            <option value="option3">第三志愿</option>
+                                            <option value="0">不限志愿</option>
+                                            <option value="1">第一志愿</option>
+                                            <option value="2">第二志愿</option>
+                                            <option value="3">第三志愿</option>
                                         </select>
                                     </div>
                                     <div class="am-form-group tpl-table-list-select">
                                         <select data-am-selected="{btnSize: 'sm'}">
                                             <option value='none' disabled>请选择学校类型</option>
-                                            <option value="option1">不限学校</option>
-                                            <option value="option2">985/211</option>
-                                            <option value="option3">普通本科</option>
-                                            <option value="option4">其他</option>
+                                            <option value="0">不限学校</option>
+                                            <option value="1">985/211</option>
+                                            <option value="2">普通本科</option>
+                                            <option value="3">专科</option>
+                                            <option value="4">其他</option>
                                         </select>
                                     </div>
                                 </fieldset>
@@ -304,10 +307,10 @@
                                     <div class="am-form-group tpl-table-list-select">
                                     <select data-am-selected="{btnSize: 'sm'}">
                                     <option value='none' disabled>请选择自我定位</option>
-                                    <option value="option1">不限自我定位</option>
-                                    <option value="option1">活力型</option>
-                                    <option value="option2">冷静型</option>
-                                    <option value="option3">事业型</option>
+                                    <option value="0">不限自我定位</option>
+                                    <option value="1">学霸型</option>
+                                    <option value="2">运动型</option>
+                                    <option value="3">社交型</option>
                                     </select>
                                     </div>
                                     <div class="am-input-group am-align-right">
@@ -319,6 +322,8 @@
                                 </fieldset>
 
                             </div>
+
+                            </form>
 
                             <div class="am-u-sm-12">
                                 <table class="am-table am-table-compact am-table-striped tpl-table-black am-table-centered" width="100%">
@@ -344,14 +349,15 @@
                                             <td class="am-text-middle">${resume.resumeName}</td>
                                             <td class="am-text-middle">${resume.company}</td>
                                             <td class="am-text-middle">${resume.userName}</td>
-                                            <td class="am-text-middle"><img class="resume-avatar" src="${resume.userPhoto}"/></td>
-                                            <td class="am-text-middle">${resume.userGenderStr}</td>
+                                            <td class="am-text-middle"><img class="resume-avatar" src="${resume.userPhoto}" onerror="this.src='${pageContext.request.contextPath}/resources/assets/img/user03.png'"/></td>
+                                            <td class="am-text-middle">${sys:judgeGender(resume.userGender)}</td>
                                             <td class="am-text-middle">${resume.userPhone}</td>
-                                            <td class="am-text-middle">${resume.sequence}</td>
-                                            <td class="am-text-middle">${resume.schoolType}</td>
-                                            <td class="am-text-middle">${resume.finishTime}</td>
-                                            <td class="am-text-middle">${resume.selfPosition}</td>
-                                            <td class="am-text-middle">${resume.createTime}</td>
+                                            <%--将序列转化为对应字符--%>
+                                            <td class="am-text-middle">${sys:judgeSequence(resume.sequence)}</td>
+                                            <td class="am-text-middle">${sys:judgeSchoolType(resume.schoolType)}</td>
+                                            <td class="am-text-middle">${sys:translateDateType2YearAndMonth(resume.finishTime)}</td>
+                                            <td class="am-text-middle">${sys:judgeSelfPosition(resume.selfPosition)}</td>
+                                            <td class="am-text-middle">${sys:translateDateType2Year(resume.createTime)}</td>
                                             <td class="am-text-middle">
                                                 <div class="tpl-table-black-operation">
                                                     <a href="${pageContext.request.contextPath}/sys/resumeEditor">

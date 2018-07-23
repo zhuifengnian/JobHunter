@@ -3,6 +3,7 @@ package com.stone.jobhunter.mapper;
 import com.stone.jobhunter.basic.Page;
 import com.stone.jobhunter.pojo.Resume;
 import com.stone.jobhunter.vo.ListResumeVo;
+import com.stone.jobhunter.vo.SysResumeTableFormVO;
 import com.stone.jobhunter.vo.SysResumeTableVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -26,13 +27,13 @@ public interface ResumeMapper extends BaseMapper<Resume>{
      * @param userId
      * @return
      */
-   List<Resume>getUserIdResume(Integer userId);
+    List<Resume>getUserIdResume(Integer userId);
 
     /**
      * 管理系统中列出筛选后的简历列表
-     * @param resumeTableVO 各种筛选条件
+     * @param resumeTableFormVO 各种筛选条件
      */
-    List<SysResumeTableVO> listResumeTableVO(@Param("resumeTableVO") SysResumeTableVO resumeTableVO, @Param("page") Page page);
+    List<SysResumeTableVO> listResumeTableVO(@Param("resumeTableFormVO") SysResumeTableFormVO resumeTableFormVO, @Param("page") Page page);
 
-    Integer listResumeTableVOCount(SysResumeTableVO resumeTableVO);
+    Integer listResumeTableVOCount(SysResumeTableFormVO resumeTableFormVO);
 }

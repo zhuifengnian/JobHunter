@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <tlib-version>1.0</tlib-version>
+    <!--给管理系统用的自定义标签库-->
+    <short-name>SysTag</short-name>
+
+    <function>
+        <description>判断字符串是否为空</description>
+        <name>isEmpty</name>
+        <function-class>com.stone.jobhunter.utils.SysTld</function-class>
+        <function-signature>java.lang.Boolean isEmptyText(java.lang.String)</function-signature>
+        <example>${sys:isEmpty(text)}</example>
+    </function>
+    
+    <function>
+        <description>根据志愿序列标志转化为对应字符</description>
+        <name>judgeSequence</name>
+        <function-class>com.stone.jobhunter.utils.SysTld</function-class>
+        <function-signature>java.lang.String judgeSequence(java.lang.String)</function-signature>
+        <example>${sys:judgeSequence(index)</example>
+    </function>
+
+    <function>
+        <description>根据自我定位标志转化为对应字符</description>
+        <name>judgeSelfPosition</name>
+        <function-class>com.stone.jobhunter.utils.SysTld</function-class>
+        <function-signature>java.lang.String judgeSelfPosition(java.lang.String)</function-signature>
+        <example>${sys:judgeSelfPosition(index)</example>
+    </function>
+
+    <function>
+        <description>根据学校类型标志转化为对应字符</description>
+        <name>judgeSchoolType</name>
+        <function-class>com.stone.jobhunter.utils.SysTld</function-class>
+        <function-signature>java.lang.String judgeSchoolType(byte)</function-signature>
+        <example>${sys:judgeSchoolType(type)</example>
+    </function>
+
+    <function>
+        <description>根据性别标志转化为对应字符</description>
+        <name>judgeGender</name>
+        <function-class>com.stone.jobhunter.utils.SysTld</function-class>
+        <function-signature>java.lang.String judgeGender(int)</function-signature>
+        <example>${sys:judgeGender(gender)</example>
+    </function>
+
+    <function>
+        <description>将Date类型的数据转化为"xx年xx月"这种事件格式</description>
+        <name>translateDateType2YearAndMonth</name>
+        <function-class>com.stone.jobhunter.utils.SysTld</function-class>
+        <function-signature>java.lang.String translateDateType2YearAndMonth(java.util.Date)</function-signature>
+        <example>${sys:translateDateType2YearAndMonth(date)</example>
+    </function>
+
+    <function>
+        <description>将Date类型的数据转化为"yyyy-MM-dd"这种事件格式</description>
+        <name>translateDateType2Year</name>
+        <function-class>com.stone.jobhunter.utils.SysTld</function-class>
+        <function-signature>java.lang.String translateDateType2Year(java.util.Date)</function-signature>
+        <example>${sys:translateDateType2Year(date)</example>
+    </function>
+</taglib>

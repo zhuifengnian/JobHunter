@@ -11,6 +11,7 @@ import com.stone.jobhunter.service.weixin.ResumeService;
 import com.stone.jobhunter.utils.QiNiuUtil;
 import com.stone.jobhunter.utils.ReflectUtil;
 import com.stone.jobhunter.vo.ListResumeVo;
+import com.stone.jobhunter.vo.SysResumeTableFormVO;
 import com.stone.jobhunter.vo.SysResumeTableVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,6 @@ import java.net.URLDecoder;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implements ResumeService {
@@ -60,21 +60,19 @@ public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implemen
     }
 
     @Override
-    public PageInfo<SysResumeTableVO> listResumeTableVO(SysResumeTableVO resumeTableVO, Page page) {
+    public PageInfo<SysResumeTableVO> listResumeTableVO(SysResumeTableFormVO resumeTableFormVO, Page page) {
 
         PageInfo<SysResumeTableVO> pageInfo = new PageInfo<>();
         pageInfo.setPageNum(page.getPageNumber());
         pageInfo.setPageSize(page.getPageSize());
-        pageInfo.setRows(resumeMapper.listResumeTableVO(resumeTableVO, page));
-        pageInfo.setTotal(resumeMapper.listResumeTableVOCount(resumeTableVO));
+        pageInfo.setRows(resumeMapper.listResumeTableVO(resumeTableFormVO, page));
+        pageInfo.setTotal(resumeMapper.listResumeTableVOCount(resumeTableFormVO));
         return pageInfo;
     }
 
     @Override
     public int[] putResume(String obj) throws ParseException, UnsupportedEncodingException  {
         int insert[]=new int[5];
-        obj = new String(obj.getBytes("ISO-8859-1"), "UTF-8");
-
         Resume resume=JsonUtil.checkJson(obj);
         insert[0]=resumeService.insert(resume);
         List<ResumePurpose> resumePurposeList =JsonUtil.checkJson1(obj);

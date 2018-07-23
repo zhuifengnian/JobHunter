@@ -8,6 +8,7 @@ import com.stone.jobhunter.pojo.Resume;
 import com.stone.jobhunter.service.BaseService;
 import com.stone.jobhunter.vo.ListEnterpriseVo;
 import com.stone.jobhunter.vo.ListResumeVo;
+import com.stone.jobhunter.vo.SysResumeTableFormVO;
 import com.stone.jobhunter.vo.SysResumeTableVO;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -51,9 +52,8 @@ public interface ResumeService extends BaseService<Resume> {
 
     /**
      * 根据各种查询条件列出符合要求的简历
-     * @param resumeTableVO
+     * @param resumeTableFormVO
      * @param page
      */
-    PageInfo<SysResumeTableVO> listResumeTableVO(SysResumeTableVO resumeTableVO, Page page);
-
+    PageInfo<SysResumeTableVO> listResumeTableVO(SysResumeTableFormVO resumeTableFormVO, Page page);
 }

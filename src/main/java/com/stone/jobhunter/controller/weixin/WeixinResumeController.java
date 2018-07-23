@@ -52,14 +52,7 @@ private ResumeEnterpriseService resumeEnterpriseService;
     @ApiOperation(value = "存储图片信息")
     @ResponseBody
     public ReturnMessage insertResumePicture(@RequestParam("resumeId") Integer resumeId, @RequestParam(value = "flyfile", required = false) MultipartFile flfile) {
-        String picture = "";
-      Resume resume=new Resume();
-       resume.setId(resumeId);
-        if (flfile != null)
-            picture = QiNiuUtil.manageFile(flfile);
-        resume.setUpdateTime(Calendar.getInstance().getTime());
-        resume.setUserPhoto(picture);
-        int insert = resumeService.updateByPrimaryKeySelective(resume);
+        int insert = resumeService.putPicture(resumeId,flfile);
 
         return new ReturnMessage(ResponseCode.OK, insert);
     }

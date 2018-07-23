@@ -9,6 +9,7 @@ import com.stone.jobhunter.service.BaseService;
 import com.stone.jobhunter.vo.ListEnterpriseVo;
 import com.stone.jobhunter.vo.ListResumeVo;
 import com.stone.jobhunter.vo.SysResumeTableVO;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
@@ -37,6 +38,15 @@ public interface ResumeService extends BaseService<Resume> {
      */
    int [] putResume(String obj) throws ParseException, UnsupportedEncodingException;
 
+    /**
+     * 存储图片
+     * @param resumeId
+     * @param flfile
+     * @return
+     */
+   int putPicture(Integer resumeId,  MultipartFile flfile) ;
+        String picture = "";
+
    /////////////////////////管理系统/////////////////////////////////
 
     /**
@@ -45,4 +55,5 @@ public interface ResumeService extends BaseService<Resume> {
      * @param page
      */
     PageInfo<SysResumeTableVO> listResumeTableVO(SysResumeTableVO resumeTableVO, Page page);
+
 }

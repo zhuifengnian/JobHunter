@@ -8,15 +8,18 @@ import com.stone.jobhunter.service.AbstractBaseServiceImpl;
 import com.stone.jobhunter.service.weixin.*;
 import com.stone.jobhunter.utils.JsonUtil;
 import com.stone.jobhunter.service.weixin.ResumeService;
+import com.stone.jobhunter.utils.QiNiuUtil;
 import com.stone.jobhunter.utils.ReflectUtil;
 import com.stone.jobhunter.vo.ListResumeVo;
 import com.stone.jobhunter.vo.SysResumeTableVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -71,7 +74,7 @@ public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implemen
     public int[] putResume(String obj) throws ParseException, UnsupportedEncodingException  {
         int insert[]=new int[5];
         obj = new String(obj.getBytes("ISO-8859-1"), "UTF-8");
-        obj=URLDecoder.decode(obj,"utf-8");
+
         Resume resume=JsonUtil.checkJson(obj);
         insert[0]=resumeService.insert(resume);
         List<ResumePurpose> resumePurposeList =JsonUtil.checkJson1(obj);
@@ -96,6 +99,21 @@ public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implemen
         for(ResumeEnterprise resumeEnterprise : resumeEnterpriseList) {
             resumeEnterprise.setResumeId(insert[0]);
             insert[4] = resumeEnterpriseService.insert(resumeEnterprise);
+        }
+        return insert;
+    }
+
+    @Override
+    public int putPicture(Integer resumeId, MultipartFile flfile) {
+        Resume resume=new Resume();
+        resume.setId(resumeId);
+        String picture ;
+        int insert=0;
+        if (flfile != null) {
+            picture = QiNiuUtil.manageFile(flfile);
+            resume.setUpdateTime(Calendar.getInstance().getTime());
+            resume.setUserPhoto(picture);
+           insert= resumeService.updateByPrimaryKeySelective(resume);
         }
         return insert;
     }

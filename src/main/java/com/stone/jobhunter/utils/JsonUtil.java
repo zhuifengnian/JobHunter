@@ -15,8 +15,17 @@ import java.util.Calendar;
 import java.util.List;
 
 public class JsonUtil {
-
-    public static Resume checkJson(String json) throws ParseException, UnsupportedEncodingException {
+    public static Integer checkUserIdJson(String json) throws ParseException {
+        json = "[" + json + "]";
+        JSONArray jsonArray=JSONArray.fromObject(json);
+        Object result=jsonArray.getJSONObject(0).get("resume");
+        Object person="["+result+"]";
+        JSONArray jsonArrays=JSONArray.fromObject(person);
+        Object id=jsonArrays.getJSONObject(0).get("userId");
+        Integer userId=Integer.valueOf(String.valueOf(id));
+        return  userId;
+    }
+    public static Resume checkJson(String json) throws ParseException {
         json="["+json+"]";
 
         JSONArray jsonArray=JSONArray.fromObject(json);

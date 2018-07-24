@@ -58,13 +58,13 @@ String obj="{\"resume\":{\"userId\":1,\"resumeName\":\"林俊旭的简历1号\",
       //  System.out.println(obj);
    //   Resume resume= resumeService.getUserIdResume(1);
     //   System.out.println(resume.getAdress());
-     System.out.println(JsonUtil.checkJson1(obj).get(0).getPosition());
+     System.out.println(resumeService.getUser(82));
     }
 
     @Test
     public void testListResume(){
-        PageInfo<SysResumeTableVO> pageInfo = resumeService.listResumeTableVO(new SysResumeTableVO(), PageUtil.setPage(8,3));
-        System.out.println(pageInfo);
+      //  PageInfo<SysResumeTableVO> pageInfo = resumeService.listResumeTableVO(new SysResumeTableVO(), PageUtil.setPage(8,3));
+        //System.out.println(pageInfo);
 
     }
 }

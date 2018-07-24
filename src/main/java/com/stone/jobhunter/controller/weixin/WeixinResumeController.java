@@ -44,8 +44,8 @@ private ResumeEnterpriseService resumeEnterpriseService;
 
     @ApiOperation(value = "添加简历", notes = "添加简历")
     @RequestMapping(value = "/insertResume", method = RequestMethod.POST)
-    public ReturnMessage insertResume(@RequestBody  String obj,@RequestParam("userId") Integer userId) throws ParseException, UnsupportedEncodingException {
-      int []insert=resumeService.putResume(obj,userId);
+    public ReturnMessage insertResume(@RequestBody  String obj) throws ParseException, UnsupportedEncodingException {
+      int []insert=resumeService.putResume(obj,JsonUtil.checkUserIdJson(obj));
         return new ReturnMessage(ResponseCode.OK,insert);
     }
     @RequestMapping(value = "/insertResumePicture", method = RequestMethod.POST)

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sys" uri="/WEB-INF/tld/sys.tld"%>
 <!DOCTYPE html>
@@ -248,28 +248,28 @@
                             <div class="widget-title  am-cf">简历列表</div>
                         </div>
                         <div class="widget-body  am-fr">
-                            <form action="${pageContext.request.contextPath}/sys/order/list" method="post">
+                            <form action="${pageContext.request.contextPath}/sys/resume" method="post">
                             <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
                                 <fieldset class="am-form-group">
 
                                     <div class="tpl-form-border-form cl-p">
-                                        <input type="text" class="am-form-field " placeholder="目标企业">
+                                        <input name="company" type="text" class="am-form-field " placeholder="目标企业" value="${resumeTableFormVO.company}">
                                     </div>
                                     <div class="tpl-form-border-form cl-p">
-                                        <input type="text" class="am-form-field " placeholder="简历标题">
+                                        <input name="resumeName" type="text" class="am-form-field " placeholder="简历标题" value="${resumeTableFormVO.resumeName}">
                                     </div>
                                 </fieldset>
                             </div>
                             <div class="am-u-sm-12 am-u-md-6 am-u-lg-2">
                                 <fieldset class="am-form-set">
                                     <div class="am-input-group am-datepicker-date" data-am-datepicker="{format: 'yyyy-mm', viewMode: 'years', minViewMode: 'months'}">
-                                        <input type="text" class="am-form-field" placeholder="毕业起始年月" readonly>
+                                        <input name="" type="text" class="am-form-field" placeholder="毕业起始年月" value="${resumeTableFormVO.finishStartTime}" readonly>
                                         <span class="am-input-group-btn am-datepicker-add-on">
                                         <button class="am-btn am-btn-primary am-btn-xs" type="button"><span class="am-icon-calendar"></span> </button>
                                         </span>
                                     </div>
                                     <div class="am-input-group am-datepicker-date" data-am-datepicker="{format: 'yyyy-mm', viewMode: 'years', minViewMode: 'months'}">
-                                        <input type="text" class="am-form-field" placeholder="毕业结束年月" readonly>
+                                        <input name="" type="text" class="am-form-field" placeholder="毕业结束年月" ${resumeTableFormVO.finishEndTime} readonly>
                                         <span class="am-input-group-btn am-datepicker-add-on">
                                         <button class="am-btn am-btn-primary am-btn-xs" type="button"><span class="am-icon-calendar"></span> </button>
                                         </span>
@@ -280,22 +280,22 @@
                             <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
                                 <fieldset class="am-form-set">
                                     <div class="am-form-group tpl-table-list-select">
-                                        <select data-am-selected="{btnSize: 'sm'}">
+                                        <select name="sequence" data-am-selected="{btnSize: 'sm'}">
                                             <option value='none' disabled>请选择志愿序列</option>
-                                            <option value="0">不限志愿</option>
-                                            <option value="1">第一志愿</option>
-                                            <option value="2">第二志愿</option>
-                                            <option value="3">第三志愿</option>
+                                            <option value="0" <c:if test="${resumeTableFormVO.sequence == 0}">selected</c:if>>不限志愿</option>
+                                            <option value="1" <c:if test="${resumeTableFormVO.sequence == 1}">selected</c:if>>第一志愿</option>
+                                            <option value="2" <c:if test="${resumeTableFormVO.sequence == 2}">selected</c:if>>第二志愿</option>
+                                            <option value="3" <c:if test="${resumeTableFormVO.sequence == 3}">selected</c:if>>第三志愿</option>
                                         </select>
                                     </div>
                                     <div class="am-form-group tpl-table-list-select">
-                                        <select data-am-selected="{btnSize: 'sm'}">
+                                        <select name="schoolType" data-am-selected="{btnSize: 'sm'}">
                                             <option value='none' disabled>请选择学校类型</option>
-                                            <option value="0">不限学校</option>
-                                            <option value="1">985/211</option>
-                                            <option value="2">普通本科</option>
-                                            <option value="3">专科</option>
-                                            <option value="4">其他</option>
+                                            <option value="0" <c:if test="${resumeTableFormVO.schoolType == 0}">selected</c:if>>不限学校</option>
+                                            <option value="1" <c:if test="${resumeTableFormVO.schoolType == 1}">selected</c:if>>985/211</option>
+                                            <option value="2" <c:if test="${resumeTableFormVO.schoolType == 2}">selected</c:if>>普通本科</option>
+                                            <option value="3" <c:if test="${resumeTableFormVO.schoolType == 3}">selected</c:if>>专科</option>
+                                            <option value="4" <c:if test="${resumeTableFormVO.schoolType == 4}">selected</c:if>>其他</option>
                                         </select>
                                     </div>
                                 </fieldset>
@@ -305,12 +305,12 @@
                             <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
                                 <fieldset class="am-form-set">
                                     <div class="am-form-group tpl-table-list-select">
-                                    <select data-am-selected="{btnSize: 'sm'}">
+                                    <select name="selfPosition" data-am-selected="{btnSize: 'sm'}">
                                     <option value='none' disabled>请选择自我定位</option>
-                                    <option value="0">不限自我定位</option>
-                                    <option value="1">学霸型</option>
-                                    <option value="2">运动型</option>
-                                    <option value="3">社交型</option>
+                                    <option value="0" <c:if test="${resumeTableFormVO.selfPosition.equals('0')}">selected</c:if>>不限自我定位</option>
+                                    <option value="1" <c:if test="${resumeTableFormVO.selfPosition.equals('1')}">selected</c:if>>学霸型</option>
+                                    <option value="2" <c:if test="${resumeTableFormVO.selfPosition.equals('2')}">selected</c:if>>运动型</option>
+                                    <option value="3" <c:if test="${resumeTableFormVO.selfPosition.equals('3')}">selected</c:if>>社交型</option>
                                     </select>
                                     </div>
                                     <div class="am-input-group am-align-right">
@@ -329,9 +329,8 @@
                                 <table class="am-table am-table-compact am-table-striped tpl-table-black am-table-centered" width="100%">
                                     <thead>
                                     <tr>
-                                        <th>标题</th>
                                         <th>目标企业</th>
-                                        <th>作者</th>
+                                        <th>用户名</th>
                                         <th>头像</th>
                                         <th>性别</th>
                                         <th>手机</th>
@@ -346,7 +345,6 @@
                                     <tbody>
                                     <c:forEach items="${resumePageInfo.rows}" var="resume">
                                         <tr>
-                                            <td class="am-text-middle">${resume.resumeName}</td>
                                             <td class="am-text-middle">${resume.company}</td>
                                             <td class="am-text-middle">${resume.userName}</td>
                                             <td class="am-text-middle"><img class="resume-avatar" src="${resume.userPhoto}" onerror="this.src='${pageContext.request.contextPath}/resources/assets/img/user03.png'"/></td>
@@ -368,7 +366,6 @@
                                         </tr>
                                     </c:forEach>
                                     <tr>
-                                        <td class="am-text-middle">法律专业投递</td>
                                         <td class="am-text-middle">京东</td>
                                         <td class="am-text-middle">张鹏飞</td>
                                         <td class="am-text-middle"><img class="resume-avatar" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3626217888,316039247&fm=27&gp=0.jpg"/></td>
@@ -395,13 +392,54 @@
 
                                 <div class="am-fr">
                                     <ul class="am-pagination tpl-pagination">
-                                        <li class="am-disabled"><a href="#">«</a></li>
-                                        <li class="am-active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">»</a></li>
+                                        <%--<li class="am-disabled"><a href="#">«</a></li>--%>
+                                        <%--<li class="am-active"><a href="#">1</a></li>--%>
+                                        <%--<li><a href="#">2</a></li>--%>
+                                        <%--<li><a href="#">3</a></li>--%>
+                                        <%--<li><a href="#">4</a></li>--%>
+                                        <%--<li><a href="#">5</a></li>--%>
+                                        <%--<li><a href="#">»</a></li>--%>
+                                            共${resumePageInfo.total }条记录
+                                            共${resumePageInfo.totalPage }页
+                                            <a href="${pageContext.request.contextPath }/sys/resume?thispage=${page.firstpage }">首页</a>
+                                            <a href="${pageContext.request.contextPath }/servlet/PageCustServlet?thispage=${page.prepage }">上一页</a>
+
+                                            <!-- 分页逻辑开始 -->
+                                            <c:if test="${resumePageInfo.totalPage<=5}">
+                                                <c:set var="begin" value="1" scope="page"/>
+                                                <c:set var="end" value="${resumePageInfo.totalPage}" scope="page"/>
+                                            </c:if>
+                                            <c:if test="${resumePageInfo.totalPage>5}">
+                                                <c:choose>
+                                                    <c:when test="${resumePageInfo.pageNum<=3}">
+                                                        <c:set var="begin" value="1" scope="page"/>
+                                                        <c:set var="end" value="5" scope="page"/>
+                                                    </c:when>
+                                                    <c:when test="${resumePageInfo.pageNum>=resumePageInfo.totalPage-2}">
+                                                        <c:set var="begin" value="${resumePageInfo.totalPage-4}" scope="page"/>
+                                                        <c:set var="end" value="${page.totalPage}" scope="page"/>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:set var="begin" value="${resumePageInfo.pageNum-2}" scope="page"/>
+                                                        <c:set var="end" value="${resumePgeInfo.pageNum+2}" scope="page"/>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:if>
+
+                                            <c:forEach begin="${begin}" end="${end}" step="1" var="i">
+                                                <c:if test="${i == resumePageInfo.pageNum}">
+                                                    ${i }
+                                                </c:if>
+                                                <c:if test="${i != resumePageInfo.pageNum}">
+                                                    <a href="${pageContext.request.contextPath }/servlet/PageCustServlet?thispage=${i}">${i }</a>
+                                                </c:if>
+                                            </c:forEach>
+
+                                            <!-- 分页逻辑结束 -->
+
+                                            <a href="${pageContext.request.contextPath }/servlet/PageCustServlet?thispage=${page.nextpage }">下一页</a>
+                                            <a href="${pageContext.request.contextPath }/servlet/PageCustServlet?thispage=${page.lastpage }">尾页</a>
+                                            跳到<input type="text" value="${resumePageInfo.pageNum }" style="width: 40px" onchange="changePage(this)"/>页
                                     </ul>
                                 </div>
                             </div>

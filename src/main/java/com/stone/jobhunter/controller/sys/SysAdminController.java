@@ -39,6 +39,15 @@ public class SysAdminController {
         return "resumeList";
     }
 
+    @RequestMapping(value = "/resume", method = RequestMethod.POST)
+    public String resume(SysResumeTableFormVO resumeTableFormVO, Model model){
+
+        PageInfo<SysResumeTableVO> pageInfo = resumeService.listResumeTableVO(resumeTableFormVO, PageUtil.setPage(6, 1));
+        model.addAttribute("resumePageInfo", pageInfo);
+        model.addAttribute("resumeTableFormVO", resumeTableFormVO); //记录表单中传来的数据
+        return "resumeList";
+    }
+
     @RequestMapping(value = "/resumeEditor", method = RequestMethod.GET)
     public String resumeEditor(){
         return "resumeEditor";

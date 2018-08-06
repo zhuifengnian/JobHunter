@@ -12,9 +12,9 @@ import java.util.Date;
 public class SysResumeTableFormVO {
     private String resumeName;
     private String company; //目标公司
-    private int sequence;   //1,第一志愿    2，第二志愿  3，第三志愿
-    private byte schoolType;  //学校类型
+    private Integer sequence;   //1,第一志愿    2，第二志愿  3，第三志愿
+    private Byte schoolType;  //学校类型
     private Date finishStartTime;    //毕业开始时间
     private Date finishEndTime;    //毕业开始时间
-    private String selfPosition;    //自我定位（前端通过下拉选择）
+    private Integer selfPosition;    //自我定位（前端通过下拉选择）
 }

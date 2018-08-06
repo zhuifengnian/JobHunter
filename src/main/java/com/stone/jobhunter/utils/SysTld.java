@@ -70,6 +70,14 @@ public class SysTld {
         return ret;
     }
 
+    public static String translateDateType2YearAndMonth2(Date date){
+        String ret = "";
+        if(date != null){
+            ret = DateUtils.dateToString(date, DateUtils.formatDate(date, "yyyy-MM"));
+        }
+        return ret;
+    }
+
     public static String translateDateType2Year(Date date){
         String ret = "";
         ret = DateUtils.dateToString(date);

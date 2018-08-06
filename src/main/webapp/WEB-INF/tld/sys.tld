@@ -64,4 +64,12 @@
         <function-signature>java.lang.String translateDateType2Year(java.util.Date)</function-signature>
         <example>${sys:translateDateType2Year(date)</example>
     </function>
+
+    <function>
+        <description>将Date类型的数据转化为"yyyy-MM"这种时间格式</description>
+        <name>translateDateType2YearAndMonth2</name>
+        <function-class>com.stone.jobhunter.utils.SysTld</function-class>
+        <function-signature>java.lang.String translateDateType2YearAndMonth2(java.util.Date)</function-signature>
+        <example>${sys:translateDateType2YearAndMonth2(date)</example>
+    </function>
 </taglib>

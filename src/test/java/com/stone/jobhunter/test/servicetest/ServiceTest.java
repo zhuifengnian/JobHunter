@@ -11,6 +11,7 @@ import com.stone.jobhunter.service.weixin.ResumeService;
 import com.stone.jobhunter.service.weixin.UserService;
 import com.stone.jobhunter.utils.JsonUtil;
 import com.stone.jobhunter.utils.PageUtil;
+import com.stone.jobhunter.vo.SysResumeTableFormVO;
 import com.stone.jobhunter.vo.SysResumeTableVO;
 import net.sf.json.JSONArray;
 import org.junit.Test;
@@ -63,8 +64,7 @@ String obj="{\"resume\":{\"userId\":1,\"resumeName\":\"林俊旭的简历1号\",
 
     @Test
     public void testListResume(){
-      //  PageInfo<SysResumeTableVO> pageInfo = resumeService.listResumeTableVO(new SysResumeTableVO(), PageUtil.setPage(8,3));
-        //System.out.println(pageInfo);
-
+        PageInfo<SysResumeTableVO> pageInfo = resumeService.listResumeTableVO(new SysResumeTableFormVO(), PageUtil.setPage(8,3));
+        System.out.println(pageInfo);
     }
 }

@@ -278,23 +278,27 @@
         get_school_finish_time(r.id) as finishTime, r.self_position as selfPosition, r.create_time as createTime
     from resume r left join resume_purpose rp on r.id = rp.resume_id
     WHERE 1=1
-    <if test="resumeTableFormVO != null and resumeTableFormVO.resumeName != null">
-      and r.resume_name = #{resumeTableFormVO.resumeName,jdbcType=VARCHAR}
-    </if>
-    <if test="resumeTableFormVO != null and resumeTableFormVO.company != null">
-      and rp.company = #{resumeTableFormVO.company,jdbcType=VARCHAR}
-    </if>
-    <if test="resumeTableFormVO != null and resumeTableFormVO.sequence != null and resumeTableFormVO.sequence != 0">
-      and rp.sequence = #{resumeTableFormVO.sequence,jdbcType=INTEGER}
-    </if>
-    <if test="resumeTableFormVO != null and resumeTableFormVO.schoolType != null and resumeTableFormVO.schoolType != 0">
-      and get_school_type(rs.resume_id) = #{resumeTableFormVO.schoolType,jdbcType=INTEGER}
-    </if>
-    <if test="resumeTableFormVO != null and resumeTableFormVO.finishStartTime != null and resumeTableFormVO.finishEndTime != null">
-      and rs.finish_time between #{resumeTableFormVO.finishStartTime,jdbcType=TIMESTAMP} and #{resumeTableFormVO.finishEndTime,jdbcType=TIMESTAMP}
-    </if>
-    <if test="resumeTableFormVO != null and resumeTableFormVO.selfPosition != null">
-      and r.self_position = #{resumeTableFormVO.selfPosition, jdbcType = VARCHAR}
+    <if test="resumeTableFormVO != null">
+      <if test="resumeTableFormVO.company != null and resumeTableFormVO.company != ''">
+        and rp.company like #{resumeTableFormVO.company,jdbcType=VARCHAR}
+      </if>
+      <if test="resumeTableFormVO.sequence != null and resumeTableFormVO.sequence != 0">
+        and rp.sequence like #{resumeTableFormVO.sequence,jdbcType=INTEGER}
+      </if>
+      <if test="resumeTableFormVO.schoolType != null and resumeTableFormVO.schoolType != 0">
+        and get_school_type(r.id) = #{resumeTableFormVO.schoolType,jdbcType=INTEGER}
+      </if>
+      <if test="resumeTableFormVO.finishStartTime != null or resumeTableFormVO.finishEndTime != null">
+        <if test="resumeTableFormVO.finishStartTime != null">
+          and get_school_finish_time(r.id) > #{resumeTableFormVO.finishStartTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="resumeTableFormVO.finishEndTime != null">
+          and #{resumeTableFormVO.finishEndTime,jdbcType=TIMESTAMP} > get_school_finish_time(r.id)
+        </if>
+      </if>
+      <if test="resumeTableFormVO.selfPosition != null and resumeTableFormVO.selfPosition != 0">
+        and r.self_position like #{resumeTableFormVO.selfPosition, jdbcType = INTEGER}
+      </if>
     </if>
     <if test="page != null and page.start != null and page.pageSize!=null">
       limit #{page.start},#{page.pageSize}
@@ -304,6 +308,30 @@
   <select id="listResumeTableVOCount" resultType="int">
     select count(1)
     from resume r left join resume_purpose rp on r.id = rp.resume_id
+    WHERE 1=1
+    <if test="resumeTableFormVO != null">
+      <if test="resumeTableFormVO.company != null and resumeTableFormVO.company != ''">
+        and rp.company like #{resumeTableFormVO.company,jdbcType=VARCHAR}
+      </if>
+      <if test="resumeTableFormVO.sequence != null and resumeTableFormVO.sequence != 0">
+        and rp.sequence like #{resumeTableFormVO.sequence,jdbcType=INTEGER}
+      </if>
+      <if test="resumeTableFormVO.schoolType != null and resumeTableFormVO.schoolType != 0">
+        and get_school_type(r.id) = #{resumeTableFormVO.schoolType,jdbcType=INTEGER}
+      </if>
+      <if test="resumeTableFormVO.finishStartTime != null or resumeTableFormVO.finishEndTime != null">
+        <if test="resumeTableFormVO.finishStartTime != null">
+          and get_school_finish_time(r.id) > #{resumeTableFormVO.finishStartTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="resumeTableFormVO.finishEndTime != null">
+          and #{resumeTableFormVO.finishEndTime,jdbcType=TIMESTAMP} > get_school_finish_time(r.id)
+        </if>
+      </if>
+      <if test="resumeTableFormVO.selfPosition != null and resumeTableFormVO.selfPosition != 0">
+        and r.self_position like #{resumeTableFormVO.selfPosition, jdbcType = INTEGER}
+      </if>
+    </if>
+
   </select>
     <select id="getUser" resultType="com.stone.jobhunter.pojo.Resume">
     select *

@@ -43,5 +43,5 @@ public interface ResumeMapper extends BaseMapper<Resume>{
      */
     List<SysResumeTableVO> listResumeTableVO(@Param("resumeTableFormVO") SysResumeTableFormVO resumeTableFormVO, @Param("page") Page page);
 
-    Integer listResumeTableVOCount(SysResumeTableFormVO resumeTableFormVO);
+    Integer listResumeTableVOCount(@Param("resumeTableFormVO")SysResumeTableFormVO resumeTableFormVO);
 }

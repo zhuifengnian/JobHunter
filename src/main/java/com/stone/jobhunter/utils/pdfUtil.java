@@ -8,14 +8,14 @@ import com.stone.jobhunter.pojo.Resume;
 import com.stone.jobhunter.pojo.ResumeEnterprise;
 import com.stone.jobhunter.pojo.ResumeSchool;
 import com.stone.jobhunter.pojo.ResumeScience;
-import com.stone.jobhunter.service.weixin.*;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.List;
 
 public class pdfUtil {
+
 
 
 
@@ -28,7 +28,7 @@ public class pdfUtil {
             Font font = new Font(bfChinese, 12, Font.NORMAL);
 
             Document document = new Document(PageSize.A4, 10, 10, 10, 10);
-            PdfWriter mPdfWriter = PdfWriter.getInstance(document, new FileOutputStream(url+"/"+resumeList.get(0).getResumeName()+".pdf"));
+            PdfWriter mPdfWriter = PdfWriter.getInstance(document, new FileOutputStream(url+"/"+resumeList.get(0).getUserName()+".pdf"));
             document.open();
             String s = getHtml(resumeList, resumeScienceList, resumeSchoolList, resumeEnterpriseList);
             ByteArrayInputStream bin = new ByteArrayInputStream(s.getBytes());
@@ -52,16 +52,14 @@ public class pdfUtil {
 
         String url = resumeList.get(0).getUserPhoto();
         StringBuffer html = new StringBuffer();
-        Integer resumescience = resumeScienceList.size();
-        Integer resumeschool = resumeSchoolList.size();
-        Integer resumeenterprise = resumeEnterpriseList.size();
-
 
 
         html.append(
                 "<html >\n" +
                         "<head>\n" +
+                        "<meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″/>\n"+
                         "<style type=\"text/css\">\n" +
+                        " body {font-family: SimSun; background:none;margin-left: auto;margin-right: auto;}\n" +
                         ".lay3{ width:90px; height:20px; border:1px solid #FF6699; float:left} \n " +
                         ".lay1{ float:left}   \n" +
                         ".lay2{  float:left}   \n" +
@@ -80,7 +78,7 @@ public class pdfUtil {
                         "<body>\n" +
                         " <div class=\"header\">\n" +
                         "        <!---->\n" +
-                        "        <h1 >" + resumeList.get(0).getResumeName() + "简历</h1>\n" +
+                        "        <h1 >" + resumeList.get(0).getUserName()+ "简历</h1>\n" +
                         "    </div>\n" +
                         "<div>\n" +
                         "    <div class=\"sub-header\" > 个人信息</div>\n" +
@@ -143,9 +141,9 @@ public class pdfUtil {
                 "        </div>\n");
 
         html.append("<div class=\"lay2\">\n");
-        for (int i = 0; i < 3; ++i) {
+        for (int i = 0; i < resumeSchoolList.size(); ++i) {
             html.append(
-                    "        <div class=\"lay2\">\n" +
+                    "        <div >\n" +
                             "        <pre>\n" +
                             "    " + resumeSchoolList.get(i).getExperience() + "\n" +
                             "        </pre>\n" +
@@ -166,9 +164,9 @@ public class pdfUtil {
                 "        </div>\n");
 
         html.append("<div class=\"lay2\">\n");
-        for (int i = 0; i < 2; ++i) {
+        for (int i = 0; i < resumeScienceList.size(); ++i) {
             html.append(
-                    "      <div class=\"lay2\">\n" +
+                    "      <div >\n" +
                             "    <pre>\n" +
                             "    " + resumeScienceList.get(i).getScienceName() + "\n" +
                             "    项目职责：" + resumeScienceList.get(i).getContext() + "\n" +
@@ -191,9 +189,9 @@ public class pdfUtil {
                 "        </div>\n");
 
         html.append("<div class=\"lay2\">\n");
-        for (int i = 0; i < 2; ++i) {
+        for (int i = 0; i < resumeEnterpriseList.size(); ++i) {
             html.append(
-                    "        <div class=\"lay2\">\n" +
+                    "        <div >\n" +
                             "    <pre>\n" +
                             "   " + resumeEnterpriseList.get(i).getEnterpriseName() + "\n" +
                             "        工作职责：\n" +
@@ -269,7 +267,7 @@ public class pdfUtil {
             BaseFont bfChinese = null;
             try {
                 bfChinese = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H",
-                        BaseFont.NOT_EMBEDDED);
+                        false);
             } catch (Exception e) {
                 e.printStackTrace();
             }

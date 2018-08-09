@@ -52,7 +52,7 @@ public class SysResumeController {
     }
     @ApiOperation(value = "导出pdf", notes = "导出pdf")
     @RequestMapping(value = "/getResumePDF", method = RequestMethod.POST)
-    public ReturnMessage getResumePDf(@RequestParam("url") String url,@RequestParam("userId") Integer userId)  {
+    public ReturnMessage getResumePDf(String url,Integer userId)  {
         List<Resume> resumeList=	resumeService.getUserIdResume(userId);
         List<ResumeScience> resumeScienceList=resumeScienceService.getUserIdResumeScience(userId);
         List<ResumeSchool> resumeSchoolList=resumeSchoolService.getUserIdResumeSchool(userId);

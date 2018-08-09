@@ -31,7 +31,8 @@ public class pdfUtil {
             PdfWriter mPdfWriter = PdfWriter.getInstance(document, new FileOutputStream(url+"/"+resumeList.get(0).getUserName()+".pdf"));
             document.open();
             String s = getHtml(resumeList, resumeScienceList, resumeSchoolList, resumeEnterpriseList);
-            ByteArrayInputStream bin = new ByteArrayInputStream(s.getBytes());
+
+            ByteArrayInputStream bin = new ByteArrayInputStream(s.getBytes("UTF-8"));
             XMLWorkerHelper.getInstance().parseXHtml(mPdfWriter, document, bin, Charset.forName("UTF-8"), new ChinaFontProvide());
             document.close();
             mPdfWriter.close();
@@ -225,6 +226,7 @@ public class pdfUtil {
         html.append(
                 "</body>\n" +
                         "</html>\n");
+
         return html.toString();
     }
 

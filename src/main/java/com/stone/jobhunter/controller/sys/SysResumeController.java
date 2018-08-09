@@ -61,5 +61,16 @@ public class SysResumeController {
 
         return new ReturnMessage(ResponseCode.OK, 1);
     }
-
+    @ApiOperation(value = "批量导出pdf", notes = "批量导出pdf")
+    @RequestMapping(value = "/getListResumePDF", method = RequestMethod.POST)
+    public ReturnMessage getListResumePDf(String url,Integer   []userId)  {
+        for(int i=0;i<userId.length;++i) {
+            List<Resume> resumeList = resumeService.getUserIdResume(userId[i]);
+            List<ResumeScience> resumeScienceList = resumeScienceService.getUserIdResumeScience(userId[i]);
+            List<ResumeSchool> resumeSchoolList = resumeSchoolService.getUserIdResumeSchool(userId[i]);
+            List<ResumeEnterprise> resumeEnterpriseList = resumeEnterpriseService.getUserIdResumeEnterprise(userId[i]);
+            pdfUtil.createPdf(url, resumeList, resumeScienceList, resumeSchoolList, resumeEnterpriseList);
+        }
+        return new ReturnMessage(ResponseCode.OK, 1);
+    }
 }

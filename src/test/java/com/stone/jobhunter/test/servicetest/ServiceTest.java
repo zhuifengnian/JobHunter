@@ -2,15 +2,16 @@ package com.stone.jobhunter.test.servicetest;
 
 import com.stone.jobhunter.basic.PageInfo;
 import com.stone.jobhunter.mapper.ResumeEvaluateMapper;
-import com.stone.jobhunter.pojo.Resume;
-import com.stone.jobhunter.pojo.ResumePurpose;
-import com.stone.jobhunter.pojo.ResumeScience;
-import com.stone.jobhunter.pojo.User;
+import com.stone.jobhunter.pojo.*;
+import com.stone.jobhunter.service.sys.ResumeEnterpriseService;
 import com.stone.jobhunter.service.sys.ResumeEvaluateService;
+import com.stone.jobhunter.service.weixin.ResumeSchoolService;
+import com.stone.jobhunter.service.weixin.ResumeScienceService;
 import com.stone.jobhunter.service.weixin.ResumeService;
 import com.stone.jobhunter.service.weixin.UserService;
 import com.stone.jobhunter.utils.JsonUtil;
 import com.stone.jobhunter.utils.PageUtil;
+import com.stone.jobhunter.utils.pdfUtil;
 import com.stone.jobhunter.vo.SysResumeTableFormVO;
 import com.stone.jobhunter.vo.SysResumeTableVO;
 import net.sf.json.JSONArray;
@@ -37,13 +38,14 @@ import java.util.List;
 @WebAppConfiguration    //调用javaWEB的组件，比如自动注入ServletContext Bean等等
 public class ServiceTest {
     @Autowired
-    private UserService userService;
+    private ResumeEnterpriseService resumeEnterpriseService;
     @Autowired
-    private ResumeEvaluateService resumeEvaluateService;
+    private ResumeService resumeService;
     @Autowired
-    private ResumeEvaluateMapper resumeEvaluateMapper;
-   @Autowired
-   private ResumeService resumeService;
+    private ResumeScienceService resumeScienceService;
+    @Autowired
+    private ResumeSchoolService resumeSchoolService;
+
     @Test
     public void testUserService() throws ParseException, UnsupportedEncodingException {
 //        User user = new User();
@@ -64,7 +66,13 @@ String obj="{\"resume\":{\"userId\":1,\"resumeName\":\"林俊旭的简历1号\",
 
     @Test
     public void testListResume(){
-        PageInfo<SysResumeTableVO> pageInfo = resumeService.listResumeTableVO(new SysResumeTableFormVO(), PageUtil.setPage(8,3));
-        System.out.println(pageInfo);
+//        PageInfo<SysResumeTableVO> pageInfo = resumeService.listResumeTableVO(new SysResumeTableFormVO(), PageUtil.setPage(8,3));
+//        System.out.println(pageInfo);
+        List<Resume> resumeList=	resumeService.getUserIdResume(85);
+        List<ResumeScience> resumeScienceList=resumeScienceService.getUserIdResumeScience(85);
+        List<ResumeSchool> resumeSchoolList=resumeSchoolService.getUserIdResumeSchool(85);
+        List<ResumeEnterprise> resumeEnterpriseList=resumeEnterpriseService.getUserIdResumeEnterprise(85);
+        pdfUtil.createPdf("/Users/liyue/Downloads",resumeList,resumeScienceList,resumeSchoolList,resumeEnterpriseList);
+
     }
 }

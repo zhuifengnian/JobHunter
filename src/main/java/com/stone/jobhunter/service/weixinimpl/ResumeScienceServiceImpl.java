@@ -20,8 +20,9 @@ public class ResumeScienceServiceImpl  extends AbstractBaseServiceImpl<ResumeSci
         return resumeScienceMapper;
     }
 
+
     @Override
-    public List<ResumeScience> getUserIdResumeScience(Integer userId) {
-        return resumeScienceMapper.getUserIdResumeScience(userId);
+    public List<ResumeScience> getUserIdResumeScience(Integer resumeId) {
+        return resumeScienceMapper.getUserIdResumeScience(resumeId);
     }
 }

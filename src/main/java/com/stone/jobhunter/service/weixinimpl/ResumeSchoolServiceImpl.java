@@ -20,8 +20,9 @@ public class ResumeSchoolServiceImpl  extends AbstractBaseServiceImpl<ResumeScho
         return resumeSchoolMapper;
     }
 
+
     @Override
-    public List<ResumeSchool> getUserIdResumeSchool(Integer userId) {
-        return resumeSchoolMapper.getUserIdResumeSchool(userId);
+    public List<ResumeSchool> getUserIdResumeSchool(Integer resumeId) {
+        return resumeSchoolMapper.getUserIdResumeSchool(resumeId);
     }
 }

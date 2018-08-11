@@ -65,22 +65,6 @@ private ResumeEnterpriseService resumeEnterpriseService;
     }
 
 
-    @ApiOperation(value = "简历详情", notes = "简历详情")
-    @RequestMapping(value = "/getResumeInfo", method = RequestMethod.POST)
-    public ReturnMessage getResumeInfo(@RequestParam("userId") Integer userId)  {
-        List<Resume> resumeList=	resumeService.getUserIdResume(userId);
-        List<ResumeScience> resumeScienceList=resumeScienceService.getUserIdResumeScience(userId);
-        List<ResumeSchool> resumeSchoolList=resumeSchoolService.getUserIdResumeSchool(userId);
-        List<ResumeEnterprise> resumeEnterpriseList=resumeEnterpriseService.getUserIdResumeEnterprise(userId);
 
-        List<UserEnterpriseVo>resumeEnterpriseVoList=new ArrayList<>();
-        List<UserInformationVo>userInformationVoArrayList=new ArrayList<>();
-        List<UserSchoolVo>userSchoolVoArrayList=new ArrayList<>();
-        List<UserScienceVo>userScienceVoArrayList=new ArrayList<>();
-        List<ResumeVo> resumeVoList=new ArrayList<>();
-
-
-        return new ReturnMessage(ResponseCode.OK, 1);
-    }
 
 }

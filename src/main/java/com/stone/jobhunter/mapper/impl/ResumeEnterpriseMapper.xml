@@ -167,7 +167,7 @@
     select *
     from resume_enterprise
     where 1=1
-    and user_id=#{userId}
+    and resume_id=#{resumeId}
   </select>
   <select id="getUserId" resultType="Integer">
     select  id

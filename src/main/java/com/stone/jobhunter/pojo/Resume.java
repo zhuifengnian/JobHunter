@@ -7,9 +7,7 @@ public class Resume {
 
     private Integer userId;
 
-    private String resumeName;
-
-    private String evaluationId;
+    private String resumename;
 
     private Date createTime;
 
@@ -23,8 +21,6 @@ public class Resume {
 
     private String userPhone;
 
-    private String userCard;
-
     private String userPhoto;
 
     private String userGender;
@@ -35,32 +31,33 @@ public class Resume {
 
     private String adress;
 
-    private String highEducation;
-
     private Date userBirth;
 
     private String selfPosition;
 
-    public Resume(Integer id, Integer userId, String resumeName, String evaluationId, Date createTime, Date updateTime, Integer state, String selfAssessment, String userName, String userPhone, String userCard, String userPhoto, String userGender, Integer userAge, String userEmail, String adress, String highEducation, Date userBirth, String selfPosition) {
+    private String wechat;
+
+    private String qq;
+
+    public Resume(Integer id, Integer userId, String resumename, Date createTime, Date updateTime, Integer state, String selfAssessment, String userName, String userPhone, String userPhoto, String userGender, Integer userAge, String userEmail, String adress, Date userBirth, String selfPosition, String wechat, String qq) {
         this.id = id;
         this.userId = userId;
-        this.resumeName = resumeName;
-        this.evaluationId = evaluationId;
+        this.resumename = resumename;
         this.createTime = createTime;
         this.updateTime = updateTime;
         this.state = state;
         this.selfAssessment = selfAssessment;
         this.userName = userName;
         this.userPhone = userPhone;
-        this.userCard = userCard;
         this.userPhoto = userPhoto;
         this.userGender = userGender;
         this.userAge = userAge;
         this.userEmail = userEmail;
         this.adress = adress;
-        this.highEducation = highEducation;
         this.userBirth = userBirth;
         this.selfPosition = selfPosition;
+        this.wechat = wechat;
+        this.qq = qq;
     }
 
     public Resume() {
@@ -83,20 +80,12 @@ public class Resume {
         this.userId = userId;
     }
 
-    public String getResumeName() {
-        return resumeName;
+    public String getResumename() {
+        return resumename;
     }
 
-    public void setResumeName(String resumeName) {
-        this.resumeName = resumeName == null ? null : resumeName.trim();
-    }
-
-    public String getEvaluationId() {
-        return evaluationId;
-    }
-
-    public void setEvaluationId(String evaluationId) {
-        this.evaluationId = evaluationId == null ? null : evaluationId.trim();
+    public void setResumename(String resumename) {
+        this.resumename = resumename == null ? null : resumename.trim();
     }
 
     public Date getCreateTime() {
@@ -147,14 +136,6 @@ public class Resume {
         this.userPhone = userPhone == null ? null : userPhone.trim();
     }
 
-    public String getUserCard() {
-        return userCard;
-    }
-
-    public void setUserCard(String userCard) {
-        this.userCard = userCard == null ? null : userCard.trim();
-    }
-
     public String getUserPhoto() {
         return userPhoto;
     }
@@ -195,14 +176,6 @@ public class Resume {
         this.adress = adress == null ? null : adress.trim();
     }
 
-    public String getHighEducation() {
-        return highEducation;
-    }
-
-    public void setHighEducation(String highEducation) {
-        this.highEducation = highEducation == null ? null : highEducation.trim();
-    }
-
     public Date getUserBirth() {
         return userBirth;
     }
@@ -217,5 +190,21 @@ public class Resume {
 
     public void setSelfPosition(String selfPosition) {
         this.selfPosition = selfPosition == null ? null : selfPosition.trim();
+    }
+
+    public String getWechat() {
+        return wechat;
+    }
+
+    public void setWechat(String wechat) {
+        this.wechat = wechat == null ? null : wechat.trim();
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq == null ? null : qq.trim();
     }
 }

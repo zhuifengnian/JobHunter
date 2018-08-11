@@ -38,6 +38,8 @@ public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implemen
    private ResumePurposeService resumePurposeService;
    @Autowired
    private ResumeSchoolService resumeSchoolService;
+   @Autowired
+   private ResumeCerficateService resumeCerficateService;
     @Override
     public BaseMapper<Resume> getDao() {
         return resumeMapper;
@@ -76,7 +78,7 @@ public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implemen
     }
 
     @Override
-    public int[] putResume(String obj,Integer userId) throws ParseException, UnsupportedEncodingException  {
+    public int[] putResume(String obj,Integer userId) throws ParseException {
         List<Resume> resumeList=resumeMapper.getUser(userId);
         if(resumeList.size()!=0){
             for(Resume resume:resumeList){
@@ -85,31 +87,36 @@ public class ResumeServiceImpl  extends AbstractBaseServiceImpl<Resume> implemen
                 resumeMapper.updateByPrimaryKeySelective(resume);
             }
         }
-        int insert[]=new int[5];
+        int insert[]=new int[6];
         Resume resume=JsonUtil.checkJson(obj);
         insert[0]=resumeService.insert(resume);
         List<ResumePurpose> resumePurposeList =JsonUtil.checkJson1(obj);
         for(ResumePurpose resumePurpose : resumePurposeList) {
             resumePurpose.setResumeId(insert[0]);
-            insert[1] = resumePurposeService.insert(resumePurpose);
+            insert[1] = resumePurposeService.insertSelective(resumePurpose);
         }
         List<ResumeSchool>resumeSchoolList =JsonUtil.checkJson2(obj);
         for(ResumeSchool resumeSchool: resumeSchoolList) {
             resumeSchool.setResumeId(insert[0]);
 
-            insert[2] = resumeSchoolService.insert(resumeSchool);
+            insert[2] = resumeSchoolService.insertSelective(resumeSchool);
         }
 
         List<ResumeScience> resumeScienceList=JsonUtil.checkJson3(obj);
         for(ResumeScience resumeScience : resumeScienceList) {
             resumeScience.setResumeId(insert[0]);
-            insert[3] = resumeScienceService.insert(resumeScience);
+            insert[3] = resumeScienceService.insertSelective(resumeScience);
         }
 
         List<ResumeEnterprise> resumeEnterpriseList=JsonUtil.checkJson4(obj);
         for(ResumeEnterprise resumeEnterprise : resumeEnterpriseList) {
             resumeEnterprise.setResumeId(insert[0]);
-            insert[4] = resumeEnterpriseService.insert(resumeEnterprise);
+            insert[4] = resumeEnterpriseService.insertSelective(resumeEnterprise);
+        }
+        List<ResumeCertificate> resumeCertificateList=JsonUtil.checkJson5(obj);
+        for(ResumeCertificate resumeCertificate:resumeCertificateList){
+            resumeCertificate.setResumeId(insert[0]);
+            insert[5]=resumeCerficateService.insertSelective(resumeCertificate);
         }
         return insert;
     }

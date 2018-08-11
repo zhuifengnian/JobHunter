@@ -291,11 +291,11 @@
                                     <div class="am-form-group tpl-table-list-select">
                                         <select name="schoolType" data-am-selected="{btnSize: 'sm'}">
                                             <option value='none' disabled>请选择学校类型</option>
-                                            <option value="0" <c:if test="${resumeTableFormVO.schoolType == 0}">selected</c:if>>不限学校</option>
-                                            <option value="1" <c:if test="${resumeTableFormVO.schoolType == 1}">selected</c:if>>985/211</option>
-                                            <option value="2" <c:if test="${resumeTableFormVO.schoolType == 2}">selected</c:if>>普通本科</option>
-                                            <option value="3" <c:if test="${resumeTableFormVO.schoolType == 3}">selected</c:if>>专科</option>
-                                            <option value="4" <c:if test="${resumeTableFormVO.schoolType == 4}">selected</c:if>>其他</option>
+                                            <option value="-1" <c:if test="${resumeTableFormVO.schoolType == -1}">selected</c:if>>不限学校</option>
+                                            <option value="0" <c:if test="${resumeTableFormVO.schoolType == 0}">selected</c:if>>专科</option>
+                                            <option value="1" <c:if test="${resumeTableFormVO.schoolType == 1}">selected</c:if>>普通本科</option>
+                                            <option value="2" <c:if test="${resumeTableFormVO.schoolType == 2}">selected</c:if>>985/211</option>
+                                            <option value="3" <c:if test="${resumeTableFormVO.schoolType == 3}">selected</c:if>>其他</option>
                                         </select>
                                     </div>
                                 </fieldset>
@@ -307,10 +307,10 @@
                                     <div class="am-form-group tpl-table-list-select">
                                     <select name="selfPosition" data-am-selected="{btnSize: 'sm'}">
                                     <option value='none' disabled>请选择自我定位</option>
-                                    <option value="0" <c:if test="${resumeTableFormVO.selfPosition == 0}">selected</c:if>>不限自我定位</option>
-                                    <option value="1" <c:if test="${resumeTableFormVO.selfPosition == 1}">selected</c:if>>学霸型</option>
+                                    <option value="-1" <c:if test="${resumeTableFormVO.selfPosition == -1}">selected</c:if>>不限自我定位</option>
+                                    <option value="0" <c:if test="${resumeTableFormVO.selfPosition == 0}">selected</c:if>>学霸型</option>
+                                    <option value="1" <c:if test="${resumeTableFormVO.selfPosition == 1}">selected</c:if>>社交型</option>
                                     <option value="2" <c:if test="${resumeTableFormVO.selfPosition == 2}">selected</c:if>>运动型</option>
-                                    <option value="3" <c:if test="${resumeTableFormVO.selfPosition == 3}">selected</c:if>>社交型</option>
                                     </select>
                                     </div>
                                     <div class="am-input-group am-align-right">
@@ -359,7 +359,7 @@
                                                     <td class="am-text-middle">
                                                         <div class="tpl-table-black-operation">
                                                             <a href="${pageContext.request.contextPath}/sys/resumeEditor">
-                                                                <i class="am-icon-pencil"></i> 编辑
+                                                                <i class="am-icon-pencil"></i> 导出pdf
                                                             </a>
                                                         </div>
                                                     </td>

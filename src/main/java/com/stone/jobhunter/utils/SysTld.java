@@ -35,14 +35,17 @@ public class SysTld {
     public static String judgeSchoolType(byte schoolType){
         String ret = "其他";
         switch (schoolType){
-            case 1:
-                ret = "985/211";
+            case 0:
+                ret = "专科";
                 break;
-            case 2:
+            case 1:
                 ret = "普通本科";
                 break;
+            case 2:
+                ret = "985/211";
+                break;
             case 3:
-                ret = "专科";
+                ret = "其他";
                 break;
         }
         return ret;
@@ -51,15 +54,15 @@ public class SysTld {
     public static String judgeSelfPosition(String selfPosition){
         String ret = "其他定位";
         switch (selfPosition){
-            case "1":
+            case "0":
                 ret = "学霸型";
+                break;
+            case "1":
+                ret = "社交型";
                 break;
             case "2":
                 ret = "运动型";
-                break;
-            case "3":
-                ret = "社交型";
-                break;
+            break;
         }
         return ret;
     }
@@ -87,10 +90,10 @@ public class SysTld {
     public static String judgeGender(int gender){
         String ret = "";
         switch (gender){
-            case 0:
+            case 1:
                 ret = "男";
                 break;
-            case 1:
+            case 2:
                 ret = "女";
                 break;
         }

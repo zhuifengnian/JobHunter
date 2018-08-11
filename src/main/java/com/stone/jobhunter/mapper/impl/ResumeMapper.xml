@@ -285,7 +285,7 @@
       <if test="resumeTableFormVO.sequence != null and resumeTableFormVO.sequence != 0">
         and rp.sequence like #{resumeTableFormVO.sequence,jdbcType=INTEGER}
       </if>
-      <if test="resumeTableFormVO.schoolType != null and resumeTableFormVO.schoolType != 0">
+      <if test="resumeTableFormVO.schoolType != null and resumeTableFormVO.schoolType != -1">
         and get_school_type(r.id) = #{resumeTableFormVO.schoolType,jdbcType=INTEGER}
       </if>
       <if test="resumeTableFormVO.finishStartTime != null or resumeTableFormVO.finishEndTime != null">
@@ -296,10 +296,11 @@
           and #{resumeTableFormVO.finishEndTime,jdbcType=TIMESTAMP} > get_school_finish_time(r.id)
         </if>
       </if>
-      <if test="resumeTableFormVO.selfPosition != null and resumeTableFormVO.selfPosition != 0">
+      <if test="resumeTableFormVO.selfPosition != null and resumeTableFormVO.selfPosition != -1">
         and r.self_position like #{resumeTableFormVO.selfPosition, jdbcType = INTEGER}
       </if>
     </if>
+    order by r.create_time desc
     <if test="page != null and page.start != null and page.pageSize!=null">
       limit #{page.start},#{page.pageSize}
     </if>
@@ -316,7 +317,7 @@
       <if test="resumeTableFormVO.sequence != null and resumeTableFormVO.sequence != 0">
         and rp.sequence like #{resumeTableFormVO.sequence,jdbcType=INTEGER}
       </if>
-      <if test="resumeTableFormVO.schoolType != null and resumeTableFormVO.schoolType != 0">
+      <if test="resumeTableFormVO.schoolType != null and resumeTableFormVO.schoolType != -1">
         and get_school_type(r.id) = #{resumeTableFormVO.schoolType,jdbcType=INTEGER}
       </if>
       <if test="resumeTableFormVO.finishStartTime != null or resumeTableFormVO.finishEndTime != null">
@@ -327,11 +328,10 @@
           and #{resumeTableFormVO.finishEndTime,jdbcType=TIMESTAMP} > get_school_finish_time(r.id)
         </if>
       </if>
-      <if test="resumeTableFormVO.selfPosition != null and resumeTableFormVO.selfPosition != 0">
+      <if test="resumeTableFormVO.selfPosition != null and resumeTableFormVO.selfPosition != -1">
         and r.self_position like #{resumeTableFormVO.selfPosition, jdbcType = INTEGER}
       </if>
     </if>
-
   </select>
     <select id="getUser" resultType="com.stone.jobhunter.pojo.Resume">
     select *

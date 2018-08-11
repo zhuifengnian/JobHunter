@@ -6,12 +6,10 @@ import com.stone.jobhunter.basic.PageInfo;
 import com.stone.jobhunter.basic.ResponseCode;
 import com.stone.jobhunter.basic.ReturnMessage;
 
-import com.stone.jobhunter.pojo.Resume;
-import com.stone.jobhunter.pojo.ResumeEnterprise;
-import com.stone.jobhunter.pojo.ResumeSchool;
-import com.stone.jobhunter.pojo.ResumeScience;
+import com.stone.jobhunter.pojo.*;
 import com.stone.jobhunter.service.sys.ResumeEnterpriseService;
 
+import com.stone.jobhunter.service.weixin.ResumeCerficateService;
 import com.stone.jobhunter.service.weixin.ResumeSchoolService;
 import com.stone.jobhunter.service.weixin.ResumeScienceService;
 import com.stone.jobhunter.service.weixin.ResumeService;
@@ -41,6 +39,8 @@ public class SysResumeController {
     private ResumeScienceService resumeScienceService;
     @Autowired
     private ResumeSchoolService resumeSchoolService;
+    @Autowired
+    private ResumeCerficateService resumeCerficateService;
 
     @ApiOperation(value = "列出简历列表", notes = "根据各种条件，获得简历列表，比如企业名称，志愿序列，学校类型，" +
             "毕业时间，自我定位类型来检索")
@@ -57,7 +57,8 @@ public class SysResumeController {
         List<ResumeScience> resumeScienceList=resumeScienceService.getUserIdResumeScience(userId);
         List<ResumeSchool> resumeSchoolList=resumeSchoolService.getUserIdResumeSchool(userId);
         List<ResumeEnterprise> resumeEnterpriseList=resumeEnterpriseService.getUserIdResumeEnterprise(userId);
-        pdfUtil.createPdf(url,resumeList,resumeScienceList,resumeSchoolList,resumeEnterpriseList);
+        List<ResumeCertificate> resumeCerficateList=resumeCerficateService.getUserIdResumeCertificate(userId);
+        pdfUtil.createPdf(url,resumeList,resumeScienceList,resumeSchoolList,resumeEnterpriseList,resumeCerficateList);
 
         return new ReturnMessage(ResponseCode.OK, 1);
     }
@@ -69,7 +70,8 @@ public class SysResumeController {
             List<ResumeScience> resumeScienceList = resumeScienceService.getUserIdResumeScience(userId[i]);
             List<ResumeSchool> resumeSchoolList = resumeSchoolService.getUserIdResumeSchool(userId[i]);
             List<ResumeEnterprise> resumeEnterpriseList = resumeEnterpriseService.getUserIdResumeEnterprise(userId[i]);
-            pdfUtil.createPdf(url, resumeList, resumeScienceList, resumeSchoolList, resumeEnterpriseList);
+            List<ResumeCertificate> resumeCertificateList=resumeCerficateService.getUserIdResumeCertificate(userId[i]);
+            pdfUtil.createPdf(url, resumeList, resumeScienceList, resumeSchoolList, resumeEnterpriseList,resumeCertificateList);
         }
         return new ReturnMessage(ResponseCode.OK, 1);
     }

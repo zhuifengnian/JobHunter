@@ -4,10 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
-import com.stone.jobhunter.pojo.Resume;
-import com.stone.jobhunter.pojo.ResumeEnterprise;
-import com.stone.jobhunter.pojo.ResumeSchool;
-import com.stone.jobhunter.pojo.ResumeScience;
+import com.stone.jobhunter.pojo.*;
 
 
 import java.io.*;
@@ -22,7 +19,7 @@ public class pdfUtil {
     public static void createPdf(String url, List<Resume> resumeList,
                                  List<ResumeScience> resumeScienceList,
                                  List<ResumeSchool> resumeSchoolList,
-                                 List<ResumeEnterprise> resumeEnterpriseList) {
+                                 List<ResumeEnterprise> resumeEnterpriseList, List<ResumeCertificate> resumeCertificateList) {
         try {
             BaseFont bfChinese = BaseFont.createFont("STSongStd-Light", "UniGB-UCS2-H", false);
             Font font = new Font(bfChinese, 12, Font.NORMAL);
@@ -30,7 +27,7 @@ public class pdfUtil {
             Document document = new Document(PageSize.A4, 10, 10, 10, 10);
             PdfWriter mPdfWriter = PdfWriter.getInstance(document, new FileOutputStream(url+"/"+resumeList.get(0).getUserName()+".pdf"));
             document.open();
-            String s = getHtml(resumeList, resumeScienceList, resumeSchoolList, resumeEnterpriseList);
+            String s = getHtml(resumeList, resumeScienceList, resumeSchoolList, resumeEnterpriseList,resumeCertificateList);
 
             ByteArrayInputStream bin = new ByteArrayInputStream(s.getBytes("UTF-8"));
             XMLWorkerHelper.getInstance().parseXHtml(mPdfWriter, document, bin, Charset.forName("UTF-8"), new ChinaFontProvide());
@@ -48,7 +45,7 @@ public class pdfUtil {
     public static String getHtml(List<Resume> resumeList,
                                  List<ResumeScience> resumeScienceList,
                                  List<ResumeSchool> resumeSchoolList,
-                                 List<ResumeEnterprise> resumeEnterpriseList) {
+                                 List<ResumeEnterprise> resumeEnterpriseList,List<ResumeCertificate> resumeCertificateList) {
 
 
         String url = resumeList.get(0).getUserPhoto();
@@ -113,10 +110,11 @@ public class pdfUtil {
                         "                <td class=\"person-info-td-content\">" + resumeList.get(0).getUserBirth() + "</td>\n" +
                         "                <td class=\"personal-info-td-title\"></td>\n" +
                         "                <td class=\"person-info-td-content\"></td>\n" +
-                        "                <td class=\"personal-info-td-title\">身份证号：</td>\n" +
+                        "                <td class=\"personal-info-td-title\">微信号：</td>\n" +
                         "                <!---->\n" +
-                        "                <td class=\"person-info-td-content\">" + resumeList.get(0).getUserCard() + "</td>\n" +
+                        "                <td class=\"person-info-td-content\">" + resumeList.get(0).getWechat() + "</td>\n" +
                         "            </tr>\n" +
+
                         "            <tr>\n" +
                         "                <td class=\"personal-info-td-title\">联系电话：</td>\n" +
                         "                <!---->\n" +
@@ -126,6 +124,16 @@ public class pdfUtil {
                         "                <td class=\"personal-info-td-title\">电子邮件：</td>\n" +
                         "                <!---->\n" +
                         "                <td class=\"person-info-td-content\">" + resumeList.get(0).getUserEmail() + "</td>\n" +
+                        "            </tr>\n" +
+                        "            <tr>\n" +
+                        "                <td class=\"personal-info-td-title\">qq：</td>\n" +
+                        "                <!---->\n" +
+                        "                <td class=\"person-info-td-content\">" + resumeList.get(0).getQq() + "</td>\n" +
+                        "                <td class=\"personal-info-td-title\"></td>\n" +
+                        "                <td class=\"person-info-td-content\"></td>\n" +
+                        "                <td class=\"personal-info-td-title\">个人定位：</td>\n" +
+                        "                <!---->\n" +
+                        "                <td class=\"person-info-td-content\">" + resumeList.get(0).getSelfPosition() + "</td>\n" +
                         "            </tr>\n" +
                         "        </table>\n" +
                         "</div>\n" +
@@ -181,6 +189,7 @@ public class pdfUtil {
         html.append("</div>\n");
         html.append("</div>\n");
 
+
         html.append(" <hr/>\n");
 
         html.append("<div>\n");
@@ -204,6 +213,7 @@ public class pdfUtil {
         html.append("</div>\n");
         html.append("</div>\n");
         html.append("</div>\n");
+
         html.append(" <hr/>\n");
 
         html.append(" <div>\n");
@@ -223,6 +233,31 @@ public class pdfUtil {
         html.append("</div>\n");
         html.append("</div>\n");
         html.append("</div>\n");
+
+        html.append("    <hr/>\n");
+
+        html.append("<div>\n");
+        html.append("<div>\n");
+        html.append("    <div class=\"lay2\">\n" +
+                "            证书\n" +
+                "        </div>\n");
+
+        html.append("<div class=\"lay2\">\n");
+        for (int i = 0; i < resumeCertificateList.size(); ++i) {
+            html.append(
+                    "      <div >\n" +
+                            "    <pre>\n" +
+                            "    " + resumeCertificateList.get(i).getName() + "  " +
+                            "       " + resumeCertificateList.get(i).getGrade() + "" +
+                            "    </pre>\n" +
+                            "        </div>\n"
+            );
+        }
+        html.append("</div>\n");
+        html.append("</div>\n");
+        html.append("</div>\n");
+
+
         html.append(
                 "</body>\n" +
                         "</html>\n");

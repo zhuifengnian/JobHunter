@@ -35,6 +35,7 @@ public class JsonUtil {
         Resume resume = new Resume();
         String name = jsonArrayss.getJSONObject(0).get("name").toString();
         resume.setUserName(name);
+        resume.setResumename(resume.getUserName());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         resume.setUserBirth(sdf.parse(String.valueOf(jsonArrayss.getJSONObject(0).get("birth"))));
         resume.setUserAge(Integer.valueOf(String.valueOf(jsonArrayss.getJSONObject(0).get("age"))));
@@ -42,7 +43,8 @@ public class JsonUtil {
         resume.setAdress(String.valueOf(jsonArrayss.getJSONObject(0).get("city")));
         resume.setUserPhone(String.valueOf(jsonArrayss.getJSONObject(0).get("phone")));
         resume.setUserEmail(String.valueOf(jsonArrayss.getJSONObject(0).get("email")));
-        resume.setUserCard(String.valueOf(jsonArrayss.getJSONObject(0).get("IDcard")));
+        resume.setWechat(String.valueOf(jsonArrayss.getJSONObject(0).get("wechat")));
+        resume.setQq(String.valueOf(jsonArrayss.getJSONObject(0).get("qq")));
         resume.setSelfAssessment(String.valueOf(jsonArrayss.getJSONObject(0).get("self_assessment")));
         resume.setSelfPosition(String.valueOf(jsonArrayss.getJSONObject(0).get("self_position")));
         resume.setUpdateTime(Calendar.getInstance().getTime());
@@ -100,7 +102,7 @@ public class JsonUtil {
                 resumeSchool.setMajor(String.valueOf(jsonArrayss.getJSONObject(i).get("major")));
                 resumeSchool.setSchool(String.valueOf(jsonArrayss.getJSONObject(i).get("school")));
                 resumeSchool.setUpdateTime(Calendar.getInstance().getTime());
-                resumeSchool.setExperience(String.valueOf(jsonArrayss.getJSONObject(i).get("enterprise")));
+                resumeSchool.setExperience(String.valueOf(jsonArrayss.getJSONObject(i).get("experience")));
                 resumeSchool.setState(1);
                 resumeSchool.setSequence(i + 1);
                 resumeSchool.setUserId(Integer.valueOf(String.valueOf(userId)));
@@ -133,6 +135,7 @@ public class JsonUtil {
                 resumeScience.setScienceText(String.valueOf(jsonArrayss.getJSONObject(i).get("detail")));
                 resumeScience.setContext(String.valueOf(jsonArrayss.getJSONObject(i).get("role")));
                 resumeScience.setState(1);
+
                 resumeScience.setUserId(Integer.valueOf(String.valueOf(userId)));
                 resumeScienceArrayList.add(resumeScience);
             }
@@ -168,5 +171,28 @@ public class JsonUtil {
             }
         }
         return resumeEnterpriseArrayList;
+    }
+    public static List<ResumeCertificate> checkJson5(String json) throws ParseException {
+        json = "[" + json + "]";
+
+        List<ResumeCertificate> resumeCertificateArrayList = new ArrayList<>();
+        JSONArray jsonArray = JSONArray.fromObject(json);
+        Object result = jsonArray.getJSONObject(0).get("resume");
+        Object school = "[" + result + "]";
+        JSONArray jsonArrays = JSONArray.fromObject(school);
+        Object per = jsonArrays.getJSONObject(0).get("certificate");
+        if (!per.equals("")) {
+            Object userId = jsonArrays.getJSONObject(0).get("userId");
+            JSONArray jsonArrayss = JSONArray.fromObject(per);
+            for (int i = 0; i < jsonArrayss.size(); ++i) {
+              ResumeCertificate resumeCertificate=new ResumeCertificate();
+               resumeCertificate.setName(String.valueOf(jsonArrayss.getJSONObject(i).get("name")));
+               resumeCertificate.setGrade(String.valueOf(jsonArrayss.getJSONObject(i).get("grade")));
+               resumeCertificate.setState(1);
+               resumeCertificate.setUserId(Integer.valueOf(String.valueOf(userId)));
+                resumeCertificateArrayList.add(resumeCertificate);
+            }
+        }
+        return resumeCertificateArrayList;
     }
 }

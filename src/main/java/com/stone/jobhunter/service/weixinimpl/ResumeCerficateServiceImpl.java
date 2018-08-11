@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class EnterpriseCerficateServiceImpl extends AbstractBaseServiceImpl<ResumeCertificate> implements ResumeCerficateService {
+public class ResumeCerficateServiceImpl extends AbstractBaseServiceImpl<ResumeCertificate> implements ResumeCerficateService {
    @Autowired
    private ResumeCertificateMapper resumeCertificateMapper;
     @Override
@@ -18,8 +18,9 @@ public class EnterpriseCerficateServiceImpl extends AbstractBaseServiceImpl<Resu
         return resumeCertificateMapper;
     }
 
+
     @Override
-    public List<ResumeCertificate> getUserIdResumeCertificate(Integer userId) {
-        return resumeCertificateMapper.getUserIdResumeCertificate(userId);
+    public List<ResumeCertificate> getUserIdResumeCertificate(Integer resumeId) {
+        return resumeCertificateMapper.getUserIdResumeCertificate(resumeId);
     }
 }

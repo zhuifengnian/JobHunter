@@ -77,13 +77,13 @@ for(int i=0;i<resumeCertificateList.size();++i){
 
     @Test
     public void testListResume(){
-        PageInfo<SysResumeTableVO> pageInfo = resumeService.listResumeTableVO(new SysResumeTableFormVO(), PageUtil.setPage(8,3));
-        System.out.println(pageInfo);
+      //  PageInfo<SysResumeTableVO> pageInfo = resumeService.listResumeTableVO(new SysResumeTableFormVO(), PageUtil.setPage(8,3));
+      //  System.out.println(pageInfo);
         List<Resume> resumeList=	resumeService.getUserIdResume(85);
-        List<ResumeScience> resumeScienceList=resumeScienceService.getUserIdResumeScience(85);
-        List<ResumeSchool> resumeSchoolList=resumeSchoolService.getUserIdResumeSchool(85);
-        List<ResumeEnterprise> resumeEnterpriseList=resumeEnterpriseService.getUserIdResumeEnterprise(85);
-        List<ResumeCertificate>resumeCertificateList =resumeCerficateService.getUserIdResumeCertificate(85);
+        List<ResumeScience> resumeScienceList=resumeScienceService.getUserIdResumeScience(62);
+        List<ResumeSchool> resumeSchoolList=resumeSchoolService.getUserIdResumeSchool(62);
+        List<ResumeEnterprise> resumeEnterpriseList=resumeEnterpriseService.getUserIdResumeEnterprise(62);
+        List<ResumeCertificate>resumeCertificateList =resumeCerficateService.getUserIdResumeCertificate(62);
         pdfUtil.createPdf("/Users/liyue/Downloads",resumeList,resumeScienceList,resumeSchoolList,resumeEnterpriseList,resumeCertificateList);
 
     }

@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 public interface ResumeCertificateMapper extends BaseMapper<ResumeCertificate> {
     /**
-     * 根据userId取数据库
-     * @param userId
+     * 根据resumeId取数据库
+     * @param resumeId
      * @return
      */
-    List<ResumeCertificate> getUserIdResumeCertificate(Integer userId);
+    List<ResumeCertificate> getUserIdResumeCertificate(Integer resumeId);
 }

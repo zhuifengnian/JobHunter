@@ -20,8 +20,9 @@ public class ReusmeEnterpriseServiceImpl  extends AbstractBaseServiceImpl<Resume
         return resumeEnterpriseMapper;
     }
 
+
     @Override
-    public List<ResumeEnterprise> getUserIdResumeEnterprise(Integer userId) {
-        return resumeEnterpriseMapper.getUserIdResumeEnterprise(userId);
+    public List<ResumeEnterprise> getUserIdResumeEnterprise(Integer resumeId) {
+        return resumeEnterpriseMapper.getUserIdResumeEnterprise(resumeId);
     }
 }

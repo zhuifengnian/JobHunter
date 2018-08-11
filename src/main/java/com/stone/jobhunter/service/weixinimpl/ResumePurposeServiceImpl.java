@@ -18,8 +18,9 @@ public class ResumePurposeServiceImpl  extends AbstractBaseServiceImpl<ResumePur
         return resumePurposeMapper;
     }
 
+
     @Override
-    public ResumePurpose getUserIdResumePurpose(Integer userId) {
-        return resumePurposeMapper.getUserIdResumePurpose(userId);
+    public ResumePurpose getUserIdResumePurpose(Integer resumeId) {
+        return resumePurposeMapper.getUserIdResumePurpose(resumeId);
     }
 }

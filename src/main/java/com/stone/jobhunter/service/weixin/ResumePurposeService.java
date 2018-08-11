@@ -10,9 +10,9 @@ import com.stone.jobhunter.service.BaseService;
  */
 public interface ResumePurposeService extends BaseService<ResumePurpose> {
     /**
-     * 根据userId取数据库
-     * @param userId
+     * 根据resumeId取数据库
+     * @param resumeId
      * @return
      */
-    ResumePurpose getUserIdResumePurpose(Integer userId);
+    ResumePurpose getUserIdResumePurpose(Integer resumeId);
 }

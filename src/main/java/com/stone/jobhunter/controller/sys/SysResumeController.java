@@ -53,11 +53,11 @@ public class SysResumeController {
     @ApiOperation(value = "导出pdf", notes = "导出pdf")
     @RequestMapping(value = "/getResumePDF", method = RequestMethod.POST)
     public ReturnMessage getResumePDf(String url,Integer userId)  {
-        List<Resume> resumeList=	resumeService.getUserIdResume(userId);
-        List<ResumeScience> resumeScienceList=resumeScienceService.getUserIdResumeScience(userId);
-        List<ResumeSchool> resumeSchoolList=resumeSchoolService.getUserIdResumeSchool(userId);
-        List<ResumeEnterprise> resumeEnterpriseList=resumeEnterpriseService.getUserIdResumeEnterprise(userId);
-        List<ResumeCertificate> resumeCerficateList=resumeCerficateService.getUserIdResumeCertificate(userId);
+        List<Resume> resumeList=resumeService.getUserIdResume(userId);
+        List<ResumeScience> resumeScienceList=resumeScienceService.getUserIdResumeScience(resumeList.get(0).getId());
+        List<ResumeSchool> resumeSchoolList=resumeSchoolService.getUserIdResumeSchool(resumeList.get(0).getId());
+        List<ResumeEnterprise> resumeEnterpriseList=resumeEnterpriseService.getUserIdResumeEnterprise(resumeList.get(0).getId());
+        List<ResumeCertificate> resumeCerficateList=resumeCerficateService.getUserIdResumeCertificate(resumeList.get(0).getId());
         pdfUtil.createPdf(url,resumeList,resumeScienceList,resumeSchoolList,resumeEnterpriseList,resumeCerficateList);
 
         return new ReturnMessage(ResponseCode.OK, 1);
@@ -67,10 +67,10 @@ public class SysResumeController {
     public ReturnMessage getListResumePDf(String url,Integer   []userId)  {
         for(int i=0;i<userId.length;++i) {
             List<Resume> resumeList = resumeService.getUserIdResume(userId[i]);
-            List<ResumeScience> resumeScienceList = resumeScienceService.getUserIdResumeScience(userId[i]);
-            List<ResumeSchool> resumeSchoolList = resumeSchoolService.getUserIdResumeSchool(userId[i]);
-            List<ResumeEnterprise> resumeEnterpriseList = resumeEnterpriseService.getUserIdResumeEnterprise(userId[i]);
-            List<ResumeCertificate> resumeCertificateList=resumeCerficateService.getUserIdResumeCertificate(userId[i]);
+            List<ResumeScience> resumeScienceList = resumeScienceService.getUserIdResumeScience(resumeList.get(0).getId());
+            List<ResumeSchool> resumeSchoolList = resumeSchoolService.getUserIdResumeSchool(resumeList.get(0).getId());
+            List<ResumeEnterprise> resumeEnterpriseList = resumeEnterpriseService.getUserIdResumeEnterprise(resumeList.get(0).getId());
+            List<ResumeCertificate> resumeCertificateList=resumeCerficateService.getUserIdResumeCertificate(resumeList.get(0).getId());
             pdfUtil.createPdf(url, resumeList, resumeScienceList, resumeSchoolList, resumeEnterpriseList,resumeCertificateList);
         }
         return new ReturnMessage(ResponseCode.OK, 1);

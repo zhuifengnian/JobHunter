@@ -31,10 +31,10 @@ public interface ResumeService extends BaseService<Resume> {
      * @param userId
      * @return
      */
-   List<Resume> getUserIdResume(Integer userId);
+    List<Resume> getUserIdResume(Integer  userId);
     /**
      *
-     * @param userId
+     * @1param userId
      * @return
      */
 

@@ -8,11 +8,11 @@ import java.util.List;
 @Repository
 public interface ResumeEnterpriseMapper extends BaseMapper<ResumeEnterprise>{
     /**
-     * 根据userId取数据库
-     * @param userId
+     * 根据resumeId取数据库
+     * @param resumeId
      * @return
      */
-   List <ResumeEnterprise> getUserIdResumeEnterprise(Integer userId);
+   List <ResumeEnterprise> getUserIdResumeEnterprise(Integer resumeId);
 
     /**
      * 根据obj模糊查询

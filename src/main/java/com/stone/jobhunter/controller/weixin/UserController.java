@@ -1,4 +1,4 @@
-package com.stone.jobhunter.controller.weixin;
+﻿package com.stone.jobhunter.controller.weixin;
 
 import com.stone.jobhunter.basic.ResponseCode;
 import com.stone.jobhunter.basic.ReturnMessage;
@@ -102,7 +102,7 @@ public class UserController {
     @PostMapping("/updateAvatar")
     public ReturnMessage updateAvatar(@RequestParam Integer uid, MultipartFile file) {
         String avatarUrl = QiNiuUtil.manageFile(file);
-        User tmpUser = new User();
+        QUser tmpUser = new User();
         tmpUser.setId(uid);
         tmpUser.setAvatarurl(avatarUrl);
         int i = userService.updateByPrimaryKeySelective(tmpUser);

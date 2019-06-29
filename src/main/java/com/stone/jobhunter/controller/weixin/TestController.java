@@ -1,4 +1,4 @@
-package com.stone.jobhunter.controller.weixin;
+﻿package com.stone.jobhunter.controller.weixin;
 
 import com.stone.jobhunter.pojo.User;
 import com.stone.jobhunter.service.weixin.UserService;
@@ -23,8 +23,7 @@ public class TestController {
 
     @RequestMapping("/login")
     public String login(Model model) {
-        User user = userService.selectByPrimaryKey(78);
-        model.addAttribute("name", user.getNickname());
+        
         return "login";
     }
 }
